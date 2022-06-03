@@ -1,6 +1,7 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import java.io.IOException;
 
 /**
  * Classe com o objetivo de ser a responsável pelo gerenciamento de todas as 
@@ -16,7 +17,7 @@ public class GerenciadorDeTelas {
        this.livrosRepository = livrosRepository;
     }
     
-    public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() {
+    public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() throws IOException {
         TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador();
         frame.setVisible(true);
         return frame;
