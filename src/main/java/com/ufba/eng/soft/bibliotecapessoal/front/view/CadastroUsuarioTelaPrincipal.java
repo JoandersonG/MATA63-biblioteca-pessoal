@@ -11,6 +11,14 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 
 public class CadastroUsuarioTelaPrincipal extends JFrame {
@@ -34,61 +42,75 @@ public static void main(String[] args) {
 }
 
 /**
- * Create the frame.
- */
-public CadastroUsuarioTelaPrincipal() {
-	setTitle("Cadastro de Usuário");
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(150, 150, 500, 350);
-	contentPane = new JPanel();
-	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	setContentPane(contentPane);
-	contentPane.setLayout(null);
-	
-	JButton btnProfessor = new JButton("Professor");
-	btnProfessor.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-                        usuario = "Professor";
-			new CadastroJFrame(usuario).setVisible(true);
-		}
-	});
-	btnProfessor.setForeground(Color.BLUE);
-	btnProfessor.setBounds(155, 58, 149, 53);
-	contentPane.add(btnProfessor);
-	
-	JButton btnAluno = new JButton("Aluno");
-	btnAluno.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-                        usuario = "Aluno";
-			new CadastroJFrame(usuario).setVisible(true);
-		}
-	});
-	btnAluno.setForeground(Color.RED);
-	btnAluno.setBounds(155, 106, 149, 53);
-	contentPane.add(btnAluno);
-	
-	JButton btnOrientando = new JButton("Orientando");
-	btnOrientando.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-                        usuario = "Orientando";
-			new CadastroJFrame(usuario).setVisible(true);
-		}
-	});
-	btnOrientando.setForeground(Color.GREEN);
-	btnOrientando.setBounds(155, 154, 149, 53);
-	contentPane.add(btnOrientando);
-        
-        JButton btnSair = new JButton("Sair");
-        btnSair.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                       CadastroUsuarioTelaPrincipal.this.dispose();
-                }
-        });
-        btnSair.setForeground(Color.black);
-	btnSair.setBounds(300, 250, 149, 53);
-	contentPane.add(btnSair);
-        
-}
+     * Create the frame.
+     */
+    public CadastroUsuarioTelaPrincipal() throws FileNotFoundException, IOException {
+            setTitle("\"Persibi - Cadastro de Usuário");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setBounds(300, 300, 650, 500);
+            contentPane = new JPanel();
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            setContentPane(contentPane);
+            contentPane.setLayout(null);
+            getContentPane().setBackground(Color.WHITE);        
 
-}
+            File file = new File(".\\src\\main\\java\\com\\ufba\\eng\\soft\\bibliotecapessoal\\front\\Logotype\\LogoBiblioteca.png");
+            FileInputStream fis = new FileInputStream(file);  
+            BufferedImage bufferedImage = ImageIO.read(fis);
+            ImageIcon imageIcon = new ImageIcon(bufferedImage);            
 
+            JLabel jLabel = new JLabel();
+            jLabel.setBounds(5, 0, 350, 350);
+            jLabel.setVisible(true);
+            jLabel.setIcon(imageIcon);
+            contentPane.add(jLabel);
+
+            JButton btnProfessor = new JButton("Professor");
+            btnProfessor.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                            usuario = "Professor";
+                            new CadastroJFrame(usuario).setVisible(true);
+                    }
+            });
+            btnProfessor.setForeground(Color.WHITE);
+            btnProfessor.setBounds(360, 80, 200, 70);
+            btnProfessor.setBackground(Color.BLUE);
+            contentPane.add(btnProfessor);
+
+            JButton btnAluno = new JButton("Aluno");
+            btnAluno.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                            usuario = "Aluno";
+                            new CadastroJFrame(usuario).setVisible(true);
+                    }
+            });
+            btnAluno.setForeground(Color.WHITE);
+            btnAluno.setBounds(360, 180, 200, 70);
+            btnAluno.setBackground(Color.RED);
+            contentPane.add(btnAluno);        
+
+            JButton btnOrientando = new JButton("Orientando");
+            btnOrientando.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                            usuario = "Orientando";
+                            new CadastroJFrame(usuario).setVisible(true);
+                    }
+            });
+            btnOrientando.setForeground(Color.WHITE);
+            btnOrientando.setBounds(360, 280, 200, 70);
+            btnOrientando.setBackground(Color.GREEN);
+            contentPane.add(btnOrientando);
+
+            JButton btnSair = new JButton("Sair");
+            btnSair.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                           CadastroUsuarioTelaPrincipal.this.dispose();
+                    }
+            });
+            btnSair.setForeground(Color.black);
+            btnSair.setBounds(428, 400, 70, 23);
+            btnSair.setBackground(Color.lightGray);
+            contentPane.add(btnSair);
+
+    }
+}
