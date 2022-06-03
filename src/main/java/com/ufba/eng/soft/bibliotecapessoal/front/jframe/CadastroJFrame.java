@@ -1,8 +1,7 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-
-
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -19,15 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-
-
 public class CadastroJFrame extends JFrame {
     private JPanel contentPane;
-    
-    
-    public static void main(String[] args) {
-	
-}
     private String usuario;
     private JTextField idField;
     private JTextField nomeField;
@@ -35,26 +27,26 @@ public class CadastroJFrame extends JFrame {
     private JTextField senhaField;
     
     public CadastroJFrame(String usuario) {
-        //super("Cadastro de Professor");
         usuario = usuario;
         criarFormulario(usuario);
     }
-
+    
     private void criarFormulario(String usuario) {
         usuario = usuario; 
-        setTitle("Cadastro de Usuário");
+        setTitle("Persibi - Formulário de Cadastro do Usuário");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(100, 100, 450, 300);
+	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
-	contentPane.setBorder(new EmptyBorder(3, 3, 3, 3));
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
+        getContentPane().setBackground(Color.WHITE);
         
-        FecharAction fecharAction = new FecharAction();
-        SalvarProfessorAction salvarProfessorAction = new SalvarProfessorAction();
-        SalvarAlunoAction salvarAlunoAction = new SalvarAlunoAction();
-        SalvarOrientandoAction salvarOrientandoAction = new SalvarOrientandoAction();
+        CadastrarProfessorAction cadastrarProfessorAction = new CadastrarProfessorAction();
+        CadastrarAlunoAction cadastrarAlunoAction = new CadastrarAlunoAction();
+        CadastrarOrientandoAction cadastrarOrientandoAction = new CadastrarOrientandoAction();
         LimparAction limparAction = new LimparAction();
+        SairAction sairAction = new SairAction();
         
         setLayout(new BorderLayout());
         
@@ -63,23 +55,22 @@ public class CadastroJFrame extends JFrame {
         
         JLabel titulo = new JLabel ("Formulário");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
-        
         panelTitulo.add(titulo);
         
         JPanel panelCadastro = new JPanel();
         panelCadastro.setLayout(new FlowLayout());
         
-        JLabel idLabel = new JLabel ("Identificação-ID");
-        idField = new JTextField(38);
-        
         JLabel nomeLabel = new JLabel ("Nome");
-        nomeField = new JTextField(38);
+        nomeField = new JTextField(40);
+        
+        JLabel idLabel = new JLabel ("Identificação-ID");
+        idField = new JTextField(40);
         
         JLabel usernameLabel = new JLabel ("Username");
-        usernameField = new JTextField(38);
+        usernameField = new JTextField(40);
         
         JLabel senhaLabel = new JLabel ("Senha");
-        senhaField = new JTextField(38);
+        senhaField = new JTextField(40);
         
         panelCadastro.add(nomeLabel);
         panelCadastro.add(nomeField);
@@ -93,24 +84,27 @@ public class CadastroJFrame extends JFrame {
         JPanel panelBotoes = new JPanel();
         panelBotoes.setLayout(new FlowLayout());
         
-        JButton botaoSalvar = new JButton("Salvar");
-        panelBotoes.add(botaoSalvar);
+        JButton botaoCadastrar = new JButton("Cadastrar");
+        botaoCadastrar.setBackground(Color.GREEN);
+        panelBotoes.add(botaoCadastrar);
         
         if(usuario == "Professor"){ 
-            botaoSalvar.addActionListener(salvarProfessorAction);  
+           botaoCadastrar.addActionListener(cadastrarProfessorAction);  
         }
         if(usuario == "Aluno"){ 
-            botaoSalvar.addActionListener(salvarAlunoAction);  
+            botaoCadastrar.addActionListener(cadastrarAlunoAction);  
         }
         if(usuario == "Orientando"){ 
-            botaoSalvar.addActionListener(salvarOrientandoAction);  
+            botaoCadastrar.addActionListener(cadastrarOrientandoAction);  
         }
         
         JButton botaoLimpar = new JButton("Limpar");
+        botaoLimpar.setBackground(Color.red);
         botaoLimpar.addActionListener(limparAction);
         
         JButton botaoSair = new JButton("Sair");
-        botaoSair.addActionListener(fecharAction);
+        botaoSair.setBackground(Color.lightGray);
+        botaoSair.addActionListener(sairAction);
         
         panelBotoes.add(botaoLimpar);
         panelBotoes.add(botaoSair);
@@ -118,6 +112,27 @@ public class CadastroJFrame extends JFrame {
         add(panelTitulo, BorderLayout.NORTH);
         add(panelCadastro, BorderLayout.CENTER);
         add(panelBotoes, BorderLayout.SOUTH);        
+    }
+      
+    private class CadastrarProfessorAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+             JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+            
+        }
+    }
+    
+    private class CadastrarAlunoAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+             JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+            
+        }
+    }
+    
+    private class CadastrarOrientandoAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+             JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+            
+        }
     }
     
     private class LimparAction implements ActionListener {
@@ -130,36 +145,13 @@ public class CadastroJFrame extends JFrame {
         }
     }
     
-    private class FecharAction implements ActionListener {
+    private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
             CadastroJFrame.this.dispose();            
         }
     }
     
-    private class SalvarProfessorAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-            
-        }
-
-    }
-    
-    private class SalvarAlunoAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-            
-        }
-
-    }
-    
-    private class SalvarOrientandoAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-            
-        }
-
-    }
 }
     
 
