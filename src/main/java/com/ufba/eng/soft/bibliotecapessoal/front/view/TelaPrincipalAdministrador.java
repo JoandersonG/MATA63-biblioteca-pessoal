@@ -94,7 +94,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnConsultarUsuario = new JButton("Consultar Usuário");
             btnConsultarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new ConsultaUsuarioTelaPrincipal().setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
             btnConsultarUsuario.setForeground(Color.WHITE);
