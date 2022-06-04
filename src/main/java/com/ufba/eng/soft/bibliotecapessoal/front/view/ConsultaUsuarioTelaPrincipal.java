@@ -61,7 +61,7 @@ public static void main(String[] args) {
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);
             
-            JLabel titulo2 = new JLabel ("Escolha a opçaõ: Nome ou Id");
+            JLabel titulo2 = new JLabel ("Escolha a opção: Nome ou Id");
             titulo2.setBounds(20, 115, 500, 300);
             titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo2); 
