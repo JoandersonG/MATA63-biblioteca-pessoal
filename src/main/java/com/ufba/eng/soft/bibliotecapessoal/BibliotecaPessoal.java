@@ -9,6 +9,8 @@ import com.ufba.eng.soft.bibliotecapessoal.front.view.GerenciadorDeTelas;
 import com.ufba.eng.soft.bibliotecapessoal.front.view.TelaPrincipalAdministrador;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import java.io.IOException;
+
 
 /**
  *
@@ -24,7 +26,7 @@ public class BibliotecaPessoal {
     }
  
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException  {
         setupInicial();
         
         //TODO: classe que orquestrará as telas do sistema, definindo qual tela será apresentada em qual momento.   ]
