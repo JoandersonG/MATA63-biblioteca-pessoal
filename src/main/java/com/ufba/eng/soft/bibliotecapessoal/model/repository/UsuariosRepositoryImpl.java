@@ -45,12 +45,14 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
 
     @Override
     public boolean adicionarNovoAluno(Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Log: Adicionando novo aluno no banco de dados: " + aluno.getIdUsuario());
+        return UsuariosRepositoryImpl.bancoDeUsuarios.add(aluno);
     }
 
     @Override
     public boolean adicionarNovoOrientando(Orientando orientando) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Log: Adicionando novo orientando no banco de dados: " + orientando.getIdUsuario());
+        return UsuariosRepositoryImpl.bancoDeUsuarios.add(orientando);
     }
 
     @Override
