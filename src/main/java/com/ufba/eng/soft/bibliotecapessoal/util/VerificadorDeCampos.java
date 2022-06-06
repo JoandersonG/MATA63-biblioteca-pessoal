@@ -21,14 +21,17 @@ public class VerificadorDeCampos {
         if (nome == null) {
             return new ResultadoVerificacao(false, "Campo Nome não não pode ser nulo");
         }
-        if (nome.isBlank()){
+        if (nome.isEmpty()){
             return new ResultadoVerificacao(false, "Campo Nome não não pode estar vazio");
+        } else {
         }
         if (!nome.matches("[a-zA-Z].+ [a-zA-Z].+")) {
             new ResultadoVerificacao(false, "Insira nome e sobrenome, sem caracteres especiais ou acentuação");
         }
         return new ResultadoVerificacao(true);
     }
+    
+    //Acrescentar verificação de demais campos
     
     
 }
