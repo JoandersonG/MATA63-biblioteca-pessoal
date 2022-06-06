@@ -1,6 +1,8 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
 import com.ufba.eng.soft.bibliotecapessoal.util.ResultadoVerificacao;
@@ -44,9 +46,7 @@ public class CadastroJFrame extends JFrame {
 	contentPane.setLayout(null);
         getContentPane().setBackground(Color.WHITE);
         
-        CadastrarProfessorAction cadastrarProfessorAction = new CadastrarProfessorAction();
-        CadastrarAlunoAction cadastrarAlunoAction = new CadastrarAlunoAction();
-        CadastrarOrientandoAction cadastrarOrientandoAction = new CadastrarOrientandoAction();
+        CadastrarAction cadastrarAction = new CadastrarAction();
         LimparAction limparAction = new LimparAction();
         SairAction sairAction = new SairAction();
         
@@ -91,13 +91,13 @@ public class CadastroJFrame extends JFrame {
         panelBotoes.add(botaoCadastrar);
         
         if(tipoUsuario == TipoUsuario.PROFESSOR){ 
-           botaoCadastrar.addActionListener(cadastrarProfessorAction);  
+           botaoCadastrar.addActionListener(cadastrarAction);  
         }
         if(tipoUsuario == TipoUsuario.ALUNO){ 
-            botaoCadastrar.addActionListener(cadastrarAlunoAction);  
+            botaoCadastrar.addActionListener(cadastrarAction);  
         }
         if(tipoUsuario == TipoUsuario.ORIENTANDO){ 
-            botaoCadastrar.addActionListener(cadastrarOrientandoAction);  
+            botaoCadastrar.addActionListener(cadastrarAction);  
         }
         
         JButton botaoLimpar = new JButton("Limpar");
@@ -116,12 +116,12 @@ public class CadastroJFrame extends JFrame {
         add(panelBotoes, BorderLayout.SOUTH);        
     }
       
-    private class CadastrarProfessorAction implements ActionListener {
+    private class CadastrarAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             //Verifica campos. A ser feito: verificar todos os campos, não somente nome
             ResultadoVerificacao resultado = VerificadorDeCampos.nome(nomeField.getText());
             if (!resultado.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível criar Professor. Erro: " + resultado.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultado.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 return;
             }
             
@@ -136,20 +136,30 @@ public class CadastroJFrame extends JFrame {
                 JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
                 return;
             }
-            //A fazer: ifs para os demais tipos de usuário
-        }
-    }
-    
-    private class CadastrarAlunoAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
             
-        }
-    }
-    
-    private class CadastrarOrientandoAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+            if (tipoUsuario == TipoUsuario.ALUNO) {
+                Aluno novoUsuario = new Aluno(
+                    idField.getText(), 
+                    nomeField.getText(), 
+                    usernameField.getText(), 
+                    Integer.parseInt(senhaField.getText())
+                );
+                usuariosRepository.adicionarNovoAluno(novoUsuario);
+                JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+                return;
+            }
+            
+            if (tipoUsuario == TipoUsuario.ORIENTANDO) {
+                Orientando novoUsuario = new Orientando(
+                    idField.getText(), 
+                    nomeField.getText(), 
+                    usernameField.getText(), 
+                    Integer.parseInt(senhaField.getText())
+                );
+                usuariosRepository.adicionarNovoOrientando(novoUsuario);
+                JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+                return;
+            }
             
         }
     }
