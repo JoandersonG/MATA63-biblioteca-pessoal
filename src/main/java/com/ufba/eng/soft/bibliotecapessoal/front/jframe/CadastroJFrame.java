@@ -1,8 +1,12 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
+import com.ufba.eng.soft.bibliotecapessoal.util.ResultadoVerificacao;
+import com.ufba.eng.soft.bibliotecapessoal.util.VerificadorDeCampos;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,9 +14,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,19 +21,20 @@ import javax.swing.border.EmptyBorder;
 
 public class CadastroJFrame extends JFrame {
     private JPanel contentPane;
-    private String usuario;
+    private TipoUsuario tipoUsuario;
     private JTextField idField;
     private JTextField nomeField;
     private JTextField usernameField;
     private JTextField senhaField;
+    private UsuariosRepository usuariosRepository;
     
-    public CadastroJFrame(String usuario) {
-        usuario = usuario;
-        criarFormulario(usuario);
+    public CadastroJFrame(UsuariosRepository usuariosRepository, TipoUsuario tipoUsuario) {
+        this.usuariosRepository = usuariosRepository;
+        this.tipoUsuario = tipoUsuario;
+        criarFormulario(tipoUsuario);
     }
     
-    private void criarFormulario(String usuario) {
-        usuario = usuario; 
+    private void criarFormulario(TipoUsuario tipoUsuario) {
         setTitle("Persibi - Formulário de Cadastro do Usuário");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
@@ -88,13 +90,13 @@ public class CadastroJFrame extends JFrame {
         botaoCadastrar.setBackground(Color.GREEN);
         panelBotoes.add(botaoCadastrar);
         
-        if(usuario == "Professor"){ 
+        if(tipoUsuario == TipoUsuario.PROFESSOR){ 
            botaoCadastrar.addActionListener(cadastrarProfessorAction);  
         }
-        if(usuario == "Aluno"){ 
+        if(tipoUsuario == TipoUsuario.ALUNO){ 
             botaoCadastrar.addActionListener(cadastrarAlunoAction);  
         }
-        if(usuario == "Orientando"){ 
+        if(tipoUsuario == TipoUsuario.ORIENTANDO){ 
             botaoCadastrar.addActionListener(cadastrarOrientandoAction);  
         }
         
@@ -116,8 +118,25 @@ public class CadastroJFrame extends JFrame {
       
     private class CadastrarProfessorAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+            //Verifica campos. A ser feito: verificar todos os campos, não somente nome
+            ResultadoVerificacao resultado = VerificadorDeCampos.nome(nomeField.getText());
+            if (!resultado.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível criar Professor. Erro: " + resultado.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                return;
+            }
             
+            if (tipoUsuario == TipoUsuario.PROFESSOR) {
+                Professor novoUsuario = new Professor(
+                    idField.getText(), 
+                    nomeField.getText(), 
+                    usernameField.getText(), 
+                    Integer.parseInt(senhaField.getText())
+                );
+                usuariosRepository.adicionarNovoProfessor(novoUsuario);
+                JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
+                return;
+            }
+            //A fazer: ifs para os demais tipos de usuário
         }
     }
     

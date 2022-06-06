@@ -1,5 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -24,28 +25,14 @@ import javax.swing.JLabel;
 public class TelaPrincipalAdministrador extends JFrame {
     private JPanel contentPane;
     private String usuario;
-
-/**
- * Launch the application.
- */
-    public static void main(String[] args){
-            EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                            try {
-                                    TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador();
-                                    frame.setVisible(true);
-                            } catch (Exception e) {
-                                    e.printStackTrace();
-                            }
-                    }
-            });
-    }
+    private UsuariosRepository usuariosRepository;
 
     /**
      * Create the frame.
      * @throws java.io.IOException
      */
-    public TelaPrincipalAdministrador() throws IOException {
+    public TelaPrincipalAdministrador(UsuariosRepository usuariosRepository) throws IOException {
+            this.usuariosRepository = usuariosRepository;
             setTitle("Persibi - Administrador");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -80,7 +67,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnCadastrarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
-                            new CadastroUsuarioTelaPrincipal().setVisible(true);
+                            new CadastroUsuarioTelaPrincipal(usuariosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                         }

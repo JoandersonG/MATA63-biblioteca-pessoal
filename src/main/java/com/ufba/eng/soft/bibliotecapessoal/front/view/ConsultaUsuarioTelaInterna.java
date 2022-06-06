@@ -29,22 +29,6 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
     private String usuario;
 
 /**
- * Launch the application.
- */
-public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				CadastroUsuarioTelaPrincipal frame = new CadastroUsuarioTelaPrincipal();
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-}
-
-/**
      * Create the frame.
      */
     public ConsultaUsuarioTelaInterna(String identificacao) throws FileNotFoundException, IOException {

@@ -2,6 +2,8 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.CadastroJFrame;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,29 +25,15 @@ import javax.swing.JLabel;
 
 public class CadastroUsuarioTelaPrincipal extends JFrame {
     private JPanel contentPane;
-    private String usuario;
-
-/**
- * Launch the application.
- */
-public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				CadastroUsuarioTelaPrincipal frame = new CadastroUsuarioTelaPrincipal();
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-}
+    private UsuariosRepository usuariosRepository;
+    //private String usuario;
 
 /**
      * Create the frame.
      */
-    public CadastroUsuarioTelaPrincipal() throws FileNotFoundException, IOException {
-            setTitle("\"Persibi - Cadastro de Usuário");
+    public CadastroUsuarioTelaPrincipal(UsuariosRepository usuariosRepository) throws FileNotFoundException, IOException {
+            this.usuariosRepository = usuariosRepository;
+            setTitle("Persibi - Cadastro de Usuário");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -68,8 +56,7 @@ public static void main(String[] args) {
             JButton btnProfessor = new JButton("Professor");
             btnProfessor.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Professor";
-                            new CadastroJFrame(usuario).setVisible(true);
+                            new CadastroJFrame(usuariosRepository, TipoUsuario.PROFESSOR).setVisible(true);
                     }
             });
             btnProfessor.setForeground(Color.WHITE);
@@ -80,8 +67,7 @@ public static void main(String[] args) {
             JButton btnAluno = new JButton("Aluno");
             btnAluno.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Aluno";
-                            new CadastroJFrame(usuario).setVisible(true);
+                            new CadastroJFrame(usuariosRepository, TipoUsuario.ALUNO).setVisible(true);
                     }
             });
             btnAluno.setForeground(Color.WHITE);
@@ -92,8 +78,7 @@ public static void main(String[] args) {
             JButton btnOrientando = new JButton("Orientando");
             btnOrientando.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Orientando";
-                            new CadastroJFrame(usuario).setVisible(true);
+                            new CadastroJFrame(usuariosRepository, TipoUsuario.ORIENTANDO).setVisible(true);
                     }
             });
             btnOrientando.setForeground(Color.WHITE);

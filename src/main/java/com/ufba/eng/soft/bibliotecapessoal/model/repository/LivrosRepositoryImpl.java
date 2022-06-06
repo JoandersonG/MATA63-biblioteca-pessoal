@@ -24,7 +24,12 @@ public class LivrosRepositoryImpl implements LivrosRepository {
 
     @Override
     public Livro getLivroPorISBN(String isbn) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (Livro livro : this.livrosDatabase) {
+            if (livro.getCodigoISBN().equals(isbn)) {
+                return livro;
+            }
+        }
+        return null;
     }
 
     @Override

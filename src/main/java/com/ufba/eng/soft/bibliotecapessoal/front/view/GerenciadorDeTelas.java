@@ -1,6 +1,7 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
 import java.io.IOException;
 
 /**
@@ -12,13 +13,15 @@ import java.io.IOException;
 public class GerenciadorDeTelas {
     
     private LivrosRepository livrosRepository;
+    private UsuariosRepository usuariosRepository;
     
-    public GerenciadorDeTelas(LivrosRepository livrosRepository) {
+    public GerenciadorDeTelas(LivrosRepository livrosRepository, UsuariosRepository usuariosRepository) {
        this.livrosRepository = livrosRepository;
+       this.usuariosRepository = usuariosRepository;
     }
     
     public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() throws IOException {
-        TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador();
+        TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador(usuariosRepository);
         frame.setVisible(true);
         return frame;
     }

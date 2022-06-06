@@ -9,6 +9,8 @@ import com.ufba.eng.soft.bibliotecapessoal.front.view.GerenciadorDeTelas;
 import com.ufba.eng.soft.bibliotecapessoal.front.view.TelaPrincipalAdministrador;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
 import java.io.IOException;
 
 
@@ -22,7 +24,8 @@ public class BibliotecaPessoal {
 
     private static void setupInicial() {
          LivrosRepository livrosRepository = new LivrosRepositoryImpl();
-         gerenciadorDeTelas = new GerenciadorDeTelas(livrosRepository);
+         UsuariosRepository usuariosRepository = new UsuariosRepositoryImpl();
+         gerenciadorDeTelas = new GerenciadorDeTelas(livrosRepository, usuariosRepository);
     }
  
 

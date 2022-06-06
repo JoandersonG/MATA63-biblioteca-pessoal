@@ -9,6 +9,8 @@ import com.ufba.eng.soft.bibliotecapessoal.model.user.Administrador;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
  * @author vanes
  */
 public class UsuariosRepositoryImpl implements UsuariosRepository {
+    
+    private static ArrayList<UsuarioDoSistema> bancoDeUsuarios = new ArrayList<>();
 
     @Override
     public List<Professor> getTodosOsAlunosCadastrados() {
@@ -35,7 +39,8 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
 
     @Override
     public boolean adicionarNovoProfessor(Professor professor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Log: Adicionando novo professor no banco de dados: " + professor.getIdUsuario());
+        return UsuariosRepositoryImpl.bancoDeUsuarios.add(professor);
     }
 
     @Override
