@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- *
- * @author joand
- */
+
 public class LivrosRepositoryImpl implements LivrosRepository {
     
     private static ArrayList<Livro> livrosDatabase = new ArrayList<>();
@@ -44,7 +41,8 @@ public class LivrosRepositoryImpl implements LivrosRepository {
 
     @Override
     public boolean adicionarNovoLivro(Livro livro) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println("Log: Adicionando novo livro no banco de dados: " + livro.getNomeDoLivro());
+        return LivrosRepositoryImpl.livrosDatabase.add(livro);
     }
 
     @Override
