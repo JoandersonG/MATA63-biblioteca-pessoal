@@ -11,7 +11,13 @@ import lombok.Data;
  * @author joand
  */
 @Data
-class Autor {
-    private int id;
+public class Autor {
+    private String id;
     private String nome;
+
+    public Autor(String id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+    
 }

@@ -6,16 +6,23 @@ package com.ufba.eng.soft.bibliotecapessoal.model.product;
 
 import lombok.Data;
 
-/**
- *
- * @author joand
- */
+//Falta incluir etiqueta
+
 @Data
 public class Livro {
     private String nomeDoLivro;
-    private Etiqueta etiqueta;
+    //private Etiqueta etiqueta;
     private String codigoISBN;
     private String codigoDeBarras;
     private Autor autor;
     private GeneroLivro genero;
+
+    public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, Autor autor, GeneroLivro genero) {
+        this.nomeDoLivro = nomeDoLivro;
+        this.codigoISBN = codigoISBN;
+        this.codigoDeBarras = codigoDeBarras;
+        this.autor = autor;
+        this.genero = genero;
+    }
+    
 }
