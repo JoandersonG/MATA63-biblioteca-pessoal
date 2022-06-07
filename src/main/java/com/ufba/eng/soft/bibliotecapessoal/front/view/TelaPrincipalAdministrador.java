@@ -1,5 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -26,13 +27,15 @@ public class TelaPrincipalAdministrador extends JFrame {
     private JPanel contentPane;
     private String usuario;
     private UsuariosRepository usuariosRepository;
+    private final LivrosRepository livrosRepository;
 
     /**
      * Create the frame.
      * @throws java.io.IOException
      */
-    public TelaPrincipalAdministrador(UsuariosRepository usuariosRepository) throws IOException {
+    public TelaPrincipalAdministrador(UsuariosRepository usuariosRepository, LivrosRepository livrosRepository) throws IOException {
             this.usuariosRepository = usuariosRepository;
+            this.livrosRepository = livrosRepository;
             setTitle("Persibi - Administrador");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -119,7 +122,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnCadastrarLivro = new JButton("Cadastrar Livro");
             btnCadastrarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new CadastroLivroTelaPrincipal(livrosRepository).setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
             btnCadastrarLivro.setForeground(Color.WHITE);

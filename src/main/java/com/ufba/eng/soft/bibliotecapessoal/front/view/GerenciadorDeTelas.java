@@ -21,7 +21,7 @@ public class GerenciadorDeTelas {
     }
     
     public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() throws IOException {
-        TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador(usuariosRepository);
+        TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador(usuariosRepository, livrosRepository);
         frame.setVisible(true);
         return frame;
     }
