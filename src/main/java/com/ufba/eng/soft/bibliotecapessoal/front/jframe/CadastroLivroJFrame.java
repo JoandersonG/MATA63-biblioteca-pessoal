@@ -9,6 +9,8 @@ import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Autor;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.util.ResultadoVerificacao;
+import com.ufba.eng.soft.bibliotecapessoal.util.VerificadorDeCampos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -125,11 +127,47 @@ public class CadastroLivroJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             //Verificação de campos. A ser feito: verificar todos os campos do formulario
             
+            ResultadoVerificacao resultadoTitulo = VerificadorDeCampos.titulo(tituloField.getText());
+            ResultadoVerificacao resultadoAutor = VerificadorDeCampos.autor(autorField.getText());
+            ResultadoVerificacao resultadoIDAutor = VerificadorDeCampos.idAutor(idAutorField.getText());
+            ResultadoVerificacao resultadoIsnb = VerificadorDeCampos.isbn(isbnField.getText());
+            ResultadoVerificacao resultadoCodDeBarra = VerificadorDeCampos.codDeBarra(codDeBarraField.getText());
             
-                
+            boolean valido = true;
+            if (!resultadoTitulo.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoTitulo.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                valido = false;
+                return;
+            }
+            
+            if (!resultadoAutor.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                valido = false;
+                return;
+            }
+            
+            if (!resultadoIDAutor.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIDAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                valido = false;
+                return;
+            }
+            
+            if (!resultadoIsnb.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIsnb.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                valido = false;
+                return;
+            }
+            
+            if (!resultadoCodDeBarra.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                valido = false;
+                return;
+            }
+           
+            if(valido){
                 Autor autor = new Autor (
-                idAutorField.getText(),
-                autorField.getText()
+                    idAutorField.getText(),
+                    autorField.getText()
                 );
                 
                 Livro novoLivro = new Livro(
@@ -142,7 +180,8 @@ public class CadastroLivroJFrame extends JFrame {
                 
                 livrosRepository.adicionarNovoLivro(novoLivro);
                 JOptionPane.showMessageDialog(null, "Novo livro cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-                return;
+            }    
+            
          
         }
             
