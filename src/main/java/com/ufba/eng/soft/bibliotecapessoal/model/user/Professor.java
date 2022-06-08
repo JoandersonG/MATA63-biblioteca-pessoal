@@ -4,9 +4,10 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 
 public class Professor extends UsuarioDoSistema {
 
-    public Professor(String idUsuario, String nomeDeUusario, String userName, int senha) {
-        super(idUsuario, nomeDeUusario, userName, senha);
+    public Professor(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
+        super(idUsuario, nomeDeUusario, sobrenomeDeUsuario, userName, senha);
     }
+
 
     @Override
     public void consultarLivroIsbn() {

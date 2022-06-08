@@ -5,12 +5,14 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 public abstract class UsuarioDoSistema {
     private String idUsuario;
     private String nomeDeUusario;
+    private String sobrenomeDeUsuario;
     private String userName;
-    private int senha;
+    private String senha;
 
-    public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String userName, int senha) {
+    public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
         this.idUsuario = idUsuario;
         this.nomeDeUusario = nomeDeUusario;
+        this.sobrenomeDeUsuario = sobrenomeDeUsuario;
         this.userName = userName;
         this.senha = senha;
     }
@@ -31,6 +33,14 @@ public abstract class UsuarioDoSistema {
         this.nomeDeUusario = nomeDeUusario;
     }
 
+    public String getUltimoSobrenomeDeUsuario() {
+        return sobrenomeDeUsuario;
+    }
+
+    public void setUltimoSobrenomeDeUsuario(String sobrenomeDeUsuario) {
+        this.sobrenomeDeUsuario = sobrenomeDeUsuario;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -39,13 +49,15 @@ public abstract class UsuarioDoSistema {
         this.userName = userName;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    
     
     public abstract void consultarLivroIsbn();
     public abstract void consultarLivroPeloNome();
