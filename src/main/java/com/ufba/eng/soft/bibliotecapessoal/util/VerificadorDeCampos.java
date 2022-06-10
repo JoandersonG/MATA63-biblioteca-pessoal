@@ -153,20 +153,11 @@ public class VerificadorDeCampos {
     }
     
     public static ResultadoVerificacao isbn(String isbn) {
-        if (isbn == null) {
-            return new ResultadoVerificacao(false, "Campo ISBN não  pode ser nulo.");
+        if (isbn == null || isbn .isEmpty()) {
+            return new ResultadoVerificacao(false, "Insira um válor numérico (4 a 13 dígitos) no campo ISBN.");
         }
-        if (isbn .isEmpty()){
-            return new ResultadoVerificacao(false, "Campo ISBN não  pode estar vazio.");
-        } else {
-        }
-        if (isbn.length() == 8){
-           if (!isbn .matches("ISBN[0-9]+")) {
-                return new ResultadoVerificacao(false, "Insira o ISBN, Formato: Inicial 'ISBN' seguidas de 4 dígitos, sem caracteres especiais, sem espaços.");
-            } 
-        }
-        else{
-            return new ResultadoVerificacao(false, "Insira o ISBN, Formato: Inicial 'ID' seguidas de 4 dígitos, sem caracteres especiais, sem espaços.");
+        if (!(isbn.length() >= 4) || !(isbn.length() <= 13) || !isbn .matches("[0-9]+")){
+                return new ResultadoVerificacao(false, "Insira o ISBN, Formato: de 4 a 13 dígitos numéricos, sem caracteres especiais, sem espaços.");  
         }
         return new ResultadoVerificacao(true);
     }
