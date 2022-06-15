@@ -20,20 +20,39 @@ import java.util.List;
 public class UsuariosRepositoryImpl implements UsuariosRepository {
     
     private static ArrayList<UsuarioDoSistema> bancoDeUsuarios = new ArrayList<>();
-
+    
+    
     @Override
-    public List<Professor> getTodosOsAlunosCadastrados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Professor> getTodosOsProfessoresCadastrados() {
+        List<Professor> listaDeProfessores = new ArrayList<>();
+        bancoDeUsuarios.forEach((usuario)-> {
+            if(usuario instanceof Professor ){
+                listaDeProfessores.add((Professor) usuario);
+            }
+        });
+        return listaDeProfessores;
     }
-
+    
     @Override
-    public List<Aluno> getTodosOsProfessoresCadastrados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public  List<Aluno> getTodosOsAlunosCadastrados() {
+        List<Aluno> listaDeAlunos = new ArrayList<>();
+        bancoDeUsuarios.forEach((usuario)-> {
+            if(usuario instanceof Aluno ){
+                listaDeAlunos.add((Aluno) usuario);
+            }
+        });
+        return listaDeAlunos;
     }
 
     @Override
     public List<Orientando> getTodosOsOrientandosCadastrados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         List<Orientando> listaDeOrientandos = new ArrayList<>();
+        bancoDeUsuarios.forEach((usuario)-> {
+            if(usuario instanceof Orientando ){
+                listaDeOrientandos.add((Orientando) usuario);
+            }
+        });
+        return listaDeOrientandos;
     }
 
 
@@ -84,5 +103,87 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     public boolean removerUsuarioOrientando(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public UsuarioDoSistema consultarAlunoId(String id) {
+        Aluno aluno = new Aluno();
+        boolean encontrou = false;
+        for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
+                if(alunoListado.getIdUsuario().equals(id)){
+                    aluno = alunoListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? aluno: null;
+    }
+
+    @Override
+    public UsuarioDoSistema consultarProfessorId(String id) {
+        Professor professor = new Professor();
+        boolean encontrou = false;
+        for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
+                if(professorListado.getIdUsuario().equals(id)){
+                   professor = professorListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? professor: null;
+    }
+
+    @Override
+    public UsuarioDoSistema consultarOrientandoId(String id) {
+        Orientando orientando = new Orientando();
+        boolean encontrou = false;
+        for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
+                if(orientandoListado.getIdUsuario().equals(id)){
+                   orientando = orientandoListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? orientando: null;
+    }
+
+    @Override
+    public UsuarioDoSistema consultarAlunoNome(String nome) {
+        Aluno aluno = new Aluno();
+        boolean encontrou = false;
+        for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
+                if(alunoListado.getNomeDeUusario().equals(nome)){
+                    aluno = alunoListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? aluno: null;
+    }
+
+    @Override
+    public UsuarioDoSistema consultarProfessorNome(String nome) {
+        Professor professor = new Professor();
+        boolean encontrou = false;
+        for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
+                if(professorListado.getNomeDeUusario().equals(nome)){
+                   professor = professorListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? professor: null;
+    }
+
+    @Override
+    public UsuarioDoSistema consultarOrientandoNome(String nome) {
+        Orientando orientando = new Orientando();
+        boolean encontrou = false;
+        for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
+                if(orientandoListado.getNomeDeUusario().equals(nome)){
+                   orientando = orientandoListado;
+                   encontrou = true;
+                }
+        }
+    return (encontrou)? orientando: null;
+    }
+
+    
+
+    
     
 }
