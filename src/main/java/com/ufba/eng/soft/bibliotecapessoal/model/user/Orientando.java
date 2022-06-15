@@ -4,9 +4,18 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 
 public class Orientando extends UsuarioDoSistema {
 
-    public Orientando(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
-        super(idUsuario, nomeDeUusario, sobrenomeDeUsuario, userName, senha);
+    public Orientando(String idUsuario, String nomeDeUusario, String userName, String senha) {
+        super(idUsuario, nomeDeUusario, userName, senha);
     }
+
+    public Orientando() {
+        super();
+    }
+
+    
+
+    
+    
 
     
 

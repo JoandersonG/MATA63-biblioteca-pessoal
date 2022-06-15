@@ -5,16 +5,26 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 public abstract class UsuarioDoSistema {
     private String idUsuario;
     private String nomeDeUusario;
-    private String sobrenomeDeUsuario;
     private String userName;
     private String senha;
+    private String debito;
+    private String emprestimo;
+    private String reserva;
 
-    public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
+    public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String userName, String senha) {
         this.idUsuario = idUsuario;
         this.nomeDeUusario = nomeDeUusario;
-        this.sobrenomeDeUsuario = sobrenomeDeUsuario;
         this.userName = userName;
         this.senha = senha;
+        this.debito = "Não";
+        this.emprestimo = "Não";
+        this.reserva = "Não";
+    }
+
+    
+    
+    public UsuarioDoSistema(){
+        
     }
 
     public String getIdUsuario() {
@@ -33,14 +43,6 @@ public abstract class UsuarioDoSistema {
         this.nomeDeUusario = nomeDeUusario;
     }
 
-    public String getUltimoSobrenomeDeUsuario() {
-        return sobrenomeDeUsuario;
-    }
-
-    public void setUltimoSobrenomeDeUsuario(String sobrenomeDeUsuario) {
-        this.sobrenomeDeUsuario = sobrenomeDeUsuario;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -55,6 +57,30 @@ public abstract class UsuarioDoSistema {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getDebito() {
+        return debito;
+    }
+
+    public void setDebito(String debito) {
+        this.debito = debito;
+    }
+
+    public String getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(String emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    public String getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(String reserva) {
+        this.reserva = reserva;
     }
 
     

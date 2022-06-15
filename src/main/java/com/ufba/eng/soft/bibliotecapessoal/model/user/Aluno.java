@@ -4,8 +4,12 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 
 public class Aluno extends UsuarioDoSistema {
 
-    public Aluno(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
-        super(idUsuario, nomeDeUusario, sobrenomeDeUsuario, userName, senha);
+    public Aluno(String idUsuario, String nomeDeUusario, String userName, String senha) {
+        super(idUsuario, nomeDeUusario, userName, senha);
+    }
+
+    public Aluno() {
+        super();
     }
 
     
