@@ -59,7 +59,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo2); 
 
-            File file = new File("C:\\Users\\tay_\\MATA63-biblioteca-pessoal-main\\MATA63-biblioteca-pessoal-main\\src\\main\\java\\com\\ufba\\eng\\soft\\bibliotecapessoal\\front\\logotype\\LogoBiblioteca.png");
+            File file = new File(".\\src\\main\\java\\com\\ufba\\eng\\soft\\bibliotecapessoal\\front\\Logotype\\LogoBiblioteca.png");
             FileInputStream fis = new FileInputStream(file);  
             BufferedImage bufferedImage = ImageIO.read(fis);
             ImageIcon imageIcon = new ImageIcon(bufferedImage);            
