@@ -91,17 +91,38 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
 
     @Override
     public boolean removerUsuarioProfessor(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
+                if(professorListado.getIdUsuario().equals(id)){
+                   System.out.println("Log: Removendo professor do banco de dados: " + professorListado.getIdUsuario());
+                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(professorListado);
+                   return true;
+                }
+        }
+        return false;
     }
 
     @Override
     public boolean removerUsuarioAluno(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
+                if(alunoListado.getIdUsuario().equals(id)){
+                   System.out.println("Log: Removendo aluno do banco de dados: " + alunoListado.getIdUsuario());
+                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(alunoListado);
+                   return true;
+                }
+        }
+        return false;
     }
 
     @Override
     public boolean removerUsuarioOrientando(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
+                if(orientandoListado.getIdUsuario().equals(id)){
+                   System.out.println("Log: Removendo orientando do banco de dados: " + orientandoListado.getIdUsuario());
+                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(orientandoListado);
+                   return true;
+                }
+        }
+        return false;
     }
 
     @Override

@@ -110,7 +110,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnCRemoverUsuario = new JButton("Remover Usuário");
             btnCRemoverUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new RemoveUsuarioTelaPrincipal(usuariosRepository).setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
             
