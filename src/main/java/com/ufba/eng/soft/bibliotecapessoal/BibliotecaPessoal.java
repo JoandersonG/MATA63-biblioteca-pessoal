@@ -41,6 +41,6 @@ public class BibliotecaPessoal {
             - se for Orientador, mostrar tela de Orientador etc.
         */
         
-        gerenciadorDeTelas.inicializaTelaPrincipalAdministrador();
+        gerenciadorDeTelas.inicializaTelaPrincipalBiblioteca();
     }
 }
