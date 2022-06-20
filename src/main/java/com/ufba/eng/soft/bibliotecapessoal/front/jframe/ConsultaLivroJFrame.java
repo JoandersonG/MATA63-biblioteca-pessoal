@@ -121,7 +121,7 @@ public class ConsultaLivroJframe extends JFrame {
     
     private class BuscarLivroNomeAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            String identificacaoLivro = identificacaoField.getText();
+            /*String identificacaoLivro = identificacaoField.getText();
             
             Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorNome(identificacaoLivro);
            
@@ -131,13 +131,13 @@ public class ConsultaLivroJframe extends JFrame {
             
             else{
                 JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-            }
+            }*/
         }
     }
     
     private class BuscarLivroCodAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            String identificacaoLivro = identificacaoField.getText();
+           /* String identificacaoLivro = identificacaoField.getText();
             
             Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorCodBarras(identificacaoLivro);
            
@@ -147,7 +147,7 @@ public class ConsultaLivroJframe extends JFrame {
             
             else{
                 JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-            }
+            }*/
         }
     }
     
