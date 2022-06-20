@@ -25,19 +25,6 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
     
     private JPanel contentPane;
     private String tipo;
-    
-    public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-                            ConsultarLivroTelaPrincipal frame = new ConsultarLivroTelaPrincipal();
-                            frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-    }
 
     public ConsultarLivroTelaPrincipal () throws FileNotFoundException, IOException {
            setTitle("\"Persibi - Consulta de Livro");
@@ -77,9 +64,9 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
                             new ConsultaLivroJframe(tipo).setVisible(true);
                     }
             });
-            btnIsbn.setForeground(Color.WHITE);
+            btnIsbn.setForeground(Color.BLACK);
             btnIsbn.setBounds(360, 120, 200, 70);
-            btnIsbn.setBackground(Color.BLUE);
+            btnIsbn.setBackground(Color.red);
             contentPane.add(btnIsbn);
             
             JButton btnNome = new JButton("Nome");
@@ -89,7 +76,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
                             new ConsultaLivroJframe(tipo).setVisible(true);
                     }
             });
-            btnNome.setForeground(Color.WHITE);
+            btnNome.setForeground(Color.BLACK);
             btnNome.setBounds(360, 220, 200, 70);
             btnNome.setBackground(Color.GREEN);
             contentPane.add( btnNome);
@@ -101,7 +88,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
                             new ConsultaLivroJframe(tipo).setVisible(true);
                     }
             });
-            btnCod.setForeground(Color.WHITE);
+            btnCod.setForeground(Color.BLACK);
             btnCod.setBounds(360, 320, 200, 70);
             btnCod.setBackground(Color.YELLOW);
             contentPane.add( btnCod);

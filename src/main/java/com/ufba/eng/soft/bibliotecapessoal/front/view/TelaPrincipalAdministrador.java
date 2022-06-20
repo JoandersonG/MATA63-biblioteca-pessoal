@@ -141,7 +141,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnConsultarLivro = new JButton("Consultar Livro");
             btnConsultarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                            try {
+                            new ConsultarLivroTelaPrincipal().setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
             btnConsultarLivro.setForeground(Color.WHITE);
@@ -174,7 +178,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnConsultarReserva = new JButton("Consultar Reserva");
             btnAtualizarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        
                     }
             });
             btnConsultarReserva.setForeground(Color.WHITE);

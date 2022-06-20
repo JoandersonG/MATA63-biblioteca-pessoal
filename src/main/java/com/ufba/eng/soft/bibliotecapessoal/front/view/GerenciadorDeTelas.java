@@ -20,16 +20,22 @@ public class GerenciadorDeTelas {
        this.usuariosRepository = usuariosRepository;
     }
     
-    public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() throws IOException {
+    /*public TelaPrincipalAdministrador inicializaTelaPrincipalAdministrador() throws IOException {
         TelaPrincipalAdministrador frame = new TelaPrincipalAdministrador(usuariosRepository, livrosRepository);
+        frame.setVisible(true);
+        return frame;
+    }*/
+    
+    public TelaPrincipalBiblioteca inicializaTelaPrincipalBiblioteca() throws IOException {
+        TelaPrincipalBiblioteca frame = new TelaPrincipalBiblioteca(usuariosRepository, livrosRepository);
         frame.setVisible(true);
         return frame;
     }
     
-    public ConsultarLivroTelaPrincipal inicializaTelaPrincipal() {
-        ConsultarLivroTelaPrincipal frame = new ConsultarLivroTelaPrincipal(livrosRepository);
+    /*public ConsultarLivroTelaPrincipal inicializaTelaPrincipal() {
+        //ConsultarLivroTelaPrincipal frame = new ConsultarLivroTelaPrincipal(livrosRepository);
 	frame.setVisible(true);
         return frame;
-    }
+    }*/
    
 }

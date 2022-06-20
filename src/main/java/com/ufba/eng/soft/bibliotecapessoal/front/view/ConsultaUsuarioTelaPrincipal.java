@@ -27,21 +27,6 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
     private JPanel contentPane;
     private String identificacao;
 
-/**
- * Launch the application.
- */
-public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				ConsultaUsuarioTelaPrincipal frame = new ConsultaUsuarioTelaPrincipal();
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-}
 
 /**
      * Create the frame.
