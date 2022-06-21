@@ -6,7 +6,6 @@
 package com.ufba.eng.soft.bibliotecapessoal;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.view.GerenciadorDeTelas;
-import com.ufba.eng.soft.bibliotecapessoal.front.view.TelaPrincipalAdministrador;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;

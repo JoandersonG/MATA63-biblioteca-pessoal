@@ -1,16 +1,12 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
+import com.ufba.eng.soft.bibliotecapessoal.front.util.Style;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -47,15 +43,30 @@ public class TelaPrincipalAdministrador extends JFrame {
             
             JLabel titulo1 = new JLabel ("Bem vindo(a),");
             titulo1.setBounds(45, 90, 500, 300);
-            titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 20));
+            titulo1.setFont(Style.getStandardFont(20));
             contentPane.add(titulo1);
             
             JLabel titulo2 = new JLabel ("administrador(a)!");
             titulo2.setBounds(20, 115, 500, 300);
-            titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 20));
-            contentPane.add(titulo2);            
-           
-            File file = new File(".\\src\\main\\java\\com\\ufba\\eng\\soft\\bibliotecapessoal\\front\\Logotype\\LogoBiblioteca.png");
+            titulo2.setFont(Style.getStandardFont(20));
+            contentPane.add(titulo2);
+
+            JLabel gerenciamentoUsuarios = new JLabel ("Gestão de usuários");
+            gerenciamentoUsuarios.setBounds(280, 1, 500, 75);
+            gerenciamentoUsuarios.setFont(Style.getStandardFont(14));
+            contentPane.add(gerenciamentoUsuarios);
+
+        JLabel gerenciamentoBiblioteca = new JLabel ("Gestão de acervo");
+        gerenciamentoBiblioteca.setBounds(280, 1, 500, 360);
+        gerenciamentoBiblioteca.setFont(Style.getStandardFont(14));
+        contentPane.add(gerenciamentoBiblioteca);
+
+        JLabel gerenciamentoEmprestimos = new JLabel ("Gestão de empréstimos");
+        gerenciamentoEmprestimos.setBounds(280, 1, 500, 637);
+        gerenciamentoEmprestimos.setFont(Style.getStandardFont(14));
+        contentPane.add(gerenciamentoEmprestimos);
+
+        File file = new File(".\\src\\main\\java\\com\\ufba\\eng\\soft\\bibliotecapessoal\\front\\Logotype\\LogoBiblioteca.png");
             FileInputStream fis = new FileInputStream(file);  
             BufferedImage bufferedImage = ImageIO.read(fis);
             ImageIcon imageIcon = new ImageIcon(bufferedImage);            
@@ -76,9 +87,9 @@ public class TelaPrincipalAdministrador extends JFrame {
                         }
                     }
             });
-            btnCadastrarUsuario.setForeground(Color.WHITE);
             btnCadastrarUsuario.setBounds(280, 50, 149, 53);
-            btnCadastrarUsuario.setBackground(Color.blue);
+        Style.setStandardUiButtonStyle(btnCadastrarUsuario, Style.getGreenColor());
+
             contentPane.add(btnCadastrarUsuario); 
             
             JButton btnConsultarUsuario = new JButton("Consultar Usuário");
@@ -91,9 +102,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                         }
                     }
             });
-            btnConsultarUsuario.setForeground(Color.WHITE);
             btnConsultarUsuario.setBounds(440, 50, 149, 53);
-            btnConsultarUsuario.setBackground(Color.blue);
+        Style.setStandardUiButtonStyle(btnConsultarUsuario, Style.getPurpleColor());
             contentPane.add(btnConsultarUsuario);
             
             JButton btnAtualizarUsuario = new JButton("Atualizar Usuário");
@@ -102,9 +112,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnAtualizarUsuario.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnAtualizarUsuario, Style.getEasyBlueColor());
             btnAtualizarUsuario.setBounds(280, 110, 149, 53);
-            btnAtualizarUsuario.setBackground(Color.blue);
             contentPane.add(btnAtualizarUsuario);
             
             JButton btnCRemoverUsuario = new JButton("Remover Usuário");
@@ -113,11 +122,9 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            
-            btnCRemoverUsuario.setForeground(Color.WHITE);
-            btnCRemoverUsuario.setBounds(440, 110, 149, 53);
-            btnCRemoverUsuario.setBackground(Color.blue);
-            contentPane.add(btnCRemoverUsuario); 
+        btnCRemoverUsuario.setBounds(440, 110, 149, 53);
+        Style.setStandardUiButtonStyle(btnCRemoverUsuario, Style.getGrayColor());
+        contentPane.add(btnCRemoverUsuario);
             
             JButton btnCadastrarLivro = new JButton("Cadastrar Livro");
             btnCadastrarLivro.addActionListener(new ActionListener() {
@@ -129,9 +136,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                         }
                     }
             });
-            btnCadastrarLivro.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnCadastrarLivro, Style.getGreenColor());
             btnCadastrarLivro.setBounds(280, 190, 149, 53);
-            btnCadastrarLivro.setBackground(Color.red);
             contentPane.add(btnCadastrarLivro);
             
             JButton btnConsultarLivro = new JButton("Consultar Livro");
@@ -140,9 +146,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnConsultarLivro.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnConsultarLivro, Style.getPurpleColor());
             btnConsultarLivro.setBounds(440, 190, 149, 53);
-            btnConsultarLivro.setBackground(Color.red);
             contentPane.add(btnConsultarLivro);
             
             JButton btnAtualizarLivro = new JButton("Atualizar Livro");
@@ -151,9 +156,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnAtualizarLivro.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnAtualizarLivro, Style.getEasyBlueColor());
             btnAtualizarLivro.setBounds(280, 250, 149, 53);
-            btnAtualizarLivro.setBackground(Color.red);
             contentPane.add(btnAtualizarLivro);
              
             JButton btnRemoverLivro = new JButton("Remover Livro");
@@ -162,9 +166,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnRemoverLivro.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnRemoverLivro, Style.getGrayColor());
             btnRemoverLivro.setBounds(440, 250, 149, 53);
-            btnRemoverLivro.setBackground(Color.red);
             contentPane.add(btnRemoverLivro);            
             
             JButton btnConsultarReserva = new JButton("Consultar Reserva");
@@ -173,9 +176,8 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnConsultarReserva.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnConsultarReserva, Style.getPurpleColor());
             btnConsultarReserva.setBounds(280, 330, 149, 53);
-            btnConsultarReserva.setBackground(Color.GREEN);
             contentPane.add(btnConsultarReserva);
             
             JButton btnConsultarEmprestimo = new JButton("Consultar Empréstimo");
@@ -184,20 +186,19 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
-            btnConsultarEmprestimo.setForeground(Color.WHITE);
+        Style.setStandardUiButtonStyle(btnConsultarEmprestimo, Style.getOrangeColor());
             btnConsultarEmprestimo.setBounds(440, 330, 149, 53);
-            btnConsultarEmprestimo.setBackground(Color.GREEN);
             contentPane.add(btnConsultarEmprestimo);
             
             JButton btnSair = new JButton("Sair");
+            
             btnSair.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                        TelaPrincipalAdministrador.this.dispose();
                 }
         });
-            btnSair.setForeground(Color.black);
-            btnSair.setBounds(400, 420, 70, 23);
-            btnSair.setBackground(Color.lightGray);
+        Style.setStandardUiButtonStyle(btnSair, Style.getExitRed());
+            btnSair.setBounds(43, 330, 149, 53);
             contentPane.add(btnSair);            
             
     }
