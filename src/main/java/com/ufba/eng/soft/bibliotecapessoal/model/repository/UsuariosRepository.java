@@ -8,6 +8,7 @@ package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
 import java.util.List;
 
 /**
@@ -16,9 +17,8 @@ import java.util.List;
  */
 public interface UsuariosRepository {
     
-    
-    List<Professor> getTodosOsAlunosCadastrados();
-    List<Aluno> getTodosOsProfessoresCadastrados();
+    List<Professor> getTodosOsProfessoresCadastrados();
+    List<Aluno> getTodosOsAlunosCadastrados();
     List<Orientando> getTodosOsOrientandosCadastrados();
    
    
@@ -33,5 +33,14 @@ public interface UsuariosRepository {
    boolean removerUsuarioProfessor(String id);
    boolean removerUsuarioAluno(String id);
    boolean removerUsuarioOrientando(String id);
+   
+   public UsuarioDoSistema consultarAlunoId(String id);
+   public UsuarioDoSistema consultarProfessorId(String id);
+   public UsuarioDoSistema consultarOrientandoId(String id);
+   
+   public UsuarioDoSistema consultarAlunoNome(String nome);
+   public UsuarioDoSistema consultarProfessorNome(String nome);
+   public UsuarioDoSistema consultarOrientandoNome(String nome);
+   
    
 }

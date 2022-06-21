@@ -15,7 +15,7 @@ public class Livro {
     private String codigoISBN;
     private String codigoDeBarras;
     private Autor autor;
-    private GeneroLivro genero;
+    public GeneroLivro genero;
 
         public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, Autor autor, GeneroLivro genero) {
         this.nomeDoLivro = nomeDoLivro;

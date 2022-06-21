@@ -28,6 +28,24 @@ public class LivrosRepositoryImpl implements LivrosRepository {
         }
         return null;
     }
+    
+    public Livro getLivroPorCodBarras(String cod) {
+        for (Livro livro : this.livrosDatabase) {
+            if (livro.getCodigoDeBarras().equals(cod)) {
+                return livro;
+            }
+        }
+        return null;
+    }
+    
+    public Livro getLivroPorNome(String nome) {
+        for (Livro livro : this.livrosDatabase) {
+            if (livro.getNomeDoLivro().equals(nome)) {
+                return livro;
+            }
+        }
+        return null;
+    }
 
     @Override
     public List<Livro> getLivrosComTituloParcial(String tituloParcial) {

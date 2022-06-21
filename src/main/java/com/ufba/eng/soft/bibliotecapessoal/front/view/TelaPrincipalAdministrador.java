@@ -119,7 +119,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnCRemoverUsuario = new JButton("Remover Usuário");
             btnCRemoverUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new RemoveUsuarioTelaPrincipal(usuariosRepository).setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
         btnCRemoverUsuario.setBounds(440, 110, 149, 53);
@@ -143,7 +147,11 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnConsultarLivro = new JButton("Consultar Livro");
             btnConsultarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                            try {
+                            new ConsultarLivroTelaPrincipal().setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
         Style.setStandardUiButtonStyle(btnConsultarLivro, Style.getPurpleColor());
@@ -173,7 +181,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             JButton btnConsultarReserva = new JButton("Consultar Reserva");
             btnAtualizarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        
                     }
             });
         Style.setStandardUiButtonStyle(btnConsultarReserva, Style.getPurpleColor());

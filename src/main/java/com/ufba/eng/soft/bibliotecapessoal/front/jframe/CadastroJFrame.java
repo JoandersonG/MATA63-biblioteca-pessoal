@@ -26,7 +26,6 @@ public class CadastroJFrame extends JFrame {
     private TipoUsuario tipoUsuario;
     private JTextField idField;
     private JTextField nomeField;
-    private JTextField sobrenomeField;
     private JTextField usernameField;
     private JTextField senhaField;
     private UsuariosRepository usuariosRepository;
@@ -66,9 +65,6 @@ public class CadastroJFrame extends JFrame {
         JLabel nomeLabel = new JLabel ("Nome");
         nomeField = new JTextField(40);
         
-        JLabel sobrenomeLabel = new JLabel ("Sobrenome");
-        sobrenomeField = new JTextField(40);
-        
         JLabel idLabel = new JLabel ("Identificação-ID");
         idField = new JTextField(40);
         
@@ -80,8 +76,6 @@ public class CadastroJFrame extends JFrame {
         
         panelCadastro.add(nomeLabel);
         panelCadastro.add(nomeField);
-        panelCadastro.add(sobrenomeLabel);
-        panelCadastro.add(sobrenomeField);
         panelCadastro.add(idLabel);
         panelCadastro.add(idField);
         panelCadastro.add(usernameLabel);
@@ -127,7 +121,6 @@ public class CadastroJFrame extends JFrame {
             
             //Verifica campos
             ResultadoVerificacao resultadoNome = VerificadorDeCampos.nome(nomeField.getText());
-            ResultadoVerificacao resultadoSobrenome = VerificadorDeCampos.sobrenome(sobrenomeField.getText());
             ResultadoVerificacao resultadoIdUsuario = VerificadorDeCampos.idUsuario(idField.getText());
             ResultadoVerificacao resultadoUsername = VerificadorDeCampos.userName(usernameField.getText());
             ResultadoVerificacao resultadoSenha = VerificadorDeCampos.senha(senhaField.getText());
@@ -135,12 +128,6 @@ public class CadastroJFrame extends JFrame {
             boolean valido = true;
             if (!resultadoNome.isValido()) {
                 JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoNome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
-                return;
-            }
-            
-            if (!resultadoSobrenome.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoSobrenome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
@@ -170,7 +157,6 @@ public class CadastroJFrame extends JFrame {
                 Professor novoUsuario = new Professor(
                     idField.getText(), 
                     nomeField.getText(), 
-                    sobrenomeField.getText(),
                     usernameField.getText(), 
                     senhaField.getText()
                 );
@@ -183,7 +169,6 @@ public class CadastroJFrame extends JFrame {
                 Aluno novoUsuario = new Aluno(
                     idField.getText(), 
                     nomeField.getText(),
-                    sobrenomeField.getText(),
                     usernameField.getText(), 
                     senhaField.getText()
                 );
@@ -196,7 +181,6 @@ public class CadastroJFrame extends JFrame {
                     Orientando novoUsuario = new Orientando(
                         idField.getText(), 
                         nomeField.getText(),
-                        sobrenomeField.getText(),
                         usernameField.getText(), 
                         senhaField.getText()
                     );
@@ -213,7 +197,6 @@ public class CadastroJFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             nomeField.setText("");
-            sobrenomeField.setText("");
             idField.setText("");
             usernameField.setText("");
             senhaField.setText("");

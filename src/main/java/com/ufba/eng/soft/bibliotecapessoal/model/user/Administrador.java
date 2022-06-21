@@ -4,10 +4,13 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 
 public class Administrador extends UsuarioDoSistema {
 
-    public Administrador(String idUsuario, String nomeDeUusario, String sobrenomeDeUsuario, String userName, String senha) {
-        super(idUsuario, nomeDeUusario, sobrenomeDeUsuario, userName, senha);
+    public Administrador(String idUsuario, String nomeDeUusario, String userName, String senha) {
+        super(idUsuario, nomeDeUusario, userName, senha);
     }
 
+    public Administrador() {
+        super();
+    }
     
     @Override
     public void consultarLivroIsbn() {

@@ -1,5 +1,9 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -100,22 +104,49 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
     
     private class BuscarProfessorAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Professor(a) encontrado com sucesso", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-             //Exibir informações do usuário
+            String nomeProfessor = nomeField.getText();
+           
+            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorNome(nomeProfessor);
+           
+            if(professor != null){
+                new MostrarInformacoesJFrame(professor).setVisible(true);
+            }
+            
+            else{
+                JOptionPane.showMessageDialog(null, "Professor(a) não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+            }
         }
     }
     
     private class BuscarAlunoAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Aluno(a) cencontrado com sucesso", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-             //Exibir informações do usuário
+             String nomeAluno = nomeField.getText();
+           
+            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoNome(nomeAluno);
+           
+            if(aluno != null){
+                new MostrarInformacoesJFrame(aluno).setVisible(true);
+            }
+            
+            else{
+                JOptionPane.showMessageDialog(null, "Aluno(a) não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+            }
         }
     }
     
     private class BuscarOrientandoAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             JOptionPane.showMessageDialog(null, "Orientando(a) encontrado com sucesso", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-             //Exibir informações do usuário
+             String nomeOrientando = nomeField.getText();
+           
+            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoNome(nomeOrientando);
+           
+            if(orientando != null){
+                new MostrarInformacoesJFrame(orientando).setVisible(true);
+            }
+            
+            else{
+                JOptionPane.showMessageDialog(null, "Orientando(a) não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+            }
         }
     }
     
