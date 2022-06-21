@@ -34,7 +34,7 @@ public class ConsultaLivroJframe extends JFrame {
     
     private void criarFormularioNome(String tipo) {
         tipo = tipo;
-        setTitle("Persibi - Buscando Livro, pelo ISBN, ...");
+        setTitle("Persibi - Buscando Livro ...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
