@@ -4,18 +4,13 @@ import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -161,7 +156,7 @@ public class ConsultaLivroJFrame extends JFrame {
     private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            ConsultaLivroJFrame.this.dispose();            
+            ConsultaLivroJframe.this.dispose();            
         }
     }
     
