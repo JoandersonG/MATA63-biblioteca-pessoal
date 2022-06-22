@@ -1,6 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
-import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ConsultaLivroJframe;
+import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ConsultaLivroJFrame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -61,7 +61,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnIsbn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "ISBN";
-                            new ConsultaLivroJframe(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo).setVisible(true);
                     }
             });
             btnIsbn.setForeground(Color.BLACK);
@@ -73,7 +73,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnNome.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "Nome";
-                            new ConsultaLivroJframe(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo).setVisible(true);
                     }
             });
             btnNome.setForeground(Color.BLACK);
@@ -85,7 +85,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnCod.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "Cód. Barras";
-                            new ConsultaLivroJframe(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo).setVisible(true);
                     }
             });
             btnCod.setForeground(Color.BLACK);
