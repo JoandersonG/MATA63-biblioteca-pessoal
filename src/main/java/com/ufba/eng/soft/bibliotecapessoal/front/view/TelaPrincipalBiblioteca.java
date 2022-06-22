@@ -61,7 +61,7 @@ public class TelaPrincipalBiblioteca extends JFrame {
             jLabel.setIcon(imageIcon);
             contentPane.add(jLabel);            
             
-            JButton btnUsuario = new JButton("Usu√°rio");
+            JButton btnUsuario = new JButton("Usu·rio");
             btnUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {

@@ -61,7 +61,7 @@ public class EmprestimoJFrame extends JFrame{
         JPanel panelConsulta = new JPanel();
         panelConsulta.setLayout(new FlowLayout());
         
-        JLabel identificacaoLabel = new JLabel ("Identifica√ß√£o");
+        JLabel identificacaoLabel = new JLabel ("IdentificaÁ„o");
         identificacaoField = new JTextField(38);
        
         panelConsulta.add(identificacaoLabel);
@@ -75,20 +75,20 @@ public class EmprestimoJFrame extends JFrame{
         
         if(tipo == "ISBN"){ 
             botaoBuscar.addActionListener(buscarISBN);
-            /* Se livro for encontrado pelo ISBN, ser√° retornada uma mensagem
-            contendo a data de empr√©stimo e de devolu√ß√£o prevista. Muda-se o status
+            /* Se livro for encontrado pelo ISBN, ser· retornada uma mensagem
+            contendo a data de emprÈstimo e de devoluÁ„o prevista. Muda-se o status
             do livro no banco de dados para emprestado*/
         }
         if(tipo == "Nome"){ 
             botaoBuscar.addActionListener(buscarNome); 
-            /* Se livro for encontrado pelo nome, ser√° retornada uma mensagem
-            contendo a data de empr√©stimo e de devolu√ß√£o prevista. Muda-se o status
+            /* Se livro for encontrado pelo nome, ser· retornada uma mensagem
+            contendo a data de emprÈstimo e de devoluÁ„o prevista. Muda-se o status
             do livro no banco de dados para emprestado*/
         }
         if(tipo == "CodBarra"){ 
             botaoBuscar.addActionListener(buscarCodBarra);
-            /* Se livro for encontrado pelo c√≥digo de barras, ser√° retornada uma mensagem
-            contendo a data de empr√©stimo e de devolu√ß√£o prevista. Muda-se o status
+            /* Se livro for encontrado pelo cÛdigo de barras, ser· retornada uma mensagem
+            contendo a data de emprÈstimo e de devoluÁ„o prevista. Muda-se o status
             do livro no banco de dados para emprestado*/
         }
         
@@ -122,21 +122,21 @@ public class EmprestimoJFrame extends JFrame{
     
     private class BuscarISBN implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             //Opera√ß√£o de empr√©stimo por ISBN
+             //OperaÁ„o de emprÈstimo por ISBN
         }
 
     }
     
     private class BuscarCodBarra implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-             //Opera√ß√£o de empr√©stimo por c√≥digo de barras       
+             //OperaÁ„o de emprÈstimo por cÛdigo de barras       
         }
 
     }
     
     private class BuscarNome implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            //Opera√ß√£o de empr√©stimo por nome           
+            //OperaÁ„o de emprÈstimo por nome           
         }
 
     }

@@ -5,10 +5,10 @@ import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
 import java.io.IOException;
 
 /**
- * Classe com o objetivo de ser a respons√°vel pelo gerenciamento de todas as 
- * telas da aplica√ß√£o, de sua inicializa√ß√£o √† sua finaliza√ß√£o. Idealmente a 
- * classe principal BibliotecaPessoal.java se comunicar√° exclusivamente com
- * esta e n√£o diretamente com cada tela.
+ * Classe com o objetivo de ser a respons·vel pelo gerenciamento de todas as 
+ * telas da aplicaÁ„o, de sua inicializaÁ„o ‡ sua finalizaÁ„o. Idealmente a 
+ * classe principal BibliotecaPessoal.java se comunicar· exclusivamente com
+ * esta e n„o diretamente com cada tela.
  */
 public class GerenciadorDeTelas {
     

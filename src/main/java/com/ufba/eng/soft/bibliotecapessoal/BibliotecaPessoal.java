@@ -31,12 +31,12 @@ public class BibliotecaPessoal {
     public static void main(String[] args) throws IOException  {
         setupInicial();
         
-        //TODO: classe que orquestrar√° as telas do sistema, definindo qual tela ser√° apresentada em qual momento.   ]
+        //TODO: classe que orquestrar· as telas do sistema, definindo qual tela ser· apresentada em qual momento.   ]
         
         /*
-        L√≥gica pode ser algo como:
-            - mostra tela de login para o usu√°rio
-            - depois do usu√°rio logado, se for administrador, mostrar tela de administrador,
+        LÛgica pode ser algo como:
+            - mostra tela de login para o usu·rio
+            - depois do usu·rio logado, se for administrador, mostrar tela de administrador,
             - se for Orientador, mostrar tela de Orientador etc.
         */
         

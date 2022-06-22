@@ -38,7 +38,7 @@ public class RemocaoJFrame extends JFrame {
     }
     
     private void criarFormulario(TipoUsuario tipoUsuario) {
-        setTitle("Persibi - Removendo usu√°rio pelo ID...");
+        setTitle("Persibi - Removendo usu·rio pelo ID...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -58,7 +58,7 @@ public class RemocaoJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Formul√°rio");
+        JLabel titulo = new JLabel ("Formul·rio");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -112,11 +112,11 @@ public class RemocaoJFrame extends JFrame {
            
             if(professor != null){
                 usuariosRepository.removerUsuarioProfessor(professor.getIdUsuario());
-                JOptionPane.showMessageDialog(null, "Professor(a) removido(a) com sucesso", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Professor(a) removido(a) com sucesso", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Professor(a) n√£o encontrado", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Professor(a) n„o encontrado", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);       
             }
             
         }
@@ -130,11 +130,11 @@ public class RemocaoJFrame extends JFrame {
            
             if(aluno != null){
                 usuariosRepository.removerUsuarioAluno(aluno.getIdUsuario());
-                JOptionPane.showMessageDialog(null, "Aluno(a) removido(a) com sucesso", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Aluno(a) removido(a) com sucesso", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Aluno(a) n√£o encontrado", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Aluno(a) n„o encontrado", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -147,11 +147,11 @@ public class RemocaoJFrame extends JFrame {
            
             if(orientando != null){
                 usuariosRepository.removerUsuarioOrientando(orientando.getIdUsuario());
-                JOptionPane.showMessageDialog(null, "Orientando(a) removido(a) com sucesso", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Orientando(a) removido(a) com sucesso", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Orientando(a) n√£o encontrado", "Remo√ß√£o", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Orientando(a) n„o encontrado", "RemoÁ„o", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }

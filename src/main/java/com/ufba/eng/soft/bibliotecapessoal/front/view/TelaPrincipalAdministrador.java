@@ -51,17 +51,17 @@ public class TelaPrincipalAdministrador extends JFrame {
             titulo2.setFont(Style.getStandardFont(20));
             contentPane.add(titulo2);
 
-            JLabel gerenciamentoUsuarios = new JLabel ("Gest√£o de usu√°rios");
+            JLabel gerenciamentoUsuarios = new JLabel ("Gest„o de usu·rios");
             gerenciamentoUsuarios.setBounds(280, 1, 500, 75);
             gerenciamentoUsuarios.setFont(Style.getStandardFont(14));
             contentPane.add(gerenciamentoUsuarios);
 
-        JLabel gerenciamentoBiblioteca = new JLabel ("Gest√£o de acervo");
+        JLabel gerenciamentoBiblioteca = new JLabel ("Gest„o de acervo");
         gerenciamentoBiblioteca.setBounds(280, 1, 500, 360);
         gerenciamentoBiblioteca.setFont(Style.getStandardFont(14));
         contentPane.add(gerenciamentoBiblioteca);
 
-        JLabel gerenciamentoEmprestimos = new JLabel ("Gest√£o de empr√©stimos");
+        JLabel gerenciamentoEmprestimos = new JLabel ("Gest„o de emprÈstimos");
         gerenciamentoEmprestimos.setBounds(280, 1, 500, 637);
         gerenciamentoEmprestimos.setFont(Style.getStandardFont(14));
         contentPane.add(gerenciamentoEmprestimos);
@@ -77,7 +77,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             jLabel.setIcon(imageIcon);
             contentPane.add(jLabel);            
             
-            JButton btnCadastrarUsuario = new JButton("Cadastrar Usu√°rio");
+            JButton btnCadastrarUsuario = new JButton("Cadastrar Usu·rio");
             btnCadastrarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
@@ -92,7 +92,7 @@ public class TelaPrincipalAdministrador extends JFrame {
 
             contentPane.add(btnCadastrarUsuario); 
             
-            JButton btnConsultarUsuario = new JButton("Consultar Usu√°rio");
+            JButton btnConsultarUsuario = new JButton("Consultar Usu·rio");
             btnConsultarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
@@ -106,7 +106,7 @@ public class TelaPrincipalAdministrador extends JFrame {
         Style.setStandardUiButtonStyle(btnConsultarUsuario, Style.getPurpleColor());
             contentPane.add(btnConsultarUsuario);
             
-            JButton btnAtualizarUsuario = new JButton("Atualizar Usu√°rio");
+            JButton btnAtualizarUsuario = new JButton("Atualizar Usu·rio");
             btnAtualizarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             
@@ -116,7 +116,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnAtualizarUsuario.setBounds(280, 110, 149, 53);
             contentPane.add(btnAtualizarUsuario);
             
-            JButton btnCRemoverUsuario = new JButton("Remover Usu√°rio");
+            JButton btnCRemoverUsuario = new JButton("Remover Usu·rio");
             btnCRemoverUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
@@ -188,7 +188,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnConsultarReserva.setBounds(280, 330, 149, 53);
             contentPane.add(btnConsultarReserva);
             
-            JButton btnConsultarEmprestimo = new JButton("Consultar Empr√©stimo");
+            JButton btnConsultarEmprestimo = new JButton("Consultar EmprÈstimo");
             btnAtualizarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             

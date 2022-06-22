@@ -38,7 +38,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);
             
-            JLabel titulo2 = new JLabel ("Escolha a opÃ§Ã£o: ");
+            JLabel titulo2 = new JLabel ("Escolha a opção: ");
             titulo2.setBounds(55, 115, 500, 300);
             titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo2); 
@@ -78,10 +78,10 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnNome.setBackground(Color.GREEN);
             contentPane.add( btnNome);
             
-            JButton btnCod = new JButton("CÃ³d. Barras");
+            JButton btnCod = new JButton("Cód. Barras");
             btnCod.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            tipo = "CÃ³d. Barras";
+                            tipo = "Cód. Barras";
                             new ConsultaLivroJFrame(tipo).setVisible(true);
                     }
             });

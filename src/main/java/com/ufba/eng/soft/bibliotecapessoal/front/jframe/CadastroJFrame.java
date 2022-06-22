@@ -37,7 +37,7 @@ public class CadastroJFrame extends JFrame {
     }
     
     private void criarFormulario(TipoUsuario tipoUsuario) {
-        setTitle("Persibi - Formul√°rio de Cadastro do Usu√°rio");
+        setTitle("Persibi - Formul·rio de Cadastro do Usu·rio");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -55,7 +55,7 @@ public class CadastroJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Formul√°rio");
+        JLabel titulo = new JLabel ("Formul·rio");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -65,7 +65,7 @@ public class CadastroJFrame extends JFrame {
         JLabel nomeLabel = new JLabel ("Nome");
         nomeField = new JTextField(40);
         
-        JLabel idLabel = new JLabel ("Identifica√ß√£o-ID");
+        JLabel idLabel = new JLabel ("IdentificaÁ„o-ID");
         idField = new JTextField(40);
         
         JLabel usernameLabel = new JLabel ("Username");
@@ -127,25 +127,25 @@ public class CadastroJFrame extends JFrame {
             
             boolean valido = true;
             if (!resultadoNome.isValido()) {
-                JOptionPane.showMessageDialog(null, "N√£o foi poss√≠vel realizar cadastro. Erro: " + resultadoNome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "N„o foi possÌvel realizar cadastro. Erro: " + resultadoNome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoIdUsuario.isValido()) {
-                JOptionPane.showMessageDialog(null, "N√£o foi poss√≠vel realizar cadastro. Erro: " + resultadoIdUsuario.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "N„o foi possÌvel realizar cadastro. Erro: " + resultadoIdUsuario.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoUsername.isValido()) {
-                JOptionPane.showMessageDialog(null, "N√£o foi poss√≠vel realizar cadastro. Erro: " + resultadoUsername.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "N„o foi possÌvel realizar cadastro. Erro: " + resultadoUsername.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoSenha.isValido()) {
-                JOptionPane.showMessageDialog(null, "N√£o foi poss√≠vel realizar cadastro. Erro: " + resultadoSenha.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "N„o foi possÌvel realizar cadastro. Erro: " + resultadoSenha.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }

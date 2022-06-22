@@ -33,7 +33,7 @@ public class CadastroUsuarioTelaPrincipal extends JFrame {
      */
     public CadastroUsuarioTelaPrincipal(UsuariosRepository usuariosRepository) throws FileNotFoundException, IOException {
             this.usuariosRepository = usuariosRepository;
-            setTitle("Persibi - Cadastro de Usu√°rio");
+            setTitle("Persibi - Cadastro de Usu·rio");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();

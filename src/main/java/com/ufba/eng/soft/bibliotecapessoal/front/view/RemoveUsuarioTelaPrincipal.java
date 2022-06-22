@@ -35,7 +35,7 @@ public class RemoveUsuarioTelaPrincipal extends JFrame {
      */
     public RemoveUsuarioTelaPrincipal(UsuariosRepository usuariosRepository) throws FileNotFoundException, IOException {
             this.usuariosRepository = usuariosRepository;
-            setTitle("Persibi - Remo√ß√£o de Usu√°rio");
+            setTitle("Persibi - RemoÁ„o de Usu·rio");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -44,7 +44,7 @@ public class RemoveUsuarioTelaPrincipal extends JFrame {
             contentPane.setLayout(null);
             getContentPane().setBackground(Color.WHITE);
             
-            JLabel titulo1 = new JLabel ("O usu√°rio a ser removido √©: ");
+            JLabel titulo1 = new JLabel ("O usu·rio a ser removido È: ");
             titulo1.setBounds(55, 90, 500, 300);
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);

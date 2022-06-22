@@ -37,7 +37,7 @@ public class TelaPrincipalUsuario extends JFrame {
     public TelaPrincipalUsuario(UsuariosRepository usuariosRepository, LivrosRepository livrosRepository) throws IOException {
             this.usuariosRepository = usuariosRepository;
             this.livrosRepository = livrosRepository;
-            setTitle("Persibi - Usu√°rio");
+            setTitle("Persibi - Usu·rio");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -51,7 +51,7 @@ public class TelaPrincipalUsuario extends JFrame {
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 20));
             contentPane.add(titulo1);
             
-            JLabel titulo2 = new JLabel ("usu√°rio(a)!");
+            JLabel titulo2 = new JLabel ("usu·rio(a)!");
             titulo2.setBounds(20, 115, 500, 300);
             titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 20));
             contentPane.add(titulo2);            
@@ -82,7 +82,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnConsultarLivro.setBackground(Color.green);
             contentPane.add(btnConsultarLivro); 
             
-            JButton btnRealizarEmprestimo = new JButton("Empr√©stimo ");
+            JButton btnRealizarEmprestimo = new JButton("EmprÈstimo ");
             btnRealizarEmprestimo.addActionListener(new ActionListener() {
                      public void actionPerformed(ActionEvent arg0) {
                          //O mesmo apontado na linha 52
@@ -109,7 +109,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnRealizarReserva.setBackground(Color.green);
             contentPane.add(btnRealizarReserva);
             
-           JButton btnRealizarDevolucao = new JButton("Devolu√ß√£o");
+           JButton btnRealizarDevolucao = new JButton("DevoluÁ„o");
            btnRealizarDevolucao.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             

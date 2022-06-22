@@ -35,7 +35,7 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
     
     private void criarFormularioNome(String usuario) {
         usuario = usuario; 
-        setTitle("Persibi - Buscando Usu√°rio, pelo nome, no cadastro ...");
+        setTitle("Persibi - Buscando Usu·rio, pelo nome, no cadastro ...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -55,7 +55,7 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Busca de usu√°rio pelo nome ...");
+        JLabel titulo = new JLabel ("Busca de usu·rio pelo nome ...");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -113,7 +113,7 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Professor(a) n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Professor(a) n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -129,7 +129,7 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Aluno(a) n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Aluno(a) n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -145,7 +145,7 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Orientando(a) n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Orientando(a) n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }

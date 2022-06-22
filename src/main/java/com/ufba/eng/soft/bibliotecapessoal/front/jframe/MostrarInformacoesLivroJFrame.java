@@ -39,7 +39,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
     
     private void criarFormulario(Livro livro) {
        
-        setTitle("Persibi - InformaÃ§Ãµes do livro buscado");
+        setTitle("Persibi - Informações do livro buscado");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -58,7 +58,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("InformaÃ§Ãµes do livro buscado");
+        JLabel titulo = new JLabel ("Informações do livro buscado");
         titulo.setFont(new Font("arial black", Font.PLAIN, 18));
         panelTitulo.add(titulo);
         
@@ -79,7 +79,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(nomeLivroLabel);
         
         
-        final JTextArea isbnLabel = new JTextArea("CÃ³digo ISBN : "); 
+        final JTextArea isbnLabel = new JTextArea("Código ISBN : "); 
         isbnLabel.setEditable(false); 
         isbnLabel.setLineWrap(true);
         isbnLabel.setFont(new Font("arial black", Font.PLAIN, 16));
@@ -92,7 +92,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(isbnLabel);
         panelConsulta.add(isbnLivroLabel);
         
-        final JTextArea codBarraLabel = new JTextArea("CÃ³digo de barras : "); 
+        final JTextArea codBarraLabel = new JTextArea("Código de barras : "); 
         codBarraLabel.setEditable(false); 
         codBarraLabel.setLineWrap(true);
         codBarraLabel.setFont(new Font("arial black", Font.PLAIN, 16));
@@ -120,7 +120,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(autorLabel);
         panelConsulta.add(autorLivroLabel);
         
-        final JTextArea generoLabel = new JTextArea("GÃªnero : "); 
+        final JTextArea generoLabel = new JTextArea("Gênero : "); 
         generoLabel.setEditable(false); 
         generoLabel.setLineWrap(true);
         generoLabel.setFont(new Font("arial black", Font.PLAIN, 16));

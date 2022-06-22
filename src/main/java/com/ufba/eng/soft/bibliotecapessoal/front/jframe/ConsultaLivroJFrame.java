@@ -56,7 +56,7 @@ public class ConsultaLivroJFrame extends JFrame {
         JPanel panelConsulta = new JPanel();
         panelConsulta.setLayout(new FlowLayout());
         
-        JLabel identificacaoLabel = new JLabel ("Identica√ß√£o");
+        JLabel identificacaoLabel = new JLabel ("IdenticaÁ„o");
         identificacaoField = new JTextField(40);     
         
         panelConsulta.add(identificacaoLabel);
@@ -75,7 +75,7 @@ public class ConsultaLivroJFrame extends JFrame {
         if(tipo == "Nome"){ 
             botaoBuscar.addActionListener(buscarLivroNomeAction);  
         }
-        if(tipo == "C√≥d. Barras"){ 
+        if(tipo == "CÛd. Barras"){ 
             botaoBuscar.addActionListener(buscarLivroCodAction);  
         }
           
@@ -109,7 +109,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -125,7 +125,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -141,7 +141,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro n√£o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro n„o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }

@@ -32,7 +32,7 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
      * Create the frame.
      */
     public ConsultaUsuarioTelaPrincipal() throws FileNotFoundException, IOException {
-            setTitle("\"Persibi - Consulta de Usu√°rio");
+            setTitle("\"Persibi - Consulta de Usu·rio");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -41,12 +41,12 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
             contentPane.setLayout(null);
             getContentPane().setBackground(Color.WHITE);  
             
-            JLabel titulo1 = new JLabel ("Consulte um usu√°rio");
+            JLabel titulo1 = new JLabel ("Consulte um usu·rio");
             titulo1.setBounds(55, 90, 500, 300);
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);
             
-            JLabel titulo2 = new JLabel ("Escolha a op√ß√£o: Nome ou Id");
+            JLabel titulo2 = new JLabel ("Escolha a opÁ„o: Nome ou Id");
             titulo2.setBounds(20, 115, 500, 300);
             titulo2.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo2); 
