@@ -23,6 +23,12 @@ public interface LivrosRepository {
    
    boolean adicionarNovoLivro(Livro livro);
    
+   void adicionarReservaAluno(Livro livro, int index);
+   
+   void adicionarReservaProfessor(Livro livro, int index);
+    
+   void adicionarReservaOrientando(Livro livro, int index);
+   
    boolean atualizarLivro(Livro livro);
    
    boolean adicionarOuAtualizarLivro(Livro livro);
