@@ -26,9 +26,9 @@ public interface UsuariosRepository {
    boolean adicionarNovoAluno(Aluno aluno);
    boolean adicionarNovoOrientando(Orientando orientando);
    
-   boolean atualizarUsuarioProfessor(Professor professor);
-   boolean atualizarUsuarioAluno(Aluno aluno);
-   boolean atualizarUsuarioOrientando(Orientando orientando);
+   void atualizarUsuarioProfessor(Professor professor, int index);
+   void atualizarUsuarioAluno(Aluno aluno, int index);
+   void atualizarUsuarioOrientando(Orientando orientando, int index);
    
    boolean removerUsuarioProfessor(String id);
    boolean removerUsuarioAluno(String id);
