@@ -91,7 +91,6 @@ public abstract class UsuarioDoSistema {
 
     public void setLivrosReservados(Livro livro) {
         this.livrosReservados.add(livro);
-        System.out.println("Log: Adicionando livro em lista de reserva: " + this.livrosReservados.get(0)); // só pra teste
     }
 
     
