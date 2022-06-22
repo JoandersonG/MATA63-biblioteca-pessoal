@@ -27,4 +27,12 @@ public class Livro {
         this.genero = genero;
     }
     
+    public boolean getReservado() {
+        return reservado;
+    }
+
+    public void setReservado(boolean reservado) {
+        this.reservado = reservado;
+    }
+    
 }
