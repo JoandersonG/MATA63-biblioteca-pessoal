@@ -75,18 +75,21 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public boolean atualizarUsuarioProfessor(Professor professor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizarUsuarioProfessor(Professor professor, int index) {
+        System.out.println("Log: Atualizando livros reservados professor: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados());
+        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, professor);
     }
-
+    
     @Override
-    public boolean atualizarUsuarioAluno(Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizarUsuarioAluno(Aluno aluno, int index) {
+        System.out.println("Log: Atualizando livros reservado aluno: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados());
+        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, aluno);
     }
-
+    
     @Override
-    public boolean atualizarUsuarioOrientando(Orientando orientando) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizarUsuarioOrientando(Orientando orientando, int index) {
+        System.out.println("Log: Atualizando livros reservado orientando: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados()); //isso pode apagar depois
+        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, orientando);
     }
 
     @Override
