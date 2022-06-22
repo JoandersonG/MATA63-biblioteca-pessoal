@@ -97,14 +97,17 @@ public class TelaPrincipalUsuario extends JFrame {
             JButton btnRealizarReserva = new JButton("Reserva");
             btnRealizarReserva.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new ReservaLivroTelaPrincipal().setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             });
-            
-           btnRealizarReserva.setForeground(Color.BLACK);
-           btnRealizarReserva.setBounds(360, 239, 149, 53);
-           btnRealizarReserva.setBackground(Color.green);
-           contentPane.add(btnRealizarReserva); 
+            btnRealizarReserva.setForeground(Color.BLACK);
+            btnRealizarReserva.setBounds(360, 239, 149, 53);
+            btnRealizarReserva.setBackground(Color.green);
+            contentPane.add(btnRealizarReserva);
             
            JButton btnRealizarDevolucao = new JButton("Devolução");
            btnRealizarDevolucao.addActionListener(new ActionListener() {
