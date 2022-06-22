@@ -17,9 +17,9 @@ public abstract class UsuarioDoSistema {
         this.nomeDeUusario = nomeDeUusario;
         this.userName = userName;
         this.senha = senha;
-        this.debito = "NÃ£o";
-        this.emprestimo = "NÃ£o";
-        this.reserva = "NÃ£o";
+        this.debito = "Não";
+        this.emprestimo = "Não";
+        this.reserva = "Não";
         this.livrosReservados = new ArrayList<>();
     }
 
@@ -83,14 +83,6 @@ public abstract class UsuarioDoSistema {
 
     public void setReserva(String reserva) {
         this.reserva = reserva;
-    }
-    
-    public ArrayList<Livro> getLivrosReservados() {
-        return livrosReservados;
-    }
-
-    public void setLivrosReservados(Livro livro) {
-        this.livrosReservados.add(livro);
     }
 
     
