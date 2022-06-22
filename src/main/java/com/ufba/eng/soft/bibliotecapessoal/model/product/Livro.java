@@ -16,6 +16,8 @@ public class Livro {
     private String codigoDeBarras;
     private Autor autor;
     public GeneroLivro genero;
+    private boolean emprestado = false;
+    private boolean reservado = false;
 
         public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, Autor autor, GeneroLivro genero) {
         this.nomeDoLivro = nomeDoLivro;
