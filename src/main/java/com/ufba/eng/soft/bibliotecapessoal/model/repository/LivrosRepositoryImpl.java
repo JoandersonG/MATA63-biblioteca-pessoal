@@ -62,6 +62,24 @@ public class LivrosRepositoryImpl implements LivrosRepository {
         System.out.println("Log: Adicionando novo livro no banco de dados: " + livro.getNomeDoLivro());
         return LivrosRepositoryImpl.livrosDatabase.add(livro);
     }
+    
+    @Override
+    public void adicionarReservaAluno(Livro livro, int index){
+        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
+        System.out.println("Log: Adicionando aluno em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getAlunosReserva().get(0).getNomeDeUusario());
+    }
+    
+    @Override
+    public void adicionarReservaProfessor(Livro livro, int index){
+        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
+        System.out.println("Log: Adicionando professor em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getProfessoresReserva().get(0).getNomeDeUusario());
+    }
+    
+    @Override
+    public void adicionarReservaOrientando(Livro livro, int index){
+        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
+        System.out.println("Log: Adicionando orientando em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getOrientandosReserva().get(0).getNomeDeUusario());
+    }
 
     @Override
     public boolean atualizarLivro(Livro livro) {
