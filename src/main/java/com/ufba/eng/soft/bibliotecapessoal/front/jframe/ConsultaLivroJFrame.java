@@ -21,13 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class ConsultaLivroJframe extends JFrame {
+public class ConsultaLivroJFrame extends JFrame {
     private JPanel contentPane;
     private String tipo;
     private JTextField identificacaoField;
     
     
-    public ConsultaLivroJframe(String tipo) {
+    public ConsultaLivroJFrame(String tipo) {
         tipo = tipo;
         criarFormularioNome(tipo);
     }
@@ -121,7 +121,7 @@ public class ConsultaLivroJframe extends JFrame {
     
     private class BuscarLivroNomeAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            /*String identificacaoLivro = identificacaoField.getText();
+            String identificacaoLivro = identificacaoField.getText();
             
             Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorNome(identificacaoLivro);
            
@@ -131,13 +131,13 @@ public class ConsultaLivroJframe extends JFrame {
             
             else{
                 JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-            }*/
+            }
         }
     }
     
     private class BuscarLivroCodAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-           /* String identificacaoLivro = identificacaoField.getText();
+           String identificacaoLivro = identificacaoField.getText();
             
             Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorCodBarras(identificacaoLivro);
            
@@ -147,7 +147,7 @@ public class ConsultaLivroJframe extends JFrame {
             
             else{
                 JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
-            }*/
+            }
         }
     }
     
@@ -161,7 +161,7 @@ public class ConsultaLivroJframe extends JFrame {
     private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            ConsultaLivroJframe.this.dispose();            
+            ConsultaLivroJFrame.this.dispose();            
         }
     }
     
