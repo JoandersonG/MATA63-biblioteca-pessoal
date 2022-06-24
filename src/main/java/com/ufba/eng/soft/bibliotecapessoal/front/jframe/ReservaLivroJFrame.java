@@ -146,8 +146,8 @@ public class ReservaLivroJFrame extends JFrame {
                     
                     if(reservado == false){
                         livro.setReservado(true);
-                        professor.setLivrosReservados(livro);
-                        livro.setProfessoresReserva(professor);
+                        professor.addLivrosReservados(livro);
+                        livro.addProfessoresReserva(professor);
                         new LivrosRepositoryImpl().adicionarReservaProfessor(livro, indexLivro);
                         new UsuariosRepositoryImpl().atualizarUsuarioProfessor(professor, indexProfessor);
                         JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
@@ -198,8 +198,8 @@ public class ReservaLivroJFrame extends JFrame {
                     
                     if(reservado == false){
                         livro.setReservado(true);
-                        aluno.setLivrosReservados(livro);
-                        livro.setAlunosReserva(aluno);
+                        aluno.addLivrosReservados(livro);
+                        livro.addAlunosReserva(aluno);
                         new LivrosRepositoryImpl().adicionarReservaAluno(livro, indexLivro);
                         new UsuariosRepositoryImpl().atualizarUsuarioAluno(aluno, indexAluno);
                         JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
@@ -250,8 +250,8 @@ public class ReservaLivroJFrame extends JFrame {
                     
                     if(reservado == false){
                         livro.setReservado(true);
-                        orientando.setLivrosReservados(livro);
-                        livro.setOrientandosReserva(orientando);
+                        orientando.addLivrosReservados(livro);
+                        livro.addOrientandosReserva(orientando);
                         new LivrosRepositoryImpl().adicionarReservaOrientando(livro, indexLivro);
                         new UsuariosRepositoryImpl().atualizarUsuarioOrientando(orientando, indexOrientando);
                         JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
