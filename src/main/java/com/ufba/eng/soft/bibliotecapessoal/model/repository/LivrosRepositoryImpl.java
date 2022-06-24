@@ -66,19 +66,19 @@ public class LivrosRepositoryImpl implements LivrosRepository {
     @Override
     public void adicionarReservaAluno(Livro livro, int index){
         LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando aluno em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getAlunosReserva().get(0).getNomeDeUusario());
+        System.out.println("Log: Adicionando aluno " + livro.getAlunosReserva().get(livro.getAlunosReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
     }
     
     @Override
     public void adicionarReservaProfessor(Livro livro, int index){
         LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando professor em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getProfessoresReserva().get(0).getNomeDeUusario());
+        System.out.println("Log: Adicionando professor " + livro.getProfessoresReserva().get(livro.getProfessoresReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
     }
     
     @Override
     public void adicionarReservaOrientando(Livro livro, int index){
         LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando orientando em lista de reserva do livro: " + LivrosRepositoryImpl.livrosDatabase.get(index).getOrientandosReserva().get(0).getNomeDeUusario());
+        System.out.println("Log: Adicionando orientando " + livro.getOrientandosReserva().get(livro.getOrientandosReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
     }
 
     @Override
