@@ -4,6 +4,10 @@
  */
 package com.ufba.eng.soft.bibliotecapessoal.model.product;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+import java.util.ArrayList;
 import lombok.Data;
 
 //Falta incluir etiqueta
@@ -21,6 +25,9 @@ public class Livro {
     private ArrayList<Aluno> alunosReserva;
     private ArrayList<Professor> professoresReserva;
     private ArrayList<Orientando> orientandosReserva;
+     private ArrayList<Aluno> alunosEmprestimo;
+    private ArrayList<Professor> professoresEmprestimo;
+    private ArrayList<Orientando> orientandosEmprestimo;
 
     public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, Autor autor, GeneroLivro genero) {
         this.nomeDoLivro = nomeDoLivro;
@@ -31,7 +38,16 @@ public class Livro {
         this.alunosReserva = new ArrayList<>();
         this.professoresReserva = new ArrayList<>();
         this.orientandosReserva = new ArrayList<>();
+        this.alunosEmprestimo = new ArrayList<>();
+        this.professoresEmprestimo = new ArrayList<>();
+        this.orientandosEmprestimo = new ArrayList<>();
     }
+
+    public Livro() {
+        
+    }
+
+    
     
     public boolean getReservado() {
         return reservado;
@@ -39,6 +55,14 @@ public class Livro {
 
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
+    }
+    
+    public boolean getEmprestadoo() {
+        return emprestado;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
     }
     
     public String getCodigoISBN() {
@@ -72,5 +96,22 @@ public class Livro {
     public void setOrientandosReserva(Orientando usuario) {
         this.orientandosReserva.add(usuario);
     }
+
+    public boolean isReservado() {
+        return reservado;
+    }
+
+    public void setAlunosReserva(ArrayList<Aluno> alunosReserva) {
+        this.alunosReserva = alunosReserva;
+    }
+
+    public void setProfessoresReserva(ArrayList<Professor> professoresReserva) {
+        this.professoresReserva = professoresReserva;
+    }
+
+    public void setOrientandosReserva(ArrayList<Orientando> orientandosReserva) {
+        this.orientandosReserva = orientandosReserva;
+    }
+    
     
 }
