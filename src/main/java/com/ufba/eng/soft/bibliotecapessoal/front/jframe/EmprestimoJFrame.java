@@ -1,11 +1,22 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,86 +28,84 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class EmprestimoJFrame extends JFrame{
+public class EmprestimoJFrame extends JFrame {
     private JPanel contentPane;
+    private String usuario;
+    private JTextField idField; 
+    private JTextField isbnLivroField;
     
-    public static void main(String[] args) {
-	
+    
+    
+    public EmprestimoJFrame(String usuario) {
+        usuario = usuario;
+        criarFormularioNome(usuario);
     }
     
-    private String tipo;
-    private JTextField identificacaoField;
-    
-    public EmprestimoJFrame(String tipo) {
-        tipo = tipo;
-        criarFormulario(tipo);
-    }
-
-    private void criarFormulario(String tipo) {
-            tipo = tipo; 
-            setTitle("Buscar Livro");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setBounds(100, 100, 450, 300);
-            contentPane = new JPanel();
-            contentPane.setBorder(new EmptyBorder(3, 3, 3, 3));
-            setContentPane(contentPane);
-            contentPane.setLayout(null);
+    private void criarFormularioNome(String usuario) {
+        usuario = usuario; 
+        setTitle("Persibi - Empréstimo de Livro");
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setBounds(300, 300, 500, 350);
+	contentPane = new JPanel();
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	setContentPane(contentPane);
+	contentPane.setLayout(null);
+        getContentPane().setBackground(Color.WHITE);
         
-        FecharAction fecharAction = new FecharAction();
-        BuscarISBN buscarISBN = new BuscarISBN();
-        BuscarNome buscarNome = new BuscarNome();
-        BuscarCodBarra buscarCodBarra= new BuscarCodBarra();
+        EmprestaProfessorAction emprestaProfessorAction = new EmprestaProfessorAction();
+        EmprestaAlunoAction emprestaAlunoAction = new EmprestaAlunoAction();
+        EmprestaOrientandoAction emprestaOrientandoAction = new EmprestaOrientandoAction();
         LimparAction limparAction = new LimparAction();
+        SairAction sairAction = new SairAction();
         
         setLayout(new BorderLayout());
         
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Buscar Livro");
+        JLabel titulo = new JLabel ("Empréstimo de Livro");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
-        
         panelTitulo.add(titulo);
         
         JPanel panelConsulta = new JPanel();
         panelConsulta.setLayout(new FlowLayout());
         
-        JLabel identificacaoLabel = new JLabel ("Identificação");
-        identificacaoField = new JTextField(38);
-       
-        panelConsulta.add(identificacaoLabel);
-        panelConsulta.add(identificacaoField);
+        JLabel idLabel = new JLabel ("Id do usuario");
+        idField = new JTextField(40);     
+        
+        panelConsulta.add(idLabel);
+        panelConsulta.add(idField);
+        
+        JLabel isbnLivroLabel = new JLabel ("ISBN do livro");
+        isbnLivroField = new JTextField(40);     
+        
+        panelConsulta.add(isbnLivroLabel);
+        panelConsulta.add(isbnLivroField);
         
         JPanel panelBotoes = new JPanel();
         panelBotoes.setLayout(new FlowLayout());
         
-        JButton botaoBuscar = new JButton("Buscar");
+        JButton botaoBuscar = new JButton("Emprestar");
+        botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
         
-        if(tipo == "ISBN"){ 
-            botaoBuscar.addActionListener(buscarISBN);
-            /* Se livro for encontrado pelo ISBN, será retornada uma mensagem
-            contendo a data de empréstimo e de devolução prevista. Muda-se o status
-            do livro no banco de dados para emprestado*/
+        if(usuario == "Professor"){ 
+          botaoBuscar.addActionListener(emprestaProfessorAction);  
         }
-        if(tipo == "Nome"){ 
-            botaoBuscar.addActionListener(buscarNome); 
-            /* Se livro for encontrado pelo nome, será retornada uma mensagem
-            contendo a data de empréstimo e de devolução prevista. Muda-se o status
-            do livro no banco de dados para emprestado*/
+        if(usuario == "Aluno"){ 
+            botaoBuscar.addActionListener(emprestaAlunoAction);  
         }
-        if(tipo == "CodBarra"){ 
-            botaoBuscar.addActionListener(buscarCodBarra);
-            /* Se livro for encontrado pelo código de barras, será retornada uma mensagem
-            contendo a data de empréstimo e de devolução prevista. Muda-se o status
-            do livro no banco de dados para emprestado*/
+        if(usuario == "Orientando"){ 
+            botaoBuscar.addActionListener(emprestaOrientandoAction);  
         }
         
         JButton botaoLimpar = new JButton("Limpar");
+        botaoLimpar.setBackground(Color.red);
         botaoLimpar.addActionListener(limparAction);
         
         JButton botaoSair = new JButton("Sair");
-        botaoSair.addActionListener(fecharAction);
+        botaoSair.setBackground(Color.lightGray);
+        botaoSair.addActionListener(sairAction);
         
         panelBotoes.add(botaoLimpar);
         panelBotoes.add(botaoSair);
@@ -106,39 +115,148 @@ public class EmprestimoJFrame extends JFrame{
         add(panelBotoes, BorderLayout.SOUTH);        
     }
     
-    private class LimparAction implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            identificacaoField.setText("");
+    
+    private class EmprestaProfessorAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String idProfessor = idField.getText();
+            String isbnLivro = isbnLivroField.getText();
+           
+          
+            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorId(idProfessor);
+            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
+            
+            if(professor != null){
+                
+                if(livro != null){
+                                        
+                    if(!livro.getEmprestadoo()){
+                        
+                        livro.setEmprestado(true);
+                      
+                        professor.setEmprestimo("sim");
+                        
+                        professor.addLivroListaEmprestimos(livro);
+                        
+                        new FormularioDeEmprestimoJFrame().setVisible(true);
+                        
+                    }    
+                                      
+                    else{
+                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                }
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+            }
+            
+            
         }
     }
     
-    private class FecharAction implements ActionListener {
+    private class EmprestaAlunoAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String idAluno = idField.getText();
+            String isbnLivro = isbnLivroField.getText();
+           
+          
+            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoId(idAluno);
+            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
+            
+            if(aluno != null){
+                    if(livro != null){
+                    
+                    
+                    if(!livro.getEmprestadoo()){
+                        
+                        livro.setEmprestado(true);
+                        
+                        aluno.setEmprestimo("sim");
+                        
+                        aluno.addLivroListaEmprestimos(livro);
+                        
+                        new FormularioDeEmprestimoJFrame().setVisible(true);
+                        
+                    }    
+                                      
+                    else{
+                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                }
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+            }
+            
+            
+        }
+    }
+    
+    private class EmprestaOrientandoAction implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String idOrientando = idField.getText();
+            String isbnLivro = isbnLivroField.getText();
+           
+          
+            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoId(idOrientando);
+            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
+            
+            if(orientando != null){
+                    if(livro != null){
+                    
+                    
+                    if(!livro.getEmprestadoo()){
+                        
+                        livro.setEmprestado(true);
+                        
+                        orientando.setEmprestimo("sim");
+                        
+                        orientando.addLivroListaEmprestimos(livro);
+                        
+                        new FormularioDeEmprestimoJFrame().setVisible(true);
+                        
+                    }    
+                                      
+                    else{
+                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                }
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+            }
+            
+            
+        }
+    }
+    
+    private class LimparAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            idField.setText("");
+        }
+    }
+    
+    private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
             EmprestimoJFrame.this.dispose();            
         }
     }
     
-    private class BuscarISBN implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             //Operação de empréstimo por ISBN
-        }
-
-    }
-    
-    private class BuscarCodBarra implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-             //Operação de empréstimo por código de barras       
-        }
-
-    }
-    
-    private class BuscarNome implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-            //Operação de empréstimo por nome           
-        }
-
-    }
-    
 }
+
+
+
