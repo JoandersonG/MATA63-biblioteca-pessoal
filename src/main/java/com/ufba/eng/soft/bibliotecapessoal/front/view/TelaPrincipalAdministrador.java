@@ -194,9 +194,35 @@ public class TelaPrincipalAdministrador extends JFrame {
                             
                     }
             });
+            
         Style.setStandardUiButtonStyle(btnConsultarEmprestimo, Style.getOrangeColor());
             btnConsultarEmprestimo.setBounds(440, 330, 149, 53);
             contentPane.add(btnConsultarEmprestimo);
+            
+            JButton btnRealizarEmprestimo = new JButton("Realizar Empréstimo");
+            btnRealizarEmprestimo.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                        try {
+                            new EmprestaLivroTelaPrincipal().setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+            });
+        Style.setStandardUiButtonStyle(btnRealizarEmprestimo, Style.getOrangeColor());
+           btnRealizarEmprestimo.setBounds(280, 390, 149, 53);
+            contentPane.add(btnRealizarEmprestimo);
+            
+            JButton btnRealizarDevolucao = new JButton("Realizar Devolução");
+            btnRealizarDevolucao.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                            
+                    }
+            });
+            
+        Style.setStandardUiButtonStyle(btnRealizarDevolucao, Style.getPurpleColor());
+            btnRealizarDevolucao.setBounds(440, 390, 149, 53);
+            contentPane.add(btnRealizarDevolucao);
             
             JButton btnSair = new JButton("Sair");
             
