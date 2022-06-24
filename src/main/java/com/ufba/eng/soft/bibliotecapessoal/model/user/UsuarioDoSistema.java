@@ -1,6 +1,9 @@
 
 package com.ufba.eng.soft.bibliotecapessoal.model.user;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import java.util.ArrayList;
+
 
 public abstract class UsuarioDoSistema {
     private String idUsuario;
@@ -11,6 +14,7 @@ public abstract class UsuarioDoSistema {
     private String emprestimo;
     private String reserva;
     private ArrayList<Livro> livrosReservados;
+    private ArrayList<Livro> livrosEmprestados;
 
     public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String userName, String senha) {
         this.idUsuario = idUsuario;
@@ -21,6 +25,7 @@ public abstract class UsuarioDoSistema {
         this.emprestimo = "Não";
         this.reserva = "Não";
         this.livrosReservados = new ArrayList<>();
+        this.livrosEmprestados = new ArrayList<>();
     }
 
     
@@ -85,8 +90,24 @@ public abstract class UsuarioDoSistema {
         this.reserva = reserva;
     }
 
+    public ArrayList<Livro> getLivrosReservados() {
+        return livrosReservados;
+    }
+
+    public void setLivrosReservados(ArrayList<Livro> livrosReservados) {
+        this.livrosReservados = livrosReservados;
+    }
+
+    public ArrayList<Livro> getLivrosEmprestados() {
+        return livrosEmprestados;
+    }
+
+    public void setLivrosEmprestados(ArrayList<Livro> livrosEmprestados) {
+        this.livrosEmprestados = livrosEmprestados;
+    }
+
     
-    
+    public abstract void addLivroListaEmprestimos(Livro livro);
     public abstract void consultarLivroIsbn();
     public abstract void consultarLivroPeloNome();
     public abstract void consultarLivroPeloCodBarra();
