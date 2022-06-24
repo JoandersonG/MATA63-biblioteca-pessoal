@@ -76,19 +76,19 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
 
     @Override
     public void atualizarUsuarioProfessor(Professor professor, int index) {
-        System.out.println("Log: Atualizando livros reservados professor: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados());
+        System.out.println("Log: Atualizando professor: " + professor.getIdUsuario());
         UsuariosRepositoryImpl.bancoDeUsuarios.add(index, professor);
     }
     
     @Override
     public void atualizarUsuarioAluno(Aluno aluno, int index) {
-        System.out.println("Log: Atualizando livros reservado aluno: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados());
+        System.out.println("Log: Atualizando aluno: " + aluno.getIdUsuario());
         UsuariosRepositoryImpl.bancoDeUsuarios.add(index, aluno);
     }
     
     @Override
     public void atualizarUsuarioOrientando(Orientando orientando, int index) {
-        System.out.println("Log: Atualizando livros reservado orientando: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados()); //isso pode apagar depois
+        System.out.println("Log: Atualizando orientando: " + orientando.getIdUsuario());
         UsuariosRepositoryImpl.bancoDeUsuarios.add(index, orientando);
     }
 
