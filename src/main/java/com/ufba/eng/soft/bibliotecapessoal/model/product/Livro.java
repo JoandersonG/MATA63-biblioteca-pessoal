@@ -85,15 +85,15 @@ public class Livro {
         return orientandosReserva;
     }
 
-    public void setAlunosReserva(Aluno usuario) {
+    public void addAlunosReserva(Aluno usuario) {
         this.alunosReserva.add(usuario);
     }
     
-    public void setProfessoresReserva(Professor usuario) {
+    public void addProfessoresReserva(Professor usuario) {
         this.professoresReserva.add(usuario);
     }
     
-    public void setOrientandosReserva(Orientando usuario) {
+    public void addOrientandosReserva(Orientando usuario) {
         this.orientandosReserva.add(usuario);
     }
 
