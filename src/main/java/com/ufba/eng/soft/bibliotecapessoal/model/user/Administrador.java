@@ -17,11 +17,15 @@ public class Administrador extends UsuarioDoSistema {
         super();
     }
     
-    @Override
-    public void consultarLivroIsbn() {
-        
+     @Override
+    public boolean consultarLivroEmprestado(Livro livro) {
+        if(livrosEmprestados.contains(livro)){
+            System.out.println("sim");
+            return true;
+        }
+        System.out.println("nao");
+        return false;
     }
-
     @Override
     public void consultarLivroPeloNome() {
         
@@ -86,6 +90,11 @@ public class Administrador extends UsuarioDoSistema {
             this.livrosEmprestados = new ArrayList<>();
         }
         livrosEmprestados.add(livro);
+    }
+
+    @Override
+    public void realizarDevolucao(Livro livro) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

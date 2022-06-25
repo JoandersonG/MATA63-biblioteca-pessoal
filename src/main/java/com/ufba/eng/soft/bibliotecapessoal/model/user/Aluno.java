@@ -18,8 +18,13 @@ public class Aluno extends UsuarioDoSistema {
     }
 
     @Override
-    public void consultarLivroIsbn() {
-        
+    public boolean consultarLivroEmprestado(Livro livro) {
+        if(livrosEmprestados.contains(livro)){
+            System.out.println("sim");
+            return true;
+        }
+        System.out.println("nao");
+        return false;
     }
 
     @Override
@@ -36,8 +41,9 @@ public class Aluno extends UsuarioDoSistema {
         
     }
     
-    public void realizarDevolucao() {
-        
+     @Override
+    public void realizarDevolucao(Livro livro) {
+        livrosEmprestados.remove(livro);
     }
     
     public void realizarReserva() {

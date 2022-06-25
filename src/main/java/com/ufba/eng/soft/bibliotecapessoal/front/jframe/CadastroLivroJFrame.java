@@ -45,7 +45,7 @@ public class CadastroLivroJFrame extends JFrame {
     }
     
     private void criarFormulario(GeneroLivro generoLivro) {
-        setTitle("Persibi - Formulário de Cadastro do Livro");
+        setTitle("Persibi - Formulï¿½rio de Cadastro do Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 505, 350);
 	contentPane = new JPanel();
@@ -63,14 +63,14 @@ public class CadastroLivroJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Formulário");
+        JLabel titulo = new JLabel ("Formulï¿½rio");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
         JPanel panelCadastro = new JPanel();
         panelCadastro.setLayout(new FlowLayout());
         
-        JLabel tituloLabel = new JLabel ("Título");
+        JLabel tituloLabel = new JLabel ("Tï¿½tulo");
         tituloField = new JTextField(40);
         
         JLabel autorLabel = new JLabel ("Autor(a)");
@@ -82,7 +82,7 @@ public class CadastroLivroJFrame extends JFrame {
         JLabel isbnFieldLabel = new JLabel ("ISBN");
         isbnField = new JTextField(40);
         
-        JLabel codDeBarraFieldLabel = new JLabel ("Cód. De Barra");
+        JLabel codDeBarraFieldLabel = new JLabel ("Cï¿½d. De Barra");
         codDeBarraField = new JTextField(40);
         
         
@@ -125,7 +125,7 @@ public class CadastroLivroJFrame extends JFrame {
       
     private class CadastrarAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            //Verificação de campos. A ser feito: verificar todos os campos do formulario
+            //Verificaï¿½ï¿½o de campos. A ser feito: verificar todos os campos do formulario
             
             ResultadoVerificacao resultadoTitulo = VerificadorDeCampos.titulo(tituloField.getText());
             ResultadoVerificacao resultadoAutor = VerificadorDeCampos.autor(autorField.getText());
@@ -135,40 +135,37 @@ public class CadastroLivroJFrame extends JFrame {
             
             boolean valido = true;
             if (!resultadoTitulo.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoTitulo.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel realizar cadastro. Erro: " + resultadoTitulo.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoAutor.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel realizar cadastro. Erro: " + resultadoAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoIDAutor.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIDAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel realizar cadastro. Erro: " + resultadoIDAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoIsnb.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIsnb.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel realizar cadastro. Erro: " + resultadoIsnb.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
             
             if (!resultadoCodDeBarra.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
                 valido = false;
                 return;
             }
            
             if(valido){
-                Autor autor = new Autor (
-                    idAutorField.getText(),
-                    autorField.getText()
-                );
+                String autor = autorField.getText();
                 
                 Livro novoLivro = new Livro(
                     tituloField.getText(), 

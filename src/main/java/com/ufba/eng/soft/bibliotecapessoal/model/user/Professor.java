@@ -16,10 +16,15 @@ public class Professor extends UsuarioDoSistema {
     public Professor() {
         super();
     }
-
+    
     @Override
-    public void consultarLivroIsbn() {
-        
+    public boolean consultarLivroEmprestado(Livro livro) {
+        if(livrosEmprestados.contains(livro)){
+            System.out.println("sim");
+            return true;
+        }
+        System.out.println("nao");
+        return false;
     }
 
     @Override
@@ -36,8 +41,9 @@ public class Professor extends UsuarioDoSistema {
         
     }
     
-    public void realizarDevolucao() {
-        
+    @Override
+    public void realizarDevolucao(Livro livro) {
+        livrosEmprestados.remove(livro);
     }
     
     public void realizarReserva() {
@@ -50,6 +56,7 @@ public class Professor extends UsuarioDoSistema {
             this.livrosEmprestados = new ArrayList<>();
         }
         livrosEmprestados.add(livro);
+        
     }
 
     

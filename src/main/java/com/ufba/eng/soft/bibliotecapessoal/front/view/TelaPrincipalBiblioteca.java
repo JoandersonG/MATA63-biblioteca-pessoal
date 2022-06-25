@@ -61,15 +61,13 @@ public class TelaPrincipalBiblioteca extends JFrame {
             jLabel.setIcon(imageIcon);
             contentPane.add(jLabel);            
             
-            JButton btnUsuario = new JButton("Usuário");
-            btnUsuario.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent arg0) {
-                        try {
-                            new TelaPrincipalUsuario(usuariosRepository, livrosRepository).setVisible(true);
-                        } catch (IOException ex) {
-                            Logger.getLogger(TelaPrincipalBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
+            JButton btnUsuario = new JButton("Usuï¿½rio");
+            btnUsuario.addActionListener((ActionEvent arg0) -> {
+                try {
+                    new TelaPrincipalUsuario(usuariosRepository, livrosRepository).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaPrincipalBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+                }
             });
             btnUsuario.setForeground(Color.WHITE);
             btnUsuario.setBounds(350, 100, 149, 53);
@@ -77,14 +75,12 @@ public class TelaPrincipalBiblioteca extends JFrame {
             contentPane.add(btnUsuario); 
             
             JButton btnAdministrador = new JButton("Administrador");
-            btnAdministrador.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent arg0) {
-                        try {
-                            new TelaPrincipalAdministrador(usuariosRepository, livrosRepository).setVisible(true);
-                        } catch (IOException ex) {
-                            Logger.getLogger(TelaPrincipalBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
+            btnAdministrador.addActionListener((ActionEvent arg0) -> {
+                try {
+                    new TelaPrincipalAdministrador(usuariosRepository, livrosRepository).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaPrincipalBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+                }
             });
             btnAdministrador.setForeground(Color.WHITE);
             btnAdministrador.setBounds(350, 250, 149, 53);
@@ -94,11 +90,9 @@ public class TelaPrincipalBiblioteca extends JFrame {
             
             
             JButton btnSair = new JButton("Sair");
-            btnSair.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                       TelaPrincipalBiblioteca.this.dispose();
-                }
-        });
+            btnSair.addActionListener((ActionEvent evt) -> {
+                TelaPrincipalBiblioteca.this.dispose();
+            });
             btnSair.setForeground(Color.black);
             btnSair.setBounds(400, 420, 70, 23);
             btnSair.setBackground(Color.lightGray);

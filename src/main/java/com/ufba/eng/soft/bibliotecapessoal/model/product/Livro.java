@@ -7,6 +7,7 @@ package com.ufba.eng.soft.bibliotecapessoal.model.product;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
 import java.util.ArrayList;
 import lombok.Data;
 
@@ -18,18 +19,18 @@ public class Livro {
     //private Etiqueta etiqueta;
     private String codigoISBN;
     private String codigoDeBarras;
-    private Autor autor;
+    private String autor;
     public GeneroLivro genero;
     private boolean emprestado = false;
     private boolean reservado = false;
     private ArrayList<Aluno> alunosReserva;
     private ArrayList<Professor> professoresReserva;
     private ArrayList<Orientando> orientandosReserva;
-     private ArrayList<Aluno> alunosEmprestimo;
+    private ArrayList<Aluno> alunosEmprestimo;
     private ArrayList<Professor> professoresEmprestimo;
     private ArrayList<Orientando> orientandosEmprestimo;
 
-    public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, Autor autor, GeneroLivro genero) {
+    public Livro(String nomeDoLivro, String codigoISBN, String codigoDeBarras, String autor, GeneroLivro genero) {
         this.nomeDoLivro = nomeDoLivro;
         this.codigoISBN = codigoISBN;
         this.codigoDeBarras = codigoDeBarras;
@@ -61,8 +62,20 @@ public class Livro {
         return emprestado;
     }
 
-    public void setEmprestado(boolean emprestado) {
+    public void setEmprestado(boolean emprestado, UsuarioDoSistema usuario, String tipoUsuario) {
         this.emprestado = emprestado;
+        
+        if(this.emprestado){
+            if ("Aluno".equals(tipoUsuario)){
+                this.alunosEmprestimo.add((Aluno) usuario);
+            }
+            if ("Professor".equals(tipoUsuario)){
+                this.professoresEmprestimo.add((Professor) usuario);
+            }
+            if ("Orientando".equals(tipoUsuario)){
+                this.orientandosEmprestimo.add((Orientando) usuario);
+            }
+        }
     }
     
     public String getCodigoISBN() {

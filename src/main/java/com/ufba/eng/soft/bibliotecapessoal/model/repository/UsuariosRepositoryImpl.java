@@ -206,8 +206,5 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     return (encontrou)? orientando: null;
     }
 
-    
-
-    
-    
+     
 }

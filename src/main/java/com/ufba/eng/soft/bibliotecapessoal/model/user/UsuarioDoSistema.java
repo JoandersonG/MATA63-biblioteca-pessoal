@@ -108,9 +108,11 @@ public abstract class UsuarioDoSistema {
 
     
     public abstract void addLivroListaEmprestimos(Livro livro);
-    public abstract void consultarLivroIsbn();
+    public abstract boolean consultarLivroEmprestado(Livro livro);
     public abstract void consultarLivroPeloNome();
     public abstract void consultarLivroPeloCodBarra();
+    public abstract void realizarDevolucao(Livro livro);
+        
 }
 
 

@@ -39,7 +39,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
     
     private void criarFormulario(Livro livro) {
        
-        setTitle("Persibi - Informações do livro buscado");
+        setTitle("Persibi - Informaï¿½ï¿½es do livro buscado");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -58,7 +58,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Informações do livro buscado");
+        JLabel titulo = new JLabel ("Informaï¿½ï¿½es do livro buscado");
         titulo.setFont(new Font("arial black", Font.PLAIN, 18));
         panelTitulo.add(titulo);
         
@@ -79,7 +79,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(nomeLivroLabel);
         
         
-        final JTextArea isbnLabel = new JTextArea("Código ISBN : "); 
+        final JTextArea isbnLabel = new JTextArea("Cï¿½digo ISBN : "); 
         isbnLabel.setEditable(false); 
         isbnLabel.setLineWrap(true);
         isbnLabel.setFont(new Font("arial black", Font.PLAIN, 16));
@@ -92,7 +92,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(isbnLabel);
         panelConsulta.add(isbnLivroLabel);
         
-        final JTextArea codBarraLabel = new JTextArea("Código de barras : "); 
+        final JTextArea codBarraLabel = new JTextArea("Cï¿½digo de barras : "); 
         codBarraLabel.setEditable(false); 
         codBarraLabel.setLineWrap(true);
         codBarraLabel.setFont(new Font("arial black", Font.PLAIN, 16));
@@ -110,7 +110,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         autorLabel.setEditable(false); 
         autorLabel.setLineWrap(true);
         autorLabel.setFont(new Font("arial black", Font.PLAIN, 16));
-        final JTextArea autorLivroLabel = new JTextArea(livro.getAutor().getNome()); 
+        final JTextArea autorLivroLabel = new JTextArea(livro.getAutor()); 
         autorLivroLabel.setEditable(false); 
         autorLivroLabel.setLineWrap(true);
         autorLivroLabel.setLineWrap(true);
@@ -120,7 +120,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         panelConsulta.add(autorLabel);
         panelConsulta.add(autorLivroLabel);
         
-        final JTextArea generoLabel = new JTextArea("Gênero : "); 
+        final JTextArea generoLabel = new JTextArea("Gï¿½nero : "); 
         generoLabel.setEditable(false); 
         generoLabel.setLineWrap(true);
         generoLabel.setFont(new Font("arial black", Font.PLAIN, 16));

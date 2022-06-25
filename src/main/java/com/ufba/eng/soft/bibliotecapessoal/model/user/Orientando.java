@@ -18,9 +18,14 @@ public class Orientando extends UsuarioDoSistema {
     }
     
 
-    @Override
-    public void consultarLivroIsbn() {
-        
+     @Override
+    public boolean consultarLivroEmprestado(Livro livro) {
+        if(livrosEmprestados.contains(livro)){
+            System.out.println("sim");
+            return true;
+        }
+        System.out.println("nao");
+        return false;
     }
 
     @Override
@@ -37,8 +42,9 @@ public class Orientando extends UsuarioDoSistema {
         
     }
     
-    public void realizarDevolucao() {
-        
+     @Override
+    public void realizarDevolucao(Livro livro) {
+        livrosEmprestados.remove(livro);
     }
     
     public void realizarReserva() {

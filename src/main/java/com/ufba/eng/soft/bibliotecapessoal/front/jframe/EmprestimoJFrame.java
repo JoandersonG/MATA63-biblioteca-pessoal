@@ -37,13 +37,13 @@ public class EmprestimoJFrame extends JFrame {
     
     
     public EmprestimoJFrame(String usuario) {
-        usuario = usuario;
+        this.usuario = usuario;
         criarFormularioNome(usuario);
     }
     
     private void criarFormularioNome(String usuario) {
         usuario = usuario; 
-        setTitle("Persibi - Empréstimo de Livro");
+        setTitle("Persibi - Emprï¿½stimo de Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -63,7 +63,7 @@ public class EmprestimoJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Empréstimo de Livro");
+        JLabel titulo = new JLabel ("Emprï¿½stimo de Livro");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -89,13 +89,13 @@ public class EmprestimoJFrame extends JFrame {
         botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
         
-        if(usuario == "Professor"){ 
+        if("Professor".equals(usuario)){ 
           botaoBuscar.addActionListener(emprestaProfessorAction);  
         }
-        if(usuario == "Aluno"){ 
+        if("Aluno".equals(usuario)){ 
             botaoBuscar.addActionListener(emprestaAlunoAction);  
         }
-        if(usuario == "Orientando"){ 
+        if("Orientando".equals(usuario)){ 
             botaoBuscar.addActionListener(emprestaOrientandoAction);  
         }
         
@@ -117,6 +117,7 @@ public class EmprestimoJFrame extends JFrame {
     
     
     private class EmprestaProfessorAction implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent event) {
             String idProfessor = idField.getText();
             String isbnLivro = isbnLivroField.getText();
@@ -131,7 +132,7 @@ public class EmprestimoJFrame extends JFrame {
                                         
                     if(!livro.getEmprestadoo()){
                         
-                        livro.setEmprestado(true);
+                        livro.setEmprestado(true, professor, "Professor");
                       
                         professor.setEmprestimo("sim");
                         
@@ -142,16 +143,16 @@ public class EmprestimoJFrame extends JFrame {
                     }    
                                       
                     else{
-                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Livro nï¿½o estï¿½ disponï¿½vel no momento: Faï¿½a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Isbn nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                 }
                 
             }
             else{
-                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
             }
             
             
@@ -159,6 +160,7 @@ public class EmprestimoJFrame extends JFrame {
     }
     
     private class EmprestaAlunoAction implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent event) {
             String idAluno = idField.getText();
             String isbnLivro = isbnLivroField.getText();
@@ -173,7 +175,7 @@ public class EmprestimoJFrame extends JFrame {
                     
                     if(!livro.getEmprestadoo()){
                         
-                        livro.setEmprestado(true);
+                        livro.setEmprestado(true, aluno, "Aluno");
                         
                         aluno.setEmprestimo("sim");
                         
@@ -184,16 +186,16 @@ public class EmprestimoJFrame extends JFrame {
                     }    
                                       
                     else{
-                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Livro nï¿½o estï¿½ disponï¿½vel no momento: Faï¿½a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Isbn nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                 }
                 
             }
             else{
-                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
             }
             
             
@@ -201,6 +203,7 @@ public class EmprestimoJFrame extends JFrame {
     }
     
     private class EmprestaOrientandoAction implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent event) {
             String idOrientando = idField.getText();
             String isbnLivro = isbnLivroField.getText();
@@ -215,7 +218,7 @@ public class EmprestimoJFrame extends JFrame {
                     
                     if(!livro.getEmprestadoo()){
                         
-                        livro.setEmprestado(true);
+                        livro.setEmprestado(true, orientando, "Orientando");
                         
                         orientando.setEmprestimo("sim");
                         
@@ -226,16 +229,16 @@ public class EmprestimoJFrame extends JFrame {
                     }    
                                       
                     else{
-                        JOptionPane.showMessageDialog(null, "Livro não está disponível no momento: Faça reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Livro nï¿½o estï¿½ disponï¿½vel no momento: Faï¿½a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Isbn não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Isbn nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
                 }
                 
             }
             else{
-                JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) nï¿½o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
             }
             
             

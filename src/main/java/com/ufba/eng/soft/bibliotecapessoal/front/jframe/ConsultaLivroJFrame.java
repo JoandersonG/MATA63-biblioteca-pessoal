@@ -56,7 +56,7 @@ public class ConsultaLivroJFrame extends JFrame {
         JPanel panelConsulta = new JPanel();
         panelConsulta.setLayout(new FlowLayout());
         
-        JLabel identificacaoLabel = new JLabel ("Identicação");
+        JLabel identificacaoLabel = new JLabel ("Identicaï¿½ï¿½o");
         identificacaoField = new JTextField(40);     
         
         panelConsulta.add(identificacaoLabel);
@@ -75,7 +75,7 @@ public class ConsultaLivroJFrame extends JFrame {
         if(tipo == "Nome"){ 
             botaoBuscar.addActionListener(buscarLivroNomeAction);  
         }
-        if(tipo == "Cód. Barras"){ 
+        if(tipo == "Cï¿½d. Barras"){ 
             botaoBuscar.addActionListener(buscarLivroCodAction);  
         }
           
@@ -109,7 +109,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -125,7 +125,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -141,7 +141,7 @@ public class ConsultaLivroJFrame extends JFrame {
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -156,7 +156,7 @@ public class ConsultaLivroJFrame extends JFrame {
     private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            ConsultaLivroJframe.this.dispose();            
+            ConsultaLivroJFrame.this.dispose();            
         }
     }
     
