@@ -54,7 +54,14 @@ public class LivrosRepositoryImpl implements LivrosRepository {
 
     @Override
     public boolean removerLivro(String isbn) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbn);
+
+        if(livro != null){
+            livrosDatabase.remove(livro);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
