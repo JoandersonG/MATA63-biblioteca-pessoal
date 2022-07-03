@@ -82,7 +82,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnConsultarLivro.setBackground(Color.green);
             contentPane.add(btnConsultarLivro); 
             
-            JButton btnRealizarEmprestimo = new JButton("Empréstimo ");
+           /* JButton btnRealizarEmprestimo = new JButton("Empréstimo ");
             btnRealizarEmprestimo.addActionListener(new ActionListener() {
                      public void actionPerformed(ActionEvent arg0) {
                          //O mesmo apontado na linha 52
@@ -92,7 +92,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnRealizarEmprestimo.setForeground(Color.BLACK);
             btnRealizarEmprestimo.setBounds(360, 161, 149, 53);
             btnRealizarEmprestimo.setBackground(Color.red);
-            contentPane.add(btnRealizarEmprestimo);
+            contentPane.add(btnRealizarEmprestimo);*/
             
             JButton btnRealizarReserva = new JButton("Reserva");
             btnRealizarReserva.addActionListener(new ActionListener() {
@@ -109,7 +109,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnRealizarReserva.setBackground(Color.green);
             contentPane.add(btnRealizarReserva);
             
-           JButton btnRealizarDevolucao = new JButton("Devolução");
+           /*JButton btnRealizarDevolucao = new JButton("Devolução");
            btnRealizarDevolucao.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             
@@ -118,7 +118,7 @@ public class TelaPrincipalUsuario extends JFrame {
            btnRealizarDevolucao.setForeground(Color.BLACK);
            btnRealizarDevolucao.setBounds(360, 317, 149, 53);
            btnRealizarDevolucao.setBackground(Color.red);
-           contentPane.add(btnRealizarDevolucao);
+           contentPane.add(btnRealizarDevolucao);*/
            
            JButton btnSair = new JButton("Sair");
             btnSair.addActionListener(new ActionListener() {

@@ -1,9 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.db.EmprestimoSQLiteOperations;
-import com.ufba.eng.soft.bibliotecapessoal.model.db.LivroSQLiteOperations;
-import com.ufba.eng.soft.bibliotecapessoal.model.db.SQLiteJDBCDriverConnection;
-import com.ufba.eng.soft.bibliotecapessoal.model.db.UsuarioSQLiteOperations;
+import com.ufba.eng.soft.bibliotecapessoal.model.db.*;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.*;
 
@@ -95,6 +92,16 @@ public class SqLiteUsuariosRepositoryImpl implements UsuariosRepository {
     @Override
     public List<Livro> getTodosOsEmprestimosDoUsuario(String id) {
         List<String> isbns = EmprestimoSQLiteOperations.getTodosOsEmprestimosParaUsuario(id);
+        ArrayList<Livro> livros = new ArrayList<>();
+        for (String isbn : isbns) {
+            livros.add(LivroSQLiteOperations.getLivroByIsbn(isbn));
+        }
+        return livros;
+    }
+
+    @Override
+    public List<Livro> getTodasAsReservasDoUsuario(String id) {
+        List<String> isbns = ReservaSQLiteOperations.getTodasAsReservasParaUsuario(id);
         ArrayList<Livro> livros = new ArrayList<>();
         for (String isbn : isbns) {
             livros.add(LivroSQLiteOperations.getLivroByIsbn(isbn));

@@ -33,7 +33,7 @@ public class EmprestimoJFrame extends JFrame {
     }
     
     private void criarFormularioNome(TipoUsuario usuario) {
-        setTitle("Persibi - Emprï¿½stimo de Livro");
+        setTitle("Persibi - Empréstimo de Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
 	contentPane = new JPanel();
@@ -53,7 +53,7 @@ public class EmprestimoJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Emprï¿½stimo de Livro");
+        JLabel titulo = new JLabel ("Empréstimo de Livro");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -136,7 +136,7 @@ public class EmprestimoJFrame extends JFrame {
     private void realizarEmprestimo(UsuarioDoSistema usuarioDoSistema, String isbnLivro) {
         Livro livro = livrosRepository.getLivroPorISBN(isbnLivro);
         if (usuarioDoSistema == null) {
-            JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) nao encontrado", "Emprestimo", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuário(a) não encontrado", "Emprestimo", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (livro == null) {
@@ -144,11 +144,11 @@ public class EmprestimoJFrame extends JFrame {
             return;
         }
         if (livro.isEmprestadoPara(usuarioDoSistema.getIdUsuario())) {
-            JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de emprestimos", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Livro já está na sua lista de emprestimos", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
             return;
         }
         if (!livro.temCopiasDisponiveisParaEmprestimo()) {
-            JOptionPane.showMessageDialog(null, "Livro nï¿½o possui cï¿½pias disponï¿½veis, mas ï¿½ possï¿½vel adicionar ï¿½ lista de reservas", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Livro não possui cópias disponíveis, mas é possível adicionar à lista de reservas", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
@@ -156,7 +156,7 @@ public class EmprestimoJFrame extends JFrame {
         livro.setEmprestimo(usuarioDoSistema);
         livrosRepository.atualizarLivro(livro);
 
-        JOptionPane.showMessageDialog(null, "Livro adicionado ï¿½ sua lista de emprï¿½stimo", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Livro adicionado à sua lista de empréstimo", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
     }
 
     private class LimparAction implements ActionListener {

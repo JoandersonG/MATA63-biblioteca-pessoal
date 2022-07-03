@@ -75,4 +75,19 @@ public class ReservaSQLiteOperations {
             System.out.println("LOG.error: Falha no banco de dados da aplicação. Não foi possível recuperar dados." + e.getMessage());
         }
     }
+
+    public static List<String> getTodasAsReservasParaUsuario(String id) {
+        ArrayList<String> isbnsLivros = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:persibi.db")) {
+            String sql = "select * from RESERVA where ID_USUARIO = '" + id + "'";
+            System.out.println(sql);
+            ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+            while (resultSet.next()) {
+                isbnsLivros.add("" + resultSet.getInt("ISBN"));
+            }
+        } catch (SQLException e) {
+            System.out.println("LOG.error: Falha no banco de dados da aplicação. Não foi possível recuperar dados." + e.getMessage());
+        }
+        return isbnsLivros;
+    }
 }

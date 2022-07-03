@@ -41,4 +41,6 @@ public interface UsuariosRepository {
 
 
     List<Livro> getTodosOsEmprestimosDoUsuario(String id);
+
+    List<Livro> getTodasAsReservasDoUsuario(String idProfessor);
 }

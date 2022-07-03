@@ -61,7 +61,7 @@ public class Livro {
     public boolean getEmprestadoo() {
         return emprestado;
     }
-//todo: vamos usar esse método?
+
     public void setEmprestado(boolean emprestado, UsuarioDoSistema usuario, String tipoUsuario) {
         this.emprestado = emprestado;
 
@@ -121,12 +121,15 @@ public class Livro {
     public void setEmprestimo(UsuarioDoSistema usuarioDoSistema) {
         if (usuarioDoSistema instanceof  Professor) {
             addProfessoresEmprestimo((Professor) usuarioDoSistema);
+            this.professoresReserva.remove((Professor) usuarioDoSistema);
         }
         if (usuarioDoSistema instanceof Orientando) {
             AddOrientandosEmprestimo((Orientando) usuarioDoSistema);
+            this.orientandosReserva.remove((Orientando) usuarioDoSistema);
         }
         if (usuarioDoSistema instanceof Aluno) {
             AddAlunosEmprestimo((Aluno) usuarioDoSistema);
+            this.alunosReserva.remove((Aluno) usuarioDoSistema);
         }
     }
 
@@ -207,5 +210,26 @@ public class Livro {
 
     public boolean temCopiasDisponiveisParaEmprestimo() {
         return totalCopias > alunosEmprestimo.size() + orientandosEmprestimo.size() + professoresEmprestimo.size();
+    }
+
+    public void removeEmprestimo(UsuarioDoSistema usuario) {
+        for (Aluno a : alunosEmprestimo) {
+            if(a.getIdUsuario().equals(usuario.getIdUsuario())) {
+                alunosEmprestimo.remove(a);
+                return;
+            }
+        }
+        for (Professor p : professoresEmprestimo) {
+            if(p.getIdUsuario().equals(usuario.getIdUsuario())) {
+                professoresEmprestimo.remove(p);
+                return;
+            }
+        }
+        for (Orientando orientando : orientandosEmprestimo) {
+            if(orientando.getIdUsuario().equals(usuario.getIdUsuario())) {
+                orientandosEmprestimo.remove(orientando);
+                return;
+            }
+        }
     }
 }

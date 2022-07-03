@@ -20,12 +20,12 @@ public class MostrarInformacoesJFrame extends JFrame {
     private JTextField idField;    
     
     
-    public MostrarInformacoesJFrame(UsuarioDoSistema usuario, List<Livro> emprestimos) {
+    public MostrarInformacoesJFrame(UsuarioDoSistema usuario, List<Livro> emprestimos, List<Livro> reservas) {
         
-        criarFormularioNome(usuario, emprestimos);
+        criarFormularioNome(usuario, emprestimos, reservas);
     }
     
-    private void criarFormularioNome(UsuarioDoSistema usuario, List<Livro> emprestimos) {
+    private void criarFormularioNome(UsuarioDoSistema usuario, List<Livro> emprestimos, List<Livro> reservas) {
        
         setTitle("Persibi - Informações do usuário buscado");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,19 +93,19 @@ public class MostrarInformacoesJFrame extends JFrame {
         panelConsulta.add(userNameLabel);
         panelConsulta.add(userNameUsuarioLabel);
         
-        final JTextArea debitoLabel = new JTextArea("Déb. : "); 
-        debitoLabel.setEditable(false); 
-        debitoLabel.setLineWrap(true);
-        debitoLabel.setFont(new Font("arial black", Font.PLAIN, 16));
-        final JTextArea debitoUsuarioLabel = new JTextArea(usuario.getDebito()); 
-        debitoUsuarioLabel.setEditable(false); 
-        debitoUsuarioLabel.setLineWrap(true);
-        debitoUsuarioLabel.setLineWrap(true);
-        debitoUsuarioLabel.setBounds(20, 150, 310, 150);
-        debitoUsuarioLabel.setFont(new Font("verdana", Font.PLAIN, 16));
-        debitoUsuarioLabel.doLayout();
-        panelConsulta.add(debitoLabel);
-        panelConsulta.add(debitoUsuarioLabel);
+//        final JTextArea debitoLabel = new JTextArea("Déb. : ");
+//        debitoLabel.setEditable(false);
+//        debitoLabel.setLineWrap(true);
+//        debitoLabel.setFont(new Font("arial black", Font.PLAIN, 16));
+//        final JTextArea debitoUsuarioLabel = new JTextArea(usuario.getDebito());
+//        debitoUsuarioLabel.setEditable(false);
+//        debitoUsuarioLabel.setLineWrap(true);
+//        debitoUsuarioLabel.setLineWrap(true);
+//        debitoUsuarioLabel.setBounds(20, 150, 310, 150);
+//        debitoUsuarioLabel.setFont(new Font("verdana", Font.PLAIN, 16));
+//        debitoUsuarioLabel.doLayout();
+//        panelConsulta.add(debitoLabel);
+//        panelConsulta.add(debitoUsuarioLabel);
 
         JTextArea emprestimoLabel = new JTextArea("Emp. : ");
         emprestimoLabel.setEditable(false);
@@ -136,14 +136,14 @@ public class MostrarInformacoesJFrame extends JFrame {
             panelConsulta.add(isbnArea);
             panelConsulta.add(nomeLivroArea);
         }
-        int qtdAdicionada = inserirListaDeEmprestimos(emprestimos, panelConsulta);
+        int qtdAdicionada = inserirListaDeLivros(emprestimos, panelConsulta);
         setBounds(300, 300, 500, 350 + (qtdAdicionada * 50));
 
         final JTextArea reservaLabel = new JTextArea("Res. : "); 
         reservaLabel.setEditable(false); 
         reservaLabel.setLineWrap(true);
         reservaLabel.setFont(new Font("arial black", Font.PLAIN, 16));
-        final JTextArea reservaUsuarioLabel = new JTextArea(usuario.getEmprestimo()); 
+        final JTextArea reservaUsuarioLabel = new JTextArea(reservas.isEmpty() ? "Nenhuma reserva registrada" : "");
         reservaUsuarioLabel.setEditable(false); 
         reservaUsuarioLabel.setLineWrap(true);
         reservaUsuarioLabel.setLineWrap(true);
@@ -152,6 +152,25 @@ public class MostrarInformacoesJFrame extends JFrame {
         reservaUsuarioLabel.doLayout();
         panelConsulta.add(reservaLabel);
         panelConsulta.add(reservaUsuarioLabel);
+
+        if (!reservas.isEmpty()) {
+            JTextArea isbnArea = new JTextArea("ISBN:");
+            isbnArea.setEditable(false);
+            isbnArea.setLineWrap(true);
+            isbnArea.setFont(new Font("arial", Font.PLAIN, 16));
+            JTextArea nomeLivroArea = new JTextArea("Nome do Livro");
+            nomeLivroArea.setEditable(false);
+            nomeLivroArea.setLineWrap(true);
+            nomeLivroArea.setLineWrap(true);
+            nomeLivroArea.setBounds(20, 150, 310, 150);
+            nomeLivroArea.setFont(new Font("verdana", Font.PLAIN, 16));
+            nomeLivroArea.doLayout();
+            panelConsulta.add(isbnArea);
+            panelConsulta.add(nomeLivroArea);
+        }
+
+        qtdAdicionada += inserirListaDeLivros(reservas, panelConsulta);
+        setBounds(300, 300, 500, 350 + (qtdAdicionada * 50));
         
         JButton botaoSair = new JButton("Sair");
         botaoSair.setBackground(Color.lightGray);
@@ -164,7 +183,7 @@ public class MostrarInformacoesJFrame extends JFrame {
             
     }
 
-    private int inserirListaDeEmprestimos(List<Livro> emprestimos, JPanel panelConsulta) {
+    private int inserirListaDeLivros(List<Livro> emprestimos, JPanel panelConsulta) {
         for (Livro livro: emprestimos) {
             JTextArea isbnArea = new JTextArea(livro.getCodigoISBN() + ":");
             isbnArea.setEditable(false);

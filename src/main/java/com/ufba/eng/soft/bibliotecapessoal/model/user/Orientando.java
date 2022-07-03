@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 @EqualsAndHashCode(callSuper = true)
 public class Orientando extends UsuarioDoSistema {
-    
-     private ArrayList<Livro> livrosEmprestados = new ArrayList<>();
 
     public Orientando(String idUsuario, String nomeDeUusario, String userName, String senha) {
         super(idUsuario, nomeDeUusario, userName, senha);
@@ -26,39 +24,6 @@ public class Orientando extends UsuarioDoSistema {
     public Orientando() {
         super();
     }
-    
 
-     @Override
-    public boolean consultarLivroEmprestado(Livro livro) {
-        if(livrosEmprestados.contains(livro)){
-            System.out.println("sim");
-            return true;
-        }
-        System.out.println("nao");
-        return false;
-    }
-
-    @Override
-    public void consultarLivroPeloNome() {
-        
-    }
-
-    @Override
-    public void consultarLivroPeloCodBarra() {
-        
-    }
-    
-    public void realizarEmprestimo() {
-        
-    }
-    
-     @Override
-    public void realizarDevolucao(Livro livro) {
-        livrosEmprestados.remove(livro);
-    }
-    
-    public void realizarReserva() {
-        
-    }
 
 }

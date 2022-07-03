@@ -132,6 +132,11 @@ public class ReservaLivroJFrame extends JFrame {
         }
         if (livro.isReservadoPara(usuarioDoSistema.getIdUsuario())) {
             JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        if (livro.isEmprestadoPara(usuarioDoSistema.getIdUsuario())) {
+            JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de empréstimos", "Reserva", JOptionPane.PLAIN_MESSAGE);
+            return;
         }
 
         livro.setReservado(true);

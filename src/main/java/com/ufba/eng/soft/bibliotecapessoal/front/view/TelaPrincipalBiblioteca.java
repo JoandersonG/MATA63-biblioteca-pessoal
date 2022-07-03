@@ -61,7 +61,7 @@ public class TelaPrincipalBiblioteca extends JFrame {
             jLabel.setIcon(imageIcon);
             contentPane.add(jLabel);            
             
-            JButton btnUsuario = new JButton("Usuï¿½rio");
+            JButton btnUsuario = new JButton("Usuário");
             btnUsuario.addActionListener((ActionEvent arg0) -> {
                 try {
                     new TelaPrincipalUsuario(usuariosRepository, livrosRepository).setVisible(true);

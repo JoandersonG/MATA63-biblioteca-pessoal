@@ -29,26 +29,10 @@ public abstract class UsuarioDoSistema {
         this.nomeDeUusario = nomeDeUusario;
         this.userName = userName;
         this.senha = senha;
-        this.debito = "NÃ£o";
-        this.emprestimo = "NÃ£o";
-        this.reserva = "NÃ£o";
+        this.debito = "Não";
+        this.emprestimo = "Não";
+        this.reserva = "Não";
     }
-/*
-    public UsuarioDoSistema(String idUsuario, String nomeDeUusario, String userName, String senha, String debito, String emprestimo, String reserva) {
-        this.idUsuario = idUsuario;
-        this.nomeDeUusario = nomeDeUusario;
-        this.userName = userName;
-        this.senha = senha;
-        this.debito = debito;
-        this.emprestimo = emprestimo;
-        this.reserva = reserva;
-    }*/
-    public abstract void addLivroListaEmprestimos(Livro livro);
-    public abstract boolean consultarLivroEmprestado(Livro livro);
-    public abstract void consultarLivroIsbn();
-    public abstract void consultarLivroPeloNome();
-    public abstract void consultarLivroPeloCodBarra();
-    public abstract void realizarDevolucao(Livro livro);
 
 }
 

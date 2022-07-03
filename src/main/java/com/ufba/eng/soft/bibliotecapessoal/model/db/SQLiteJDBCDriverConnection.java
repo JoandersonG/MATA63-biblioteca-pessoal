@@ -11,7 +11,7 @@ public class SQLiteJDBCDriverConnection {
     public static void connect() {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:persibi.db")) {
 
-            System.out.println("LOG.info: Conex√£o com banco de dados realizada com sucesso");
+            System.out.println("LOG.info: Conex„o com banco de dados realizada com sucesso");
 
             Statement statement = connection.createStatement();
 
@@ -55,7 +55,7 @@ public class SQLiteJDBCDriverConnection {
                     ")");
 
         } catch (SQLException e) {
-            System.out.println("LOG.error: Falha ao se conectar com banco de dados da aplica√ß√£o. " + e.getMessage());
+            System.out.println("LOG.error: Falha ao se conectar com banco de dados da aplicaÁ„o. " + e.getMessage());
         }
     }
 }

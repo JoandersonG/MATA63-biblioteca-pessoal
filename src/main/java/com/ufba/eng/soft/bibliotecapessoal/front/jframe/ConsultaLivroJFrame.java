@@ -74,8 +74,8 @@ public class ConsultaLivroJFrame extends JFrame {
         }
         if(tipoDeBusca.equals("Nome")){
             botaoBuscar.addActionListener(buscarLivroNomeAction);  
-        }//todo: revisar acentuações
-        if(tipo == "Cód. Barras"){ 
+        }
+        if(tipoDeBusca.equals("Cód. Barras")){
             botaoBuscar.addActionListener(buscarLivroCodAction);  
         }
 

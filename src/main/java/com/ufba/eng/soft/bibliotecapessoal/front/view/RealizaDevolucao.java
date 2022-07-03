@@ -6,6 +6,9 @@ package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.DevolucaoJFrame;
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.EmprestimoJFrame;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -31,14 +34,17 @@ import javax.swing.border.EmptyBorder;
  */
 public class RealizaDevolucao extends JFrame{
     private final JPanel contentPane;
+    private UsuariosRepository usuariosRepository;
+    private LivrosRepository livrosRepository;
 
 /**
      * Create the frame.
      */
-    public RealizaDevolucao() throws FileNotFoundException, IOException {
-            
+    public RealizaDevolucao(UsuariosRepository usuariosRepository, LivrosRepository livrosRepository) throws FileNotFoundException, IOException {
+            this.usuariosRepository = usuariosRepository;
+            this.livrosRepository = livrosRepository;
         
-        setTitle("\"Persibi - Devolu√ß√£o de Livro");
+        setTitle("\"Persibi - DevoluÁ„o de Livro");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -47,7 +53,7 @@ public class RealizaDevolucao extends JFrame{
             contentPane.setLayout(null);
             getContentPane().setBackground(Color.WHITE);     
             
-            JLabel titulo1 = new JLabel (" Bem-vindo a p√°gina de devolu√ß√£o ");
+            JLabel titulo1 = new JLabel (" Bem-vindo a p·gina de devoluÁ„o ");
             titulo1.setBounds(55, 90, 500, 300);
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);
@@ -64,7 +70,7 @@ public class RealizaDevolucao extends JFrame{
             contentPane.add(jLabel);
             
 
-            JLabel codigoLivroLabel = new JLabel("Digite o c√≥digo do livro: ");
+            JLabel codigoLivroLabel = new JLabel("Digite o cÛdigo do livro: ");
             codigoLivroLabel.setBounds(360, 80, 200, 20);
             codigoLivroLabel.setFont(new Font("verdana", Font.CENTER_BASELINE, 14));
             
@@ -72,7 +78,7 @@ public class RealizaDevolucao extends JFrame{
             j.setColumns(20);
             j.setBounds(360,100, 200, 30);
             
-            JLabel codigoUsuarioLabel = new JLabel("Digite o ID de usu√°rio: ");
+            JLabel codigoUsuarioLabel = new JLabel("Digite o ID de usu·rio: ");
             codigoUsuarioLabel.setBounds(360, 180, 200, 20);
             codigoUsuarioLabel.setFont(new Font("verdana", Font.CENTER_BASELINE, 14));
             
@@ -90,7 +96,7 @@ public class RealizaDevolucao extends JFrame{
                     public void actionPerformed(ActionEvent arg0) {
                         System.out.println(j.getText());
                         System.out.println(t.getText());
-                        new  DevolucaoJFrame(j.getText(),t.getText()).setVisible(true);
+                        new  DevolucaoJFrame(j.getText(),t.getText(), usuariosRepository, livrosRepository).setVisible(true);
                     }
             });
             btnDevolver.setForeground(Color.WHITE);

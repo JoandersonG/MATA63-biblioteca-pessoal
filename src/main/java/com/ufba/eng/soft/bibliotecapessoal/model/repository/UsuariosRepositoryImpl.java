@@ -185,5 +185,10 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
         return livros;
     }
 
+    @Override
+    public List<Livro> getTodasAsReservasDoUsuario(String idProfessor) {
+        return null;
+    }
+
 
 }

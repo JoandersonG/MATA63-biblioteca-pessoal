@@ -100,7 +100,8 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             Professor professor = usuariosRepository.consultarProfessorNome(nomeProfessor);
             if(professor != null){
                 List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(professor.getIdUsuario());
-                new MostrarInformacoesJFrame(professor, emprestimos).setVisible(true);
+                List<Livro> reservas = usuariosRepository.getTodasAsReservasDoUsuario(professor.getIdUsuario());
+                new MostrarInformacoesJFrame(professor, emprestimos, reservas).setVisible(true);
             }
             
             else{
@@ -116,7 +117,8 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             Aluno aluno = usuariosRepository.consultarAlunoNome(nomeAluno);
             if(aluno != null){
                 List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(aluno.getIdUsuario());
-                new MostrarInformacoesJFrame(aluno, emprestimos).setVisible(true);
+                List<Livro> reservas = usuariosRepository.getTodasAsReservasDoUsuario(aluno.getIdUsuario());
+                new MostrarInformacoesJFrame(aluno, emprestimos, reservas).setVisible(true);
             }
             
             else{
@@ -132,7 +134,8 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
             Orientando orientando = usuariosRepository.consultarOrientandoNome(nomeOrientando);
             if(orientando != null){
                 List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(orientando.getIdUsuario());
-                new MostrarInformacoesJFrame(orientando, emprestimos).setVisible(true);
+                List<Livro> reservas = usuariosRepository.getTodasAsReservasDoUsuario(orientando.getIdUsuario());
+                new MostrarInformacoesJFrame(orientando, emprestimos, reservas).setVisible(true);
             }
             
             else{
