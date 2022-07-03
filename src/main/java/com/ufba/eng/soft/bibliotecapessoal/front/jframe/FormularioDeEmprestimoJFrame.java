@@ -1,6 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import java.awt.BorderLayout;
 import java.awt.Color;

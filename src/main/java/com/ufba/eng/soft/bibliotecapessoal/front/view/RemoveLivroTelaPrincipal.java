@@ -9,11 +9,9 @@ package com.ufba.eng.soft.bibliotecapessoal.front.view;
  * @author vanes
  */
 
-import com.ufba.eng.soft.bibliotecapessoal.front.jframe.CadastroLivroJFrame;
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.RemoveLivroJFrame;
-import com.ufba.eng.soft.bibliotecapessoal.model.product.GeneroLivro;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -42,7 +40,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
      */
     public RemoveLivroTelaPrincipal(LivrosRepository livrosRepository) throws FileNotFoundException, IOException {
             this.livrosRepository = livrosRepository;
-            setTitle("Persibi - RemoÃ§Ã£o de Livro");
+            setTitle("Persibi - Remoção de Livro");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
             contentPane = new JPanel();
@@ -51,7 +49,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             contentPane.setLayout(null);
             getContentPane().setBackground(Color.WHITE);        
             
-            JLabel titulo1 = new JLabel ("Escolha o gï¿½nero do livro");
+            JLabel titulo1 = new JLabel ("Escolha o gênero do livro");
             titulo1.setBounds(30, 90, 500, 300);
             titulo1.setFont(new Font("verdana", Font.CENTER_BASELINE, 16));
             contentPane.add(titulo1);
@@ -75,7 +73,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnInfantil = new JButton("Infantil");
             btnInfantil.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.INFANTIL).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnInfantil.setForeground(Color.WHITE);
@@ -83,10 +81,10 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             btnInfantil.setBackground(Color.BLUE);
             contentPane.add(btnInfantil);
 
-            JButton btnParadidatico = new JButton("Paradidï¿½tico");
+            JButton btnParadidatico = new JButton("Paradidático");
             btnParadidatico.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.PARADIDATICO).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }   
             });
             btnParadidatico.setForeground(Color.WHITE);
@@ -94,10 +92,10 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             btnParadidatico.setBackground(Color.RED);
             contentPane.add(btnParadidatico);        
 
-            JButton btnDidatico = new JButton("Didï¿½tico");
+            JButton btnDidatico = new JButton("Didático");
             btnDidatico.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.DIDATICO).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnDidatico.setForeground(Color.WHITE);
@@ -108,7 +106,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnInfantoJuvenil = new JButton("Infanto Juvenil");
             btnInfantoJuvenil.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.INFANTO_JUVENIL).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnInfantoJuvenil.setForeground(Color.WHITE);
@@ -119,7 +117,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnFantasia = new JButton("Fantasia");
             btnFantasia.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.FANTASIA).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnFantasia.setForeground(Color.WHITE);
@@ -130,7 +128,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnPolicial = new JButton("Policial");
             btnPolicial.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.POLICIAL).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnPolicial.setForeground(Color.WHITE);
@@ -141,7 +139,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnBiografia = new JButton("Biografia");
             btnBiografia.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.BIOGRAFIA).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnBiografia.setForeground(Color.WHITE);
@@ -152,7 +150,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnReligioso = new JButton("Religioso");
             btnReligioso.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.RELIGIOSO).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnReligioso.setForeground(Color.WHITE);
@@ -163,7 +161,7 @@ public class RemoveLivroTelaPrincipal extends JFrame {
             JButton btnAutoAjuda = new JButton("Auto Ajuda");
             btnAutoAjuda.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            new RemoveLivroJFrame(livrosRepository, GeneroLivro.AUTOAJUDA).setVisible(true);
+                            new RemoveLivroJFrame(livrosRepository).setVisible(true);
                     }
             });
             btnAutoAjuda.setForeground(Color.WHITE);

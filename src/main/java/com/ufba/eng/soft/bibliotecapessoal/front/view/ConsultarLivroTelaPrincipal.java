@@ -1,6 +1,8 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ConsultaLivroJFrame;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -23,7 +25,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
     private JPanel contentPane;
     private String tipo;
 
-    public ConsultarLivroTelaPrincipal () throws FileNotFoundException, IOException {
+    public ConsultarLivroTelaPrincipal (LivrosRepository livrosRepository) throws IOException {
            setTitle("\"Persibi - Consulta de Livro");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -58,7 +60,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnIsbn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "ISBN";
-                            new ConsultaLivroJFrame(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo, livrosRepository).setVisible(true);
                     }
             });
             btnIsbn.setForeground(Color.BLACK);
@@ -70,7 +72,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnNome.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "Nome";
-                            new ConsultaLivroJFrame(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo, livrosRepository).setVisible(true);
                     }
             });
             btnNome.setForeground(Color.BLACK);
@@ -82,7 +84,7 @@ public class ConsultarLivroTelaPrincipal extends JFrame{
             btnCod.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             tipo = "Cód. Barras";
-                            new ConsultaLivroJFrame(tipo).setVisible(true);
+                            new ConsultaLivroJFrame(tipo, livrosRepository).setVisible(true);
                     }
             });
             btnCod.setForeground(Color.BLACK);

@@ -5,6 +5,10 @@
 package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+
 import java.util.List;
 
 /**
@@ -22,15 +26,16 @@ public interface LivrosRepository {
    boolean removerLivro(String isbn);
    
    boolean adicionarNovoLivro(Livro livro);
-   
-   void adicionarReservaAluno(Livro livro, int index);
-   
-   void adicionarReservaProfessor(Livro livro, int index);
-    
-   void adicionarReservaOrientando(Livro livro, int index);
-   
+
+   void adicionarReservaAluno(Livro livro, Aluno aluno);
+
+   void adicionarReservaProfessor(Livro livro, Professor professor);
+
+   void adicionarReservaOrientando(Livro livro, Orientando orientando);
+
    boolean atualizarLivro(Livro livro);
    
    boolean adicionarOuAtualizarLivro(Livro livro);
-   
+
+   Livro getLivroPorCodBarras(String identificacaoLivro);
 }

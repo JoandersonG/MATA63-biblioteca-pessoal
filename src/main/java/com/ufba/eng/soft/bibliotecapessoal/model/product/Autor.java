@@ -4,6 +4,7 @@
  */
 package com.ufba.eng.soft.bibliotecapessoal.model.product;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -11,12 +12,12 @@ import lombok.Data;
  * @author joand
  */
 @Data
+@AllArgsConstructor
 public class Autor {
-    private String id;
+    private int id;
     private String nome;
 
-    public Autor(String id, String nome) {
-        this.id = id;
+    public Autor(String nome) {
         this.nome = nome;
     }
     

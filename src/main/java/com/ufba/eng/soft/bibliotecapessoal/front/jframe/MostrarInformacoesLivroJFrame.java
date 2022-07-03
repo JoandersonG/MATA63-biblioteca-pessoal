@@ -4,7 +4,7 @@
  */
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Autor;
 import java.awt.BorderLayout;
@@ -124,7 +124,7 @@ public class MostrarInformacoesLivroJFrame extends JFrame {
         generoLabel.setEditable(false); 
         generoLabel.setLineWrap(true);
         generoLabel.setFont(new Font("arial black", Font.PLAIN, 16));
-        final JTextArea generoLivroLabel = new JTextArea(livro.genero.toString()); 
+        final JTextArea generoLivroLabel = new JTextArea(livro.getGenero().name());
         generoLivroLabel.setEditable(false); 
         generoLivroLabel.setLineWrap(true);
         generoLivroLabel.setLineWrap(true);

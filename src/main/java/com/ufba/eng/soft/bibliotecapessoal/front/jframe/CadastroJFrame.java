@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 public class CadastroJFrame extends JFrame {
     private JPanel contentPane;
     private TipoUsuario tipoUsuario;
-    private JTextField idField;
+//    private JTextField idField;
     private JTextField nomeField;
     private JTextField usernameField;
     private JTextField senhaField;
@@ -65,8 +66,8 @@ public class CadastroJFrame extends JFrame {
         JLabel nomeLabel = new JLabel ("Nome");
         nomeField = new JTextField(40);
         
-        JLabel idLabel = new JLabel ("Identificação-ID");
-        idField = new JTextField(40);
+        /*JLabel idLabel = new JLabel ("Identificação-ID");
+        idField = new JTextField(40);*/
         
         JLabel usernameLabel = new JLabel ("Username");
         usernameField = new JTextField(40);
@@ -76,8 +77,8 @@ public class CadastroJFrame extends JFrame {
         
         panelCadastro.add(nomeLabel);
         panelCadastro.add(nomeField);
-        panelCadastro.add(idLabel);
-        panelCadastro.add(idField);
+//        panelCadastro.add(idLabel);
+//        panelCadastro.add(idField);
         panelCadastro.add(usernameLabel);
         panelCadastro.add(usernameField);
         panelCadastro.add(senhaLabel);
@@ -121,75 +122,70 @@ public class CadastroJFrame extends JFrame {
             
             //Verifica campos
             ResultadoVerificacao resultadoNome = VerificadorDeCampos.nome(nomeField.getText());
-            ResultadoVerificacao resultadoIdUsuario = VerificadorDeCampos.idUsuario(idField.getText());
+//            ResultadoVerificacao resultadoIdUsuario = VerificadorDeCampos.idUsuario(idField.getText());
             ResultadoVerificacao resultadoUsername = VerificadorDeCampos.userName(usernameField.getText());
             ResultadoVerificacao resultadoSenha = VerificadorDeCampos.senha(senhaField.getText());
             
             boolean valido = true;
             if (!resultadoNome.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoNome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoNome.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
-            if (!resultadoIdUsuario.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIdUsuario.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+            /*if (!resultadoIdUsuario.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIdUsuario.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
-            }
+            }*/
             
             if (!resultadoUsername.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoUsername.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoUsername.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             if (!resultadoSenha.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoSenha.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoSenha.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            
-            
-            if(valido){
-                if (tipoUsuario == TipoUsuario.PROFESSOR) {
-                Professor novoUsuario = new Professor(
-                    idField.getText(), 
-                    nomeField.getText(), 
-                    usernameField.getText(), 
-                    senhaField.getText()
-                );
-                usuariosRepository.adicionarNovoProfessor(novoUsuario);
-                JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-                return;
-                }
-                
-                if (tipoUsuario == TipoUsuario.ALUNO) {
-                Aluno novoUsuario = new Aluno(
-                    idField.getText(), 
+
+
+            if (tipoUsuario == TipoUsuario.PROFESSOR) {
+            Professor novoUsuario = new Professor(
+//                idField.getText(),
+                    UUID.randomUUID().toString(),
+                nomeField.getText(),
+                usernameField.getText(),
+                senhaField.getText()
+            );
+            usuariosRepository.adicionarNovoProfessor(novoUsuario);
+            JOptionPane.showMessageDialog(null, "Professor(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+            return;
+            }
+
+            if (tipoUsuario == TipoUsuario.ALUNO) {
+            Aluno novoUsuario = new Aluno(
+           //     idField.getText(),
+                    UUID.randomUUID().toString(),
                     nomeField.getText(),
-                    usernameField.getText(), 
+                usernameField.getText(),
+                senhaField.getText()
+            );
+            usuariosRepository.adicionarNovoAluno(novoUsuario);
+            JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+            return;
+            }
+
+            if (tipoUsuario == TipoUsuario.ORIENTANDO) {
+                Orientando novoUsuario = new Orientando(
+//                    idField.getText(),
+                        UUID.randomUUID().toString(),
+                        nomeField.getText(),
+                    usernameField.getText(),
                     senhaField.getText()
                 );
-                usuariosRepository.adicionarNovoAluno(novoUsuario);
-                JOptionPane.showMessageDialog(null, "Aluno(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-                return;
-                }
-            
-                if (tipoUsuario == TipoUsuario.ORIENTANDO) {
-                    Orientando novoUsuario = new Orientando(
-                        idField.getText(), 
-                        nomeField.getText(),
-                        usernameField.getText(), 
-                        senhaField.getText()
-                    );
-                    usuariosRepository.adicionarNovoOrientando(novoUsuario);
-                    JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-                    return;
-                }
-            }    
-            
+                usuariosRepository.adicionarNovoOrientando(novoUsuario);
+                JOptionPane.showMessageDialog(null, "Orientando(a) cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+            }
+
         }
     }
     
@@ -197,7 +193,7 @@ public class CadastroJFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             nomeField.setText("");
-            idField.setText("");
+//            idField.setText("");
             usernameField.setText("");
             senhaField.setText("");
         }

@@ -6,10 +6,9 @@
 package com.ufba.eng.soft.bibliotecapessoal;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.view.GerenciadorDeTelas;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.*;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
+
 import java.io.IOException;
 
 
@@ -22,8 +21,8 @@ public class BibliotecaPessoal {
     private static GerenciadorDeTelas gerenciadorDeTelas;
 
     private static void setupInicial() {
-         LivrosRepository livrosRepository = new LivrosRepositoryImpl();
-         UsuariosRepository usuariosRepository = new UsuariosRepositoryImpl();
+         LivrosRepository livrosRepository = new SqLiteLivrosRepositoryImpl();
+         UsuariosRepository usuariosRepository = new SqLiteUsuariosRepositoryImpl();
          gerenciadorDeTelas = new GerenciadorDeTelas(livrosRepository, usuariosRepository);
     }
  

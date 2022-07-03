@@ -1,40 +1,31 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import java.util.List;
 
 public class ConsultaUsuarioNomeJFrame extends JFrame {
     private JPanel contentPane;
-    private String usuario;
-    private JTextField nomeField;    
-    
-    
-    public ConsultaUsuarioNomeJFrame(String usuario) {
-        usuario = usuario;
-        criarFormularioNome(usuario);
+    private JTextField nomeField;
+    private UsuariosRepository usuariosRepository;
+
+
+    public ConsultaUsuarioNomeJFrame(TipoUsuario tipoUsuario, UsuariosRepository usuariosRepository) {
+        this.usuariosRepository = usuariosRepository;
+        criarFormularioNome(tipoUsuario);
     }
     
-    private void criarFormularioNome(String usuario) {
-        usuario = usuario; 
+    private void criarFormularioNome(TipoUsuario tipoUsuario) {
         setTitle("Persibi - Buscando Usuário, pelo nome, no cadastro ...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
@@ -75,13 +66,13 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
         botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
         
-        if(usuario == "Professor"){ 
+        if(tipoUsuario == TipoUsuario.PROFESSOR){
           botaoBuscar.addActionListener(buscarProfessorAction);  
         }
-        if(usuario == "Aluno"){ 
+        if(tipoUsuario == TipoUsuario.ALUNO){
             botaoBuscar.addActionListener(buscarAlunoAction);  
         }
-        if(usuario == "Orientando"){ 
+        if(tipoUsuario == TipoUsuario.ORIENTANDO){
             botaoBuscar.addActionListener(buscarOrientandoAction);  
         }
         
@@ -106,10 +97,10 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             String nomeProfessor = nomeField.getText();
            
-            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorNome(nomeProfessor);
-           
+            Professor professor = usuariosRepository.consultarProfessorNome(nomeProfessor);
             if(professor != null){
-                new MostrarInformacoesJFrame(professor).setVisible(true);
+                List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(professor.getIdUsuario());
+                new MostrarInformacoesJFrame(professor, emprestimos).setVisible(true);
             }
             
             else{
@@ -122,10 +113,10 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
              String nomeAluno = nomeField.getText();
            
-            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoNome(nomeAluno);
-           
+            Aluno aluno = usuariosRepository.consultarAlunoNome(nomeAluno);
             if(aluno != null){
-                new MostrarInformacoesJFrame(aluno).setVisible(true);
+                List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(aluno.getIdUsuario());
+                new MostrarInformacoesJFrame(aluno, emprestimos).setVisible(true);
             }
             
             else{
@@ -138,10 +129,10 @@ public class ConsultaUsuarioNomeJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
              String nomeOrientando = nomeField.getText();
            
-            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoNome(nomeOrientando);
-           
+            Orientando orientando = usuariosRepository.consultarOrientandoNome(nomeOrientando);
             if(orientando != null){
-                new MostrarInformacoesJFrame(orientando).setVisible(true);
+                List<Livro> emprestimos = usuariosRepository.getTodosOsEmprestimosDoUsuario(orientando.getIdUsuario());
+                new MostrarInformacoesJFrame(orientando, emprestimos).setVisible(true);
             }
             
             else{

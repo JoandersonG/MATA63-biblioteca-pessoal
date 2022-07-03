@@ -34,6 +34,7 @@ public class CadastroLivroJFrame extends JFrame {
     private JTextField tituloField;
     private JTextField autorField;
     private JTextField idAutorField;
+    private JTextField qtdCopiasField;
     private JTextField isbnField;
     private JTextField codDeBarraField;
     
@@ -47,7 +48,7 @@ public class CadastroLivroJFrame extends JFrame {
     private void criarFormulario(GeneroLivro generoLivro) {
         setTitle("Persibi - Formulário de Cadastro do Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(300, 300, 505, 350);
+	setBounds(300, 300, 505, 400);
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
@@ -75,9 +76,12 @@ public class CadastroLivroJFrame extends JFrame {
         
         JLabel autorLabel = new JLabel ("Autor(a)");
         autorField = new JTextField(40);
-        
+
         JLabel idAutorLabel = new JLabel ("ID-Autor(a)");
         idAutorField = new JTextField(40);
+
+        JLabel qtdCopiasLabel = new JLabel ("Quantidade de Cópias");
+        qtdCopiasField = new JTextField(40);
         
         JLabel isbnFieldLabel = new JLabel ("ISBN");
         isbnField = new JTextField(40);
@@ -92,6 +96,8 @@ public class CadastroLivroJFrame extends JFrame {
         panelCadastro.add(autorField);
         panelCadastro.add(idAutorLabel);
         panelCadastro.add(idAutorField);
+        panelCadastro.add(qtdCopiasLabel);
+        panelCadastro.add(qtdCopiasField);
         panelCadastro.add(isbnFieldLabel);
         panelCadastro.add(isbnField);
         panelCadastro.add(codDeBarraFieldLabel);
@@ -130,59 +136,57 @@ public class CadastroLivroJFrame extends JFrame {
             ResultadoVerificacao resultadoTitulo = VerificadorDeCampos.titulo(tituloField.getText());
             ResultadoVerificacao resultadoAutor = VerificadorDeCampos.autor(autorField.getText());
             ResultadoVerificacao resultadoIDAutor = VerificadorDeCampos.idAutor(idAutorField.getText());
+            ResultadoVerificacao resultadoqtdCopias = VerificadorDeCampos.copias(qtdCopiasField.getText());
             ResultadoVerificacao resultadoIsnb = VerificadorDeCampos.isbn(isbnField.getText());
             ResultadoVerificacao resultadoCodDeBarra = VerificadorDeCampos.codDeBarra(codDeBarraField.getText());
-            
-            boolean valido = true;
+
             if (!resultadoTitulo.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoTitulo.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoTitulo.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             if (!resultadoAutor.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             if (!resultadoIDAutor.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIDAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIDAutor.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             if (!resultadoIsnb.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIsnb.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoIsnb.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             if (!resultadoCodDeBarra.isValido()) {
-                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);       
-                valido = false;
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-           
-            if(valido){
-                Autor autor = new Autor (
-                    idAutorField.getText(),
-                    autorField.getText()
-                );
-                
-                Livro novoLivro = new Livro(
-                    tituloField.getText(), 
-                    isbnField.getText(), 
-                    codDeBarraField.getText(),
-                    autor,
-                    generoLivro   
-                );
-                
-                livrosRepository.adicionarNovoLivro(novoLivro);
-                JOptionPane.showMessageDialog(null, "Novo livro cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);       
-            }    
-            
-         
+
+            if (!resultadoqtdCopias.isValido()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro. Erro: " + resultadoCodDeBarra.getMotivo(), "Erro verificando Campos", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Autor autor = new Autor (
+//                    idAutorField.getText(),
+                autorField.getText()
+            );
+
+            Livro novoLivro = new Livro(
+                tituloField.getText(),
+                isbnField.getText(),
+                codDeBarraField.getText(),
+                autor,
+                generoLivro,
+                Integer.parseInt(qtdCopiasField.getText())
+            );
+
+            livrosRepository.adicionarNovoLivro(novoLivro);
+            JOptionPane.showMessageDialog(null, "Novo livro cadastrado com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+
         }
             
     }

@@ -1,9 +1,9 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
-import com.ufba.eng.soft.bibliotecapessoal.front.jframe.CadastroJFrame;
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ConsultaUsuarioIdJFrame;
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ConsultaUsuarioNomeJFrame;
-import java.awt.EventQueue;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,13 +24,11 @@ import javax.swing.JLabel;
 
 public class ConsultaUsuarioTelaInterna extends JFrame {
     private JPanel contentPane;
-    private String identificacao;
-    private String usuario;
 
 /**
      * Create the frame.
      */
-    public ConsultaUsuarioTelaInterna(String identificacao) throws FileNotFoundException, IOException {
+    public ConsultaUsuarioTelaInterna(String identificacao, UsuariosRepository usuariosRepository) throws IOException {
             setTitle("\"Persibi - Consulta de Usuário");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -57,14 +54,11 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
             jLabel.setIcon(imageIcon);
             contentPane.add(jLabel);
             
-            identificacao = identificacao;
-            
-            if(identificacao == "Nome"){
+            if(identificacao.equals("Nome")){
                     JButton btnProfessor = new JButton("Professor");
                     btnProfessor.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Professor";
-                                    new ConsultaUsuarioNomeJFrame( usuario).setVisible(true);
+                                    new ConsultaUsuarioNomeJFrame(TipoUsuario.PROFESSOR, usuariosRepository).setVisible(true);
                             }
                     });
                     btnProfessor.setForeground(Color.WHITE);
@@ -75,8 +69,7 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
                     JButton btnAluno = new JButton("Aluno");
                     btnAluno.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Aluno";
-                                    new ConsultaUsuarioNomeJFrame( usuario).setVisible(true);
+                                    new ConsultaUsuarioNomeJFrame(TipoUsuario.ALUNO, usuariosRepository).setVisible(true);
                             }
                     });
                     btnAluno.setForeground(Color.WHITE);
@@ -87,8 +80,7 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
                     JButton btnOrientando = new JButton("Orientando");
                     btnOrientando.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Orientando";
-                                    new ConsultaUsuarioNomeJFrame(usuario).setVisible(true);
+                                    new ConsultaUsuarioNomeJFrame(TipoUsuario.ORIENTANDO, usuariosRepository).setVisible(true);
                             }
                     });
                     btnOrientando.setForeground(Color.WHITE);
@@ -97,12 +89,11 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
                     contentPane.add(btnOrientando);
             }
             
-            if(identificacao == "Id"){
+            if(identificacao.equals("Id")){
                     JButton btnProfessor = new JButton("Professor");
                     btnProfessor.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Professor";
-                                    new ConsultaUsuarioIdJFrame( usuario).setVisible(true);
+                                    new ConsultaUsuarioIdJFrame(TipoUsuario.PROFESSOR, usuariosRepository).setVisible(true);
                             }
                     });
                     btnProfessor.setForeground(Color.WHITE);
@@ -113,8 +104,7 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
                     JButton btnAluno = new JButton("Aluno");
                     btnAluno.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Aluno";
-                                     new ConsultaUsuarioIdJFrame( usuario).setVisible(true);
+                                     new ConsultaUsuarioIdJFrame(TipoUsuario.ALUNO, usuariosRepository).setVisible(true);
                             }
                     });
                     btnAluno.setForeground(Color.WHITE);
@@ -125,8 +115,7 @@ public class ConsultaUsuarioTelaInterna extends JFrame {
                     JButton btnOrientando = new JButton("Orientando");
                     btnOrientando.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent arg0) {
-                                    usuario = "Orientando";
-                                     new ConsultaUsuarioIdJFrame( usuario).setVisible(true);
+                                     new ConsultaUsuarioIdJFrame(TipoUsuario.ORIENTANDO, usuariosRepository).setVisible(true);
                             }
                     });
                     btnOrientando.setForeground(Color.WHITE);

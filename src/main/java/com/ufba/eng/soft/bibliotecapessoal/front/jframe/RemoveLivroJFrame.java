@@ -4,13 +4,7 @@
  */
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.product.GeneroLivro;
-import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
-
-import com.ufba.eng.soft.bibliotecapessoal.model.product.Autor;
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
-import com.ufba.eng.soft.bibliotecapessoal.util.ResultadoVerificacao;
-import com.ufba.eng.soft.bibliotecapessoal.util.VerificadorDeCampos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,22 +24,16 @@ public class RemoveLivroJFrame extends JFrame {
     
     private JPanel contentPane;
     private LivrosRepository livrosRepository;
-    private GeneroLivro generoLivro;
-    private JTextField tituloField;
-    private JTextField autorField;
-    private JTextField idAutorField;
     private JTextField isbnField;
-    private JTextField codDeBarraField;
     
     
-    public RemoveLivroJFrame(LivrosRepository livrosRepository, GeneroLivro generoLivro) {
+    public RemoveLivroJFrame(LivrosRepository livrosRepository) {
         this.livrosRepository = livrosRepository;
-        this.generoLivro = generoLivro;
-        criarFormulario(generoLivro);
+        criarFormulario();
     }
     
-    private void criarFormulario(GeneroLivro generoLivro) {
-        setTitle("Persibi - Formulï¿½rio de Cadastro do Livro");
+    private void criarFormulario() {
+        setTitle("Persibi - Formulário de Cadastro do Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 505, 350);
 	contentPane = new JPanel();
@@ -63,7 +51,7 @@ public class RemoveLivroJFrame extends JFrame {
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel ("Formulï¿½rio");
+        JLabel titulo = new JLabel ("Formulário");
         titulo.setFont(new Font("verdana", Font.PLAIN, 16));
         panelTitulo.add(titulo);
         
@@ -107,16 +95,17 @@ public class RemoveLivroJFrame extends JFrame {
       
     private class CadastrarAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            //Verificaï¿½ï¿½o de campos. A ser feito: verificar todos os campos do formulario
+            //Verificação de campos. A ser feito: verificar todos os campos do formulario
             
             String ISBN = isbnField.getText();
             
             if (livrosRepository.removerLivro(ISBN)) {
-                JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");       
+                JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");
+                isbnField.setText("");
             }else{
-                JOptionPane.showMessageDialog(null, "Livro nÃ£o encontrao.");
+                JOptionPane.showMessageDialog(null, "Livro não encontrado.");
             }
-        }    
+        }
     }
    
     
@@ -124,11 +113,7 @@ public class RemoveLivroJFrame extends JFrame {
     private class LimparAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            tituloField.setText("");
-            autorField.setText("");
-            idAutorField.setText("");
             isbnField.setText("");
-            codDeBarraField.setText("");
         }
     }
     
