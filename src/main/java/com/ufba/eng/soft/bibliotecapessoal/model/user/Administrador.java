@@ -4,7 +4,13 @@ package com.ufba.eng.soft.bibliotecapessoal.model.user;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import java.util.ArrayList;
 
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
+
+@EqualsAndHashCode(callSuper = true)
 public class Administrador extends UsuarioDoSistema {
     
      private ArrayList<Livro> livrosEmprestados = new ArrayList<>();
@@ -13,10 +19,14 @@ public class Administrador extends UsuarioDoSistema {
         super(idUsuario, nomeDeUusario, userName, senha);
     }
 
+    public Administrador(String idUsuario, String nomeDeUusario, String userName, String senha, String debito, String emprestimo, String reserva) {
+        super(idUsuario, nomeDeUusario, userName, senha, debito, emprestimo, reserva);
+    }
+
     public Administrador() {
         super();
     }
-    
+    //todo: revisar esse método: deveria existir?
      @Override
     public boolean consultarLivroEmprestado(Livro livro) {
         if(livrosEmprestados.contains(livro)){
@@ -26,6 +36,7 @@ public class Administrador extends UsuarioDoSistema {
         System.out.println("nao");
         return false;
     }
+
     @Override
     public void consultarLivroPeloNome() {
         
@@ -83,7 +94,7 @@ public class Administrador extends UsuarioDoSistema {
     public void gerenciarEtiquetas() {
         
     }
-
+//todo: revisar os 2 prox métodos
     @Override
     public void addLivroListaEmprestimos(Livro livro) {
          if(this.livrosEmprestados == null){
@@ -96,6 +107,6 @@ public class Administrador extends UsuarioDoSistema {
     public void realizarDevolucao(Livro livro) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     
 }

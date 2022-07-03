@@ -71,7 +71,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnConsultarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             try {
-                            new ConsultarLivroTelaPrincipal().setVisible(true);
+                            new ConsultarLivroTelaPrincipal(livrosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -98,7 +98,7 @@ public class TelaPrincipalUsuario extends JFrame {
             btnRealizarReserva.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
-                            new ReservaLivroTelaPrincipal().setVisible(true);
+                            new ReservaLivroTelaPrincipal(livrosRepository, usuariosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
                         }

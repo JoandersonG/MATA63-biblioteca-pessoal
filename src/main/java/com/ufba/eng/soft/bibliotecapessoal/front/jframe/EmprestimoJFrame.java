@@ -1,28 +1,19 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,19 +21,18 @@ import javax.swing.border.EmptyBorder;
 
 public class EmprestimoJFrame extends JFrame {
     private JPanel contentPane;
-    private String usuario;
     private JTextField idField; 
     private JTextField isbnLivroField;
-    
-    
-    
-    public EmprestimoJFrame(String usuario) {
-        this.usuario = usuario;
-        criarFormularioNome(usuario);
+    private UsuariosRepository usuariosRepository;
+    private LivrosRepository livrosRepository;
+
+    public EmprestimoJFrame(TipoUsuario tipoUsuario, UsuariosRepository usuariosRepository, LivrosRepository livrosRepository) {
+        this.usuariosRepository = usuariosRepository;
+        this.livrosRepository = livrosRepository;
+        criarFormularioNome(tipoUsuario);
     }
     
-    private void criarFormularioNome(String usuario) {
-        usuario = usuario; 
+    private void criarFormularioNome(TipoUsuario usuario) {
         setTitle("Persibi - Empr�stimo de Livro");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
@@ -89,13 +79,13 @@ public class EmprestimoJFrame extends JFrame {
         botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
         
-        if("Professor".equals(usuario)){ 
+        if(usuario == TipoUsuario.PROFESSOR){
           botaoBuscar.addActionListener(emprestaProfessorAction);  
         }
-        if("Aluno".equals(usuario)){ 
+        if(usuario == TipoUsuario.ALUNO){
             botaoBuscar.addActionListener(emprestaAlunoAction);  
         }
-        if("Orientando".equals(usuario)){ 
+        if(usuario == TipoUsuario.ORIENTANDO){
             botaoBuscar.addActionListener(emprestaOrientandoAction);  
         }
         
@@ -117,134 +107,58 @@ public class EmprestimoJFrame extends JFrame {
     
     
     private class EmprestaProfessorAction implements ActionListener {
-        @Override
         public void actionPerformed(ActionEvent event) {
             String idProfessor = idField.getText();
             String isbnLivro = isbnLivroField.getText();
-           
-          
-            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorId(idProfessor);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            
-            if(professor != null){
-                
-                if(livro != null){
-                                        
-                    if(!livro.getEmprestadoo()){
-                        
-                        livro.setEmprestado(true, professor, "Professor");
-                      
-                        professor.setEmprestimo("sim");
-                        
-                        professor.addLivroListaEmprestimos(livro);
-                        
-                        new FormularioDeEmprestimoJFrame().setVisible(true);
-                        
-                    }    
-                                      
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro n�o est� dispon�vel no momento: Fa�a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Isbn n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Usu�rio(a) n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
-            
+            Professor professor = usuariosRepository.consultarProfessorId(idProfessor);
+            realizarEmprestimo(professor, isbnLivro);
         }
     }
-    
+
     private class EmprestaAlunoAction implements ActionListener {
-        @Override
         public void actionPerformed(ActionEvent event) {
             String idAluno = idField.getText();
             String isbnLivro = isbnLivroField.getText();
-           
-          
-            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoId(idAluno);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            
-            if(aluno != null){
-                    if(livro != null){
-                    
-                    
-                    if(!livro.getEmprestadoo()){
-                        
-                        livro.setEmprestado(true, aluno, "Aluno");
-                        
-                        aluno.setEmprestimo("sim");
-                        
-                        aluno.addLivroListaEmprestimos(livro);
-                        
-                        new FormularioDeEmprestimoJFrame().setVisible(true);
-                        
-                    }    
-                                      
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro n�o est� dispon�vel no momento: Fa�a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Isbn n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Usu�rio(a) n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
-            
+            Aluno aluno = usuariosRepository.consultarAlunoId(idAluno);
+            realizarEmprestimo(aluno, isbnLivro);
         }
     }
-    
+
     private class EmprestaOrientandoAction implements ActionListener {
-        @Override
         public void actionPerformed(ActionEvent event) {
             String idOrientando = idField.getText();
             String isbnLivro = isbnLivroField.getText();
-           
-          
-            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoId(idOrientando);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            
-            if(orientando != null){
-                    if(livro != null){
-                    
-                    
-                    if(!livro.getEmprestadoo()){
-                        
-                        livro.setEmprestado(true, orientando, "Orientando");
-                        
-                        orientando.setEmprestimo("sim");
-                        
-                        orientando.addLivroListaEmprestimos(livro);
-                        
-                        new FormularioDeEmprestimoJFrame().setVisible(true);
-                        
-                    }    
-                                      
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro n�o est� dispon�vel no momento: Fa�a reserva!", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Isbn n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Usu�rio(a) n�o encontrado", "Emprestimo", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
-            
+            Orientando orientando = usuariosRepository.consultarOrientandoId(idOrientando);
+            realizarEmprestimo(orientando, isbnLivro);
         }
     }
-    
+
+    private void realizarEmprestimo(UsuarioDoSistema usuarioDoSistema, String isbnLivro) {
+        Livro livro = livrosRepository.getLivroPorISBN(isbnLivro);
+        if (usuarioDoSistema == null) {
+            JOptionPane.showMessageDialog(null, "Usu�rio(a) nao encontrado", "Emprestimo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (livro == null) {
+            JOptionPane.showMessageDialog(null, "Livro nao encontrado", "Emprestimo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (livro.isEmprestadoPara(usuarioDoSistema.getIdUsuario())) {
+            JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de emprestimos", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        if (!livro.temCopiasDisponiveisParaEmprestimo()) {
+            JOptionPane.showMessageDialog(null, "Livro n�o possui c�pias dispon�veis, mas � poss�vel adicionar � lista de reservas", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        livro.setEmprestado(true);
+        livro.setEmprestimo(usuarioDoSistema);
+        livrosRepository.atualizarLivro(livro);
+
+        JOptionPane.showMessageDialog(null, "Livro adicionado � sua lista de empr�stimo", "Emprestimo", JOptionPane.PLAIN_MESSAGE);
+    }
+
     private class LimparAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {

@@ -1,6 +1,8 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.CadastroJFrame;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -31,7 +33,7 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
 /**
      * Create the frame.
      */
-    public ConsultaUsuarioTelaPrincipal() throws FileNotFoundException, IOException {
+    public ConsultaUsuarioTelaPrincipal(UsuariosRepository usuariosRepository) throws FileNotFoundException, IOException {
             setTitle("\"Persibi - Consulta de Usuário");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -67,7 +69,7 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
                     public void actionPerformed(ActionEvent arg0) {
                             identificacao = "Nome";
                         try {
-                            new ConsultaUsuarioTelaInterna(identificacao).setVisible(true);
+                            new ConsultaUsuarioTelaInterna(identificacao, usuariosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(ConsultaUsuarioTelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -83,7 +85,7 @@ public class ConsultaUsuarioTelaPrincipal extends JFrame {
                     public void actionPerformed(ActionEvent arg0) {
                             identificacao = "Id";
                         try {
-                            new ConsultaUsuarioTelaInterna(identificacao).setVisible(true);
+                            new ConsultaUsuarioTelaInterna(identificacao, usuariosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(ConsultaUsuarioTelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }

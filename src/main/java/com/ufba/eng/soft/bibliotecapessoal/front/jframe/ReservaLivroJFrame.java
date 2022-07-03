@@ -1,28 +1,20 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,19 +22,22 @@ import javax.swing.border.EmptyBorder;
 
 public class ReservaLivroJFrame extends JFrame {
     private JPanel contentPane;
-    private String usuario;
+    private TipoUsuario tipoUsuario;
     private JTextField idField; 
     private JTextField isbnLivroField;
+    private LivrosRepository livrosRepository;
+    private UsuariosRepository usuariosRepository;
     
     
     
-    public ReservaLivroJFrame(String usuario) {
-        usuario = usuario;
-        criarFormularioNome(usuario);
+    public ReservaLivroJFrame(TipoUsuario tipoUsuario, LivrosRepository livrosRepository, UsuariosRepository usuariosRepository) {
+        this.tipoUsuario = tipoUsuario;
+        this.livrosRepository = livrosRepository;
+        this.usuariosRepository = usuariosRepository;
+        criarFormularioNome(tipoUsuario);
     }
     
-    private void criarFormularioNome(String usuario) {
-        usuario = usuario; 
+    private void criarFormularioNome(TipoUsuario tipoUsuario) {
         setTitle("Persibi - Reserva de Livro...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
@@ -88,14 +83,14 @@ public class ReservaLivroJFrame extends JFrame {
         JButton botaoBuscar = new JButton("Reservar");
         botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
-        
-        if(usuario == "Professor"){ 
-          botaoBuscar.addActionListener(buscarProfessorAction);  
+
+        if(tipoUsuario == TipoUsuario.PROFESSOR){
+          botaoBuscar.addActionListener(buscarProfessorAction);
         }
-        if(usuario == "Aluno"){ 
+        if(tipoUsuario == TipoUsuario.ALUNO){
             botaoBuscar.addActionListener(buscarAlunoAction);  
         }
-        if(usuario == "Orientando"){ 
+        if(tipoUsuario == TipoUsuario.ORIENTANDO){
             botaoBuscar.addActionListener(buscarOrientandoAction);  
         }
         
@@ -120,103 +115,39 @@ public class ReservaLivroJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             String idProfessor = idField.getText();
             String isbnLivro = isbnLivroField.getText();
-          
-            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorId(idProfessor);
-            int indexProfessor = new UsuariosRepositoryImpl().getTodosOsProfessoresCadastrados().indexOf(professor);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            int indexLivro = new LivrosRepositoryImpl().getTodosOsLivros().indexOf(livro);
-            boolean reservado = false;
-            
-            if(professor != null){
-                //new MostrarInformacoesJFrame(professor).setVisible(true);
-                if(livro != null){
-                    
-                    ArrayList<Livro> livrosReservados = professor.getLivrosReservados();
-                    for (Livro livro1 : livrosReservados) {
-                        if (livro1.getCodigoISBN().equals(isbnLivro)) {
-                            reservado = true;
-                            break;
-                        }
-                    }
-                    
-                    // ISSO AQUI PODE SER UM CONSULTAR RESERVA PRA VER SE LIVRO ESTA DISPONIVEL PARA EMPRESTIMO
-                    /*if(livro.isEmprestado() == false){
-                        JOptionPane.showMessageDialog(null, "Livro disponivel para emprestimo", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }*/
-                    
-                    if(reservado == false){
-                        livro.setReservado(true);
-                        professor.addLivrosReservados(livro);
-                        livro.addProfessoresReserva(professor);
-                        new LivrosRepositoryImpl().adicionarReservaProfessor(livro, indexLivro);
-                        new UsuariosRepositoryImpl().atualizarUsuarioProfessor(professor, indexProfessor);
-                        JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Livro nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Professor(a) nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
+            Professor professor = usuariosRepository.consultarProfessorId(idProfessor);
+            realizarReserva(professor, isbnLivro);
         }
     }
-    
+
+    private void realizarReserva(UsuarioDoSistema usuarioDoSistema, String isbnLivro) {
+        Livro livro = livrosRepository.getLivroPorISBN(isbnLivro);
+        if (usuarioDoSistema == null) {
+            JOptionPane.showMessageDialog(null, "Usuário(a) nao encontrado", "Reserva", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (livro == null) {
+            JOptionPane.showMessageDialog(null, "Livro nao encontrado", "Reserva", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (livro.isReservadoPara(usuarioDoSistema.getIdUsuario())) {
+            JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
+        }
+
+        livro.setReservado(true);
+        livro.setReserva(usuarioDoSistema);
+        livrosRepository.atualizarLivro(livro);
+
+        JOptionPane.showMessageDialog(null, "Livro adicionado à sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
+    }
+
     private class BuscarAlunoAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String idAluno = idField.getText();
             String isbnLivro = isbnLivroField.getText();
-          
-            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoId(idAluno);
-            int indexAluno = new UsuariosRepositoryImpl().getTodosOsAlunosCadastrados().indexOf(aluno);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            int indexLivro = new LivrosRepositoryImpl().getTodosOsLivros().indexOf(livro);
-            boolean reservado = false;
-            
-            if(aluno != null){
-                //new MostrarInformacoesJFrame(professor).setVisible(true);
-                if(livro != null){
-                    
-                    ArrayList<Livro> livrosReservados = aluno.getLivrosReservados();
-                    for (Livro livro1 : livrosReservados) {
-                        if (livro1.getCodigoISBN().equals(isbnLivro)) {
-                            reservado = true;
-                            break;
-                        }
-                    }
-                    
-                    // ISSO AQUI PODE SER UM CONSULTAR RESERVA PRA VER SE LIVRO ESTA DISPONIVEL PARA EMPRESTIMO
-                    /*if(livro.isEmprestado() == false){
-                        JOptionPane.showMessageDialog(null, "Livro disponivel para emprestimo", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }*/
-                    
-                    if(reservado == false){
-                        livro.setReservado(true);
-                        aluno.addLivrosReservados(livro);
-                        livro.addAlunosReserva(aluno);
-                        new LivrosRepositoryImpl().adicionarReservaAluno(livro, indexLivro);
-                        new UsuariosRepositoryImpl().atualizarUsuarioAluno(aluno, indexAluno);
-                        JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Livro nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Aluno(a) nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
+
+            Aluno aluno = usuariosRepository.consultarAlunoId(idAluno);
+            realizarReserva(aluno, isbnLivro);
         }
     }
     
@@ -225,50 +156,8 @@ public class ReservaLivroJFrame extends JFrame {
             String idOrientando = idField.getText();
             String isbnLivro = isbnLivroField.getText();
           
-            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoId(idOrientando);
-            int indexOrientando = new UsuariosRepositoryImpl().getTodosOsOrientandosCadastrados().indexOf(orientando);
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(isbnLivro);
-            int indexLivro = new LivrosRepositoryImpl().getTodosOsLivros().indexOf(livro);
-            boolean reservado = false;
-            
-            if(orientando != null){
-                //new MostrarInformacoesJFrame(professor).setVisible(true);
-                if(livro != null){
-                    
-                    ArrayList<Livro> livrosReservados = orientando.getLivrosReservados();
-                    for (Livro livro1 : livrosReservados) {
-                        if (livro1.getCodigoISBN().equals(isbnLivro)) {
-                            reservado = true;
-                            break;
-                        }
-                    }
-                    
-                    // ISSO AQUI PODE SER UM CONSULTAR RESERVA PRA VER SE LIVRO ESTA DISPONIVEL PARA EMPRESTIMO
-                    /*if(livro.isEmprestado() == false){
-                        JOptionPane.showMessageDialog(null, "Livro disponivel para emprestimo", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }*/
-                    
-                    if(reservado == false){
-                        livro.setReservado(true);
-                        orientando.addLivrosReservados(livro);
-                        livro.addOrientandosReserva(orientando);
-                        new LivrosRepositoryImpl().adicionarReservaOrientando(livro, indexLivro);
-                        new UsuariosRepositoryImpl().atualizarUsuarioOrientando(orientando, indexOrientando);
-                        JOptionPane.showMessageDialog(null, "Livro adicionado a sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Livro ja esta na sua lista de reserva", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Livro nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);
-                }
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Orientando(a) nao encontrado", "Reserva", JOptionPane.PLAIN_MESSAGE);       
-            }
-            
+            Orientando orientando = usuariosRepository.consultarOrientandoId(idOrientando);
+            realizarReserva(orientando, isbnLivro);
         }
     }
     

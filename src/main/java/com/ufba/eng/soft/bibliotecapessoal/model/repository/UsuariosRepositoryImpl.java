@@ -5,18 +5,24 @@
  */
 package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Administrador;
+import com.ufba.eng.soft.bibliotecapessoal.model.db.EmprestimoSQLiteOperations;
+import com.ufba.eng.soft.bibliotecapessoal.model.db.LivroSQLiteOperations;
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  *
  * @author vanes
  */
+
+@Deprecated
 public class UsuariosRepositoryImpl implements UsuariosRepository {
     
     private static ArrayList<UsuarioDoSistema> bancoDeUsuarios = new ArrayList<>();
@@ -75,61 +81,24 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public void atualizarUsuarioProfessor(Professor professor, int index) {
-        System.out.println("Log: Atualizando professor: " + professor.getIdUsuario());
-        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, professor);
-    }
-    
-    @Override
-    public void atualizarUsuarioAluno(Aluno aluno, int index) {
-        System.out.println("Log: Atualizando aluno: " + aluno.getIdUsuario());
-        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, aluno);
-    }
-    
-    @Override
-    public void atualizarUsuarioOrientando(Orientando orientando, int index) {
-        System.out.println("Log: Atualizando orientando: " + orientando.getIdUsuario());
-        UsuariosRepositoryImpl.bancoDeUsuarios.add(index, orientando);
+    public void atualizarUsuario(UsuarioDoSistema usuarioDoSistema) {
+//        System.out.println("Log: Atualizando livros reservados professor: " + UsuariosRepositoryImpl.bancoDeUsuarios.get(index).getLivrosReservados());
+//        throw new NotYetImplementedException();
     }
 
     @Override
-    public boolean removerUsuarioProfessor(String id) {
-        for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
-                if(professorListado.getIdUsuario().equals(id)){
-                   System.out.println("Log: Removendo professor do banco de dados: " + professorListado.getIdUsuario());
-                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(professorListado);
-                   return true;
-                }
-        }
-        return false;
+    public boolean removerUsuario(String id) {
+        AtomicBoolean result = new AtomicBoolean(false);
+        bancoDeUsuarios.forEach(u -> {
+            if (u.getIdUsuario().equals(id)) {
+                result.set(bancoDeUsuarios.remove(u));
+            }
+        });
+        return result.get();
     }
 
     @Override
-    public boolean removerUsuarioAluno(String id) {
-        for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
-                if(alunoListado.getIdUsuario().equals(id)){
-                   System.out.println("Log: Removendo aluno do banco de dados: " + alunoListado.getIdUsuario());
-                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(alunoListado);
-                   return true;
-                }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean removerUsuarioOrientando(String id) {
-        for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
-                if(orientandoListado.getIdUsuario().equals(id)){
-                   System.out.println("Log: Removendo orientando do banco de dados: " + orientandoListado.getIdUsuario());
-                   UsuariosRepositoryImpl.bancoDeUsuarios.remove(orientandoListado);
-                   return true;
-                }
-        }
-        return false;
-    }
-
-    @Override
-    public UsuarioDoSistema consultarAlunoId(String id) {
+    public Aluno consultarAlunoId(String id) {
         Aluno aluno = new Aluno();
         boolean encontrou = false;
         for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
@@ -142,7 +111,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public UsuarioDoSistema consultarProfessorId(String id) {
+    public Professor consultarProfessorId(String id) {
         Professor professor = new Professor();
         boolean encontrou = false;
         for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
@@ -155,7 +124,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public UsuarioDoSistema consultarOrientandoId(String id) {
+    public Orientando consultarOrientandoId(String id) {
         Orientando orientando = new Orientando();
         boolean encontrou = false;
         for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
@@ -168,7 +137,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public UsuarioDoSistema consultarAlunoNome(String nome) {
+    public Aluno consultarAlunoNome(String nome) {
         Aluno aluno = new Aluno();
         boolean encontrou = false;
         for (Aluno alunoListado : getTodosOsAlunosCadastrados() ){
@@ -181,7 +150,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public UsuarioDoSistema consultarProfessorNome(String nome) {
+    public Professor consultarProfessorNome(String nome) {
         Professor professor = new Professor();
         boolean encontrou = false;
         for (Professor professorListado : getTodosOsProfessoresCadastrados() ){
@@ -194,7 +163,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     }
 
     @Override
-    public UsuarioDoSistema consultarOrientandoNome(String nome) {
+    public Orientando consultarOrientandoNome(String nome) {
         Orientando orientando = new Orientando();
         boolean encontrou = false;
         for (Orientando orientandoListado : getTodosOsOrientandosCadastrados() ){
@@ -206,5 +175,15 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
     return (encontrou)? orientando: null;
     }
 
-     
+    @Override
+    public List<Livro> getTodosOsEmprestimosDoUsuario(String id) {
+        List<String> isbns = EmprestimoSQLiteOperations.getTodosOsEmprestimosParaUsuario(id);
+        ArrayList<Livro> livros = new ArrayList<>();
+        for (String isbn : isbns) {
+            livros.add(LivroSQLiteOperations.getLivroByIsbn(isbn));
+        }
+        return livros;
+    }
+
+
 }

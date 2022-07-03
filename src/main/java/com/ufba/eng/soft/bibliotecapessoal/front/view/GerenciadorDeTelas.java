@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class GerenciadorDeTelas {
     
-    private LivrosRepository livrosRepository;
-    private UsuariosRepository usuariosRepository;
+    private final LivrosRepository livrosRepository;
+    private final UsuariosRepository usuariosRepository;
     
     public GerenciadorDeTelas(LivrosRepository livrosRepository, UsuariosRepository usuariosRepository) {
        this.livrosRepository = livrosRepository;

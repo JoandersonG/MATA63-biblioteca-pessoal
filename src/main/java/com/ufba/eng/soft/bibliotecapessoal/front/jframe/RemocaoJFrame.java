@@ -1,26 +1,13 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.TipoUsuario;
-import com.ufba.eng.soft.bibliotecapessoal.util.ResultadoVerificacao;
-import com.ufba.eng.soft.bibliotecapessoal.util.VerificadorDeCampos;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 public class RemocaoJFrame extends JFrame {
     private JPanel contentPane;
@@ -107,16 +94,10 @@ public class RemocaoJFrame extends JFrame {
     private class RemoverProfessorAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String idProfessor = idField.getText();
-           
-            Professor professor = (Professor) new UsuariosRepositoryImpl().consultarProfessorId(idProfessor);
-           
-            if(professor != null){
-                usuariosRepository.removerUsuarioProfessor(professor.getIdUsuario());
+            if(usuariosRepository.removerUsuario(idProfessor)) {
                 JOptionPane.showMessageDialog(null, "Professor(a) removido(a) com sucesso", "Remoção", JOptionPane.PLAIN_MESSAGE);
-            }
-            
-            else{
-                JOptionPane.showMessageDialog(null, "Professor(a) não encontrado", "Remoção", JOptionPane.PLAIN_MESSAGE);       
+            }  {
+                JOptionPane.showMessageDialog(null, "Professor(a) não encontrado", "Remoção", JOptionPane.WARNING_MESSAGE);
             }
             
         }
@@ -125,16 +106,10 @@ public class RemocaoJFrame extends JFrame {
     private class RemoverAlunoAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String idAluno = idField.getText();
-           
-            Aluno aluno = (Aluno) new UsuariosRepositoryImpl().consultarAlunoId(idAluno);
-           
-            if(aluno != null){
-                usuariosRepository.removerUsuarioAluno(aluno.getIdUsuario());
+            if(usuariosRepository.removerUsuario(idAluno)){
                 JOptionPane.showMessageDialog(null, "Aluno(a) removido(a) com sucesso", "Remoção", JOptionPane.PLAIN_MESSAGE);
-            }
-            
-            else{
-                JOptionPane.showMessageDialog(null, "Aluno(a) não encontrado", "Remoção", JOptionPane.PLAIN_MESSAGE);       
+            } else {
+                JOptionPane.showMessageDialog(null, "Aluno(a) não encontrado", "Remoção", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
@@ -142,16 +117,10 @@ public class RemocaoJFrame extends JFrame {
     private class RemoverOrientandoAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String idOrientando = idField.getText();
-           
-            Orientando orientando = (Orientando) new UsuariosRepositoryImpl().consultarOrientandoId(idOrientando);
-           
-            if(orientando != null){
-                usuariosRepository.removerUsuarioOrientando(orientando.getIdUsuario());
+            if(usuariosRepository.removerUsuario(idOrientando)){
                 JOptionPane.showMessageDialog(null, "Orientando(a) removido(a) com sucesso", "Remoção", JOptionPane.PLAIN_MESSAGE);
-            }
-            
-            else{
-                JOptionPane.showMessageDialog(null, "Orientando(a) não encontrado", "Remoção", JOptionPane.PLAIN_MESSAGE);       
+            } else {
+                JOptionPane.showMessageDialog(null, "Orientando(a) não encontrado", "Remoção", JOptionPane.WARNING_MESSAGE);
             }
         }
     }

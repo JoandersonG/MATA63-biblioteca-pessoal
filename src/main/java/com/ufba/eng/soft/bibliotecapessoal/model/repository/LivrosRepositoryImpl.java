@@ -5,11 +5,15 @@
 package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+@Deprecated
 public class LivrosRepositoryImpl implements LivrosRepository {
     
     private static ArrayList<Livro> livrosDatabase = new ArrayList<>();
@@ -54,31 +58,41 @@ public class LivrosRepositoryImpl implements LivrosRepository {
 
     @Override
     public boolean removerLivro(String isbn) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Livro livro = (Livro) this.getLivroPorISBN(isbn);
+
+        if(livro != null){
+            livrosDatabase.remove(livro);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean adicionarNovoLivro(Livro livro) {
         System.out.println("Log: Adicionando novo livro no banco de dados: " + livro.getNomeDoLivro());
-        return LivrosRepositoryImpl.livrosDatabase.add(livro);
+        return livrosDatabase.add(livro);
     }
     
     @Override
-    public void adicionarReservaAluno(Livro livro, int index){
-        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando aluno " + livro.getAlunosReserva().get(livro.getAlunosReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
+    public void adicionarReservaAluno(Livro livro, Aluno aluno){
+//        throw new NotYetImplementedException();
+//        LivrosRepository.livrosDatabase.add(index, livro);
+//        System.out.println("Log: Adicionando aluno em lista de reserva do livro: " + LivrosRepository.livrosDatabase.get(index).getAlunosReserva().get(0).getNomeDeUusario());
     }
     
     @Override
-    public void adicionarReservaProfessor(Livro livro, int index){
-        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando professor " + livro.getProfessoresReserva().get(livro.getProfessoresReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
+    public void adicionarReservaProfessor(Livro livro, Professor professor) {
+//        throw new NotYetImplementedException();
+//        LivrosRepository.livrosDatabase.add(index, livro);
+//        System.out.println("Log: Adicionando professor em lista de reserva do livro: " + LivrosRepository.livrosDatabase.get(index).getProfessoresReserva().get(0).getNomeDeUusario());
     }
     
     @Override
-    public void adicionarReservaOrientando(Livro livro, int index){
-        LivrosRepositoryImpl.livrosDatabase.add(index, livro);
-        System.out.println("Log: Adicionando orientando " + livro.getOrientandosReserva().get(livro.getOrientandosReserva().size() - 1).getNomeDeUusario()+ " em lista de reserva do livro " + livro.getNomeDoLivro());
+    public void adicionarReservaOrientando(Livro livro, Orientando orientando){
+//        throw new NotYetImplementedException();
+//        LivrosRepository.livrosDatabase.add(index, livro);
+//        System.out.println("Log: Adicionando orientando em lista de reserva do livro: " + LivrosRepository.livrosDatabase.get(index).getOrientandosReserva().get(0).getNomeDeUusario());
     }
 
     @Override

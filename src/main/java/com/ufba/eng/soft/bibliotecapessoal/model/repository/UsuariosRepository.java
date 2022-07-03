@@ -5,6 +5,7 @@
 package com.ufba.eng.soft.bibliotecapessoal.model.repository;
 
 
+import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
 import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
@@ -26,21 +27,18 @@ public interface UsuariosRepository {
    boolean adicionarNovoAluno(Aluno aluno);
    boolean adicionarNovoOrientando(Orientando orientando);
    
-   void atualizarUsuarioProfessor(Professor professor, int index);
-   void atualizarUsuarioAluno(Aluno aluno, int index);
-   void atualizarUsuarioOrientando(Orientando orientando, int index);
+   void atualizarUsuario(UsuarioDoSistema usuario);
+
+   boolean removerUsuario(String id);
+
+   public Aluno consultarAlunoId(String id);
+   public Professor consultarProfessorId(String id);
+   public Orientando consultarOrientandoId(String id);
    
-   boolean removerUsuarioProfessor(String id);
-   boolean removerUsuarioAluno(String id);
-   boolean removerUsuarioOrientando(String id);
-   
-   public UsuarioDoSistema consultarAlunoId(String id);
-   public UsuarioDoSistema consultarProfessorId(String id);
-   public UsuarioDoSistema consultarOrientandoId(String id);
-   
-   public UsuarioDoSistema consultarAlunoNome(String nome);
-   public UsuarioDoSistema consultarProfessorNome(String nome);
-   public UsuarioDoSistema consultarOrientandoNome(String nome);
-   
-   
+   public Aluno consultarAlunoNome(String nome);
+   public Professor consultarProfessorNome(String nome);
+   public Orientando consultarOrientandoNome(String nome);
+
+
+    List<Livro> getTodosOsEmprestimosDoUsuario(String id);
 }

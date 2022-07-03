@@ -105,5 +105,14 @@ public class VerificadorDeCampos {
         }        
         return new ResultadoVerificacao(true);
     }
-    
+
+    public static ResultadoVerificacao copias(String qtdCopias) {
+        if (qtdCopias == null || qtdCopias.isEmpty()) {
+            return new ResultadoVerificacao(false, "Quantidade de cópias não pode estar vazio");
+        }
+        if (!qtdCopias.matches("[0-9]+")) {
+            return new ResultadoVerificacao(false, "Insira uma quantidade de cópias válida: 0 ou mais, somente dígitos.");
+        }
+        return new ResultadoVerificacao(true);
+    }
 }

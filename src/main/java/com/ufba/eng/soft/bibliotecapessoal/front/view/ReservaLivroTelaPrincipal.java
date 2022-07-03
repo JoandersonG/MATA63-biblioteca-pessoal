@@ -1,11 +1,10 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.view;
 
 import com.ufba.eng.soft.bibliotecapessoal.front.jframe.ReservaLivroJFrame;
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepositoryImpl;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Aluno;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Orientando;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.Professor;
-import com.ufba.eng.soft.bibliotecapessoal.model.user.UsuarioDoSistema;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.UsuariosRepository;
+import com.ufba.eng.soft.bibliotecapessoal.model.user.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -35,12 +34,12 @@ import javax.swing.border.EmptyBorder;
 public class ReservaLivroTelaPrincipal extends JFrame {
     private JPanel contentPane;
     private String identificacao;
-    private String usuario;
+    private LivrosRepository livrosRepository;
 
 /**
      * Create the frame.
      */
-    public ReservaLivroTelaPrincipal() throws FileNotFoundException, IOException {
+    public ReservaLivroTelaPrincipal(LivrosRepository livrosRepository, UsuariosRepository usuariosRepository) throws IOException {
             setTitle("\"Persibi - Reserva de Livro");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(300, 300, 650, 500);
@@ -70,8 +69,7 @@ public class ReservaLivroTelaPrincipal extends JFrame {
             JButton btnProfessor = new JButton("Professor");
             btnProfessor.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Professor";
-                            new ReservaLivroJFrame( usuario).setVisible(true);
+                            new ReservaLivroJFrame(TipoUsuario.PROFESSOR, livrosRepository, usuariosRepository).setVisible(true);
                     }
             });
             btnProfessor.setForeground(Color.WHITE);
@@ -82,8 +80,7 @@ public class ReservaLivroTelaPrincipal extends JFrame {
             JButton btnAluno = new JButton("Aluno");
             btnAluno.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Aluno";
-                             new ReservaLivroJFrame( usuario).setVisible(true);
+                             new ReservaLivroJFrame(TipoUsuario.ALUNO, livrosRepository, usuariosRepository).setVisible(true);
                     }
             });
             btnAluno.setForeground(Color.WHITE);
@@ -94,8 +91,7 @@ public class ReservaLivroTelaPrincipal extends JFrame {
             JButton btnOrientando = new JButton("Orientando");
             btnOrientando.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            usuario = "Orientando";
-                             new ReservaLivroJFrame( usuario).setVisible(true);
+                             new ReservaLivroJFrame(TipoUsuario.ORIENTANDO, livrosRepository, usuariosRepository).setVisible(true);
                     }
             });
             btnOrientando.setForeground(Color.WHITE);

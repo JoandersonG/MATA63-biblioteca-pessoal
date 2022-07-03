@@ -1,6 +1,6 @@
 package com.ufba.eng.soft.bibliotecapessoal.front.jframe;
 
-import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepositoryImpl;
+import com.ufba.eng.soft.bibliotecapessoal.model.repository.LivrosRepository;
 import com.ufba.eng.soft.bibliotecapessoal.model.product.Livro;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,17 +19,16 @@ import javax.swing.border.EmptyBorder;
 
 public class ConsultaLivroJFrame extends JFrame {
     private JPanel contentPane;
-    private String tipo;
     private JTextField identificacaoField;
+    private LivrosRepository livrosRepository;
+
     
-    
-    public ConsultaLivroJFrame(String tipo) {
-        tipo = tipo;
-        criarFormularioNome(tipo);
+    public ConsultaLivroJFrame(String tipoDeBusca, LivrosRepository livrosRepository) {
+        this.livrosRepository = livrosRepository;
+        criarFormularioNome(tipoDeBusca);
     }
     
-    private void criarFormularioNome(String tipo) {
-        tipo = tipo;
+    private void criarFormularioNome(String tipoDeBusca) {
         setTitle("Persibi - Buscando Livro ...");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300, 300, 500, 350);
@@ -56,7 +56,7 @@ public class ConsultaLivroJFrame extends JFrame {
         JPanel panelConsulta = new JPanel();
         panelConsulta.setLayout(new FlowLayout());
         
-        JLabel identificacaoLabel = new JLabel ("Identicaï¿½ï¿½o");
+        JLabel identificacaoLabel = new JLabel ("Identicação");
         identificacaoField = new JTextField(40);     
         
         panelConsulta.add(identificacaoLabel);
@@ -69,18 +69,16 @@ public class ConsultaLivroJFrame extends JFrame {
         botaoBuscar.setBackground(Color.GREEN);
         panelBotoes.add(botaoBuscar);
         
-        if(tipo == "ISBN"){ 
+        if(tipoDeBusca.equals("ISBN")){
             botaoBuscar.addActionListener(buscarLivroISBNAction);  
         }
-        if(tipo == "Nome"){ 
+        if(tipoDeBusca.equals("Nome")){
             botaoBuscar.addActionListener(buscarLivroNomeAction);  
-        }
-        if(tipo == "Cï¿½d. Barras"){ 
+        }//todo: revisar acentuações
+        if(tipo == "Cód. Barras"){ 
             botaoBuscar.addActionListener(buscarLivroCodAction);  
         }
-          
 
-        
         JButton botaoLimpar = new JButton("Limpar");
         botaoLimpar.setBackground(Color.red);
         botaoLimpar.addActionListener(limparAction);
@@ -102,14 +100,14 @@ public class ConsultaLivroJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             String identificacaoLivro = identificacaoField.getText();
             
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorISBN(identificacaoLivro);
+            Livro livro = livrosRepository.getLivroPorISBN(identificacaoLivro);
            
             if(livro != null){
                 new MostrarInformacoesLivroJFrame(livro).setVisible(true);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -117,15 +115,16 @@ public class ConsultaLivroJFrame extends JFrame {
     private class BuscarLivroNomeAction implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String identificacaoLivro = identificacaoField.getText();
-            
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorNome(identificacaoLivro);
+
+            List<Livro> livrosComTituloParcial = livrosRepository.getLivrosComTituloParcial(identificacaoLivro);
+            Livro livro = livrosComTituloParcial.isEmpty() ? null : livrosComTituloParcial.get(0);
            
             if(livro != null){
                 new MostrarInformacoesLivroJFrame(livro).setVisible(true);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -134,14 +133,14 @@ public class ConsultaLivroJFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
            String identificacaoLivro = identificacaoField.getText();
             
-            Livro livro = (Livro) new LivrosRepositoryImpl().getLivroPorCodBarras(identificacaoLivro);
+            Livro livro = livrosRepository.getLivroPorCodBarras(identificacaoLivro);
            
             if(livro != null){
                 new MostrarInformacoesLivroJFrame(livro).setVisible(true);
             }
             
             else{
-                JOptionPane.showMessageDialog(null, "Livro nï¿½o encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
+                JOptionPane.showMessageDialog(null, "Livro não encontrado", "Consulta", JOptionPane.PLAIN_MESSAGE);       
             }
         }
     }
@@ -156,7 +155,7 @@ public class ConsultaLivroJFrame extends JFrame {
     private class SairAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            ConsultaLivroJFrame.this.dispose();            
+            ConsultaLivroJFrame.this.dispose();
         }
     }
     

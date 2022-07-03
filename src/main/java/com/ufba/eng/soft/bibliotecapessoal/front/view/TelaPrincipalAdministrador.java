@@ -96,7 +96,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnConsultarUsuario.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
-                            new ConsultaUsuarioTelaPrincipal().setVisible(true);
+                            new ConsultaUsuarioTelaPrincipal(usuariosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -148,7 +148,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnConsultarLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                             try {
-                            new ConsultarLivroTelaPrincipal().setVisible(true);
+                            new ConsultarLivroTelaPrincipal(livrosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -169,9 +169,13 @@ public class TelaPrincipalAdministrador extends JFrame {
             contentPane.add(btnAtualizarLivro);
              
             JButton btnRemoverLivro = new JButton("Remover Livro");
-            btnCadastrarLivro.addActionListener(new ActionListener() {
+            btnRemoverLivro.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                            
+                        try {
+                            new RemoveLivroTelaPrincipal(livrosRepository).setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }                            
                     }
             });
         Style.setStandardUiButtonStyle(btnRemoverLivro, Style.getGrayColor());
@@ -203,7 +207,7 @@ public class TelaPrincipalAdministrador extends JFrame {
             btnRealizarEmprestimo.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         try {
-                            new EmprestaLivroTelaPrincipal().setVisible(true);
+                            new EmprestaLivroTelaPrincipal(usuariosRepository, livrosRepository).setVisible(true);
                         } catch (IOException ex) {
                             Logger.getLogger(TelaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                         }
